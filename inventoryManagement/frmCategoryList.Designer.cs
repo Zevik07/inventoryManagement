@@ -34,12 +34,6 @@ namespace inventoryManagement
             this.label3 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnUndo = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -47,6 +41,11 @@ namespace inventoryManagement
             this.dgvCategory = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnUndo = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -102,66 +101,6 @@ namespace inventoryManagement
             this.txtName.Size = new System.Drawing.Size(251, 24);
             this.txtName.TabIndex = 4;
             // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(7, 7);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(7);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(84, 32);
-            this.btnAdd.TabIndex = 6;
-            this.btnAdd.Text = "Thêm";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Location = new System.Drawing.Point(105, 7);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(7);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(84, 32);
-            this.btnEdit.TabIndex = 7;
-            this.btnEdit.Text = "Sửa";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(203, 7);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(7);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(84, 32);
-            this.btnDelete.TabIndex = 8;
-            this.btnDelete.Text = "Xóa";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(301, 7);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(7);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(84, 32);
-            this.btnSave.TabIndex = 9;
-            this.btnSave.Text = "Lưu";
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
-            // btnUndo
-            // 
-            this.btnUndo.Location = new System.Drawing.Point(399, 7);
-            this.btnUndo.Margin = new System.Windows.Forms.Padding(7);
-            this.btnUndo.Name = "btnUndo";
-            this.btnUndo.Size = new System.Drawing.Size(84, 32);
-            this.btnUndo.TabIndex = 10;
-            this.btnUndo.Text = "Hủy";
-            this.btnUndo.UseVisualStyleBackColor = true;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Location = new System.Drawing.Point(497, 7);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(7);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(84, 32);
-            this.btnClose.TabIndex = 11;
-            this.btnClose.Text = "Đóng";
-            this.btnClose.UseVisualStyleBackColor = true;
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
@@ -170,12 +109,11 @@ namespace inventoryManagement
             this.flowLayoutPanel1.Controls.Add(this.btnAdd);
             this.flowLayoutPanel1.Controls.Add(this.btnEdit);
             this.flowLayoutPanel1.Controls.Add(this.btnDelete);
-            this.flowLayoutPanel1.Controls.Add(this.btnSave);
             this.flowLayoutPanel1.Controls.Add(this.btnUndo);
-            this.flowLayoutPanel1.Controls.Add(this.btnClose);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(27, 3);
+            this.flowLayoutPanel1.Controls.Add(this.btnSave);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(24, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(588, 47);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(595, 47);
             this.flowLayoutPanel1.TabIndex = 12;
             // 
             // tableLayoutPanel1
@@ -188,7 +126,7 @@ namespace inventoryManagement
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 53F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(643, 53);
             this.tableLayoutPanel1.TabIndex = 13;
             // 
@@ -206,7 +144,7 @@ namespace inventoryManagement
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 207F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 436F));
             this.tableLayoutPanel2.Controls.Add(this.txtName, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.txtId, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.label3, 0, 1);
@@ -246,6 +184,71 @@ namespace inventoryManagement
             this.Column2.HeaderText = "Tên ngành hàng";
             this.Column2.Name = "Column2";
             // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::inventoryManagement.Properties.Resources.add_icon;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(7, 7);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(7);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+            this.btnAdd.Size = new System.Drawing.Size(105, 32);
+            this.btnAdd.TabIndex = 6;
+            this.btnAdd.Text = "Thêm";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Image = global::inventoryManagement.Properties.Resources.edit_icon;
+            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEdit.Location = new System.Drawing.Point(126, 7);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(7);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+            this.btnEdit.Size = new System.Drawing.Size(105, 32);
+            this.btnEdit.TabIndex = 7;
+            this.btnEdit.Text = "Sửa";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Image = global::inventoryManagement.Properties.Resources.delete_icon;
+            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDelete.Location = new System.Drawing.Point(245, 7);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(7);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+            this.btnDelete.Size = new System.Drawing.Size(105, 32);
+            this.btnDelete.TabIndex = 8;
+            this.btnDelete.Text = "Xóa";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            // 
+            // btnUndo
+            // 
+            this.btnUndo.Image = global::inventoryManagement.Properties.Resources.Undo_icon;
+            this.btnUndo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUndo.Location = new System.Drawing.Point(364, 7);
+            this.btnUndo.Margin = new System.Windows.Forms.Padding(7);
+            this.btnUndo.Name = "btnUndo";
+            this.btnUndo.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+            this.btnUndo.Size = new System.Drawing.Size(105, 32);
+            this.btnUndo.TabIndex = 10;
+            this.btnUndo.Text = " Quay lại";
+            this.btnUndo.UseVisualStyleBackColor = true;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Image = global::inventoryManagement.Properties.Resources.Save_icon;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(483, 7);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(7);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
+            this.btnSave.Size = new System.Drawing.Size(105, 32);
+            this.btnSave.TabIndex = 9;
+            this.btnSave.Text = "Lưu";
+            this.btnSave.UseVisualStyleBackColor = true;
+            // 
             // frmCategoryList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -283,7 +286,6 @@ namespace inventoryManagement
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnUndo;
-        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;

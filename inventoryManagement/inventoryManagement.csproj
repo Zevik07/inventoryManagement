@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmEmployeeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEmployeeList.Designer.cs">
+      <DependentUpon>frmEmployeeList.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +66,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmEmployeeList.resx">
+      <DependentUpon>frmEmployeeList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -91,6 +100,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Images\mainBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Icons\add-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Icons\edit-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Icons\delete-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Icons\Undo-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Icons\Save-icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace inventoryManagement
 {
-    public partial class frmMain : Form
+    public partial class frmEmployeeList : Form
     {
-        public frmMain()
+        public frmEmployeeList()
         {
             InitializeComponent();
         }
 
-        private void frmMain_Load(object sender, EventArgs e)
+        private void frmEmployeeList_Load(object sender, EventArgs e)
         {
             
         }
