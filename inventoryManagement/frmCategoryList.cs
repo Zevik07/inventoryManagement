@@ -10,11 +10,7 @@ using System.Windows.Forms;
 
 namespace inventoryManagement
 {
-    public partial class frmMaterialList : Form
+    public partial class frmCategoryList : Form
     {
-        public frmMaterialList()
-        {
-            InitializeComponent();
-        }
     }
 }

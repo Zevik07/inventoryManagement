@@ -19,7 +19,8 @@ namespace inventoryManagement
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-
+            Form moreForm = new frmCategoryList();
+            moreForm.ShowDialog();
         }
     }
 }
