@@ -17,7 +17,6 @@ namespace inventoryManagement
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmMain());
-            new frmCategoryList().Show();
         }
     }
 }
