@@ -29,6 +29,7 @@ namespace inventoryManagement
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBillList));
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dpkBillDate = new System.Windows.Forms.DateTimePicker();
@@ -457,7 +458,7 @@ namespace inventoryManagement
             // 
             this.txtSeach.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSeach.Location = new System.Drawing.Point(451, 9);
+            this.txtSeach.Location = new System.Drawing.Point(451, 7);
             this.txtSeach.Margin = new System.Windows.Forms.Padding(1);
             this.txtSeach.MinimumSize = new System.Drawing.Size(4, 24);
             this.txtSeach.Name = "txtSeach";
@@ -877,6 +878,7 @@ namespace inventoryManagement
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(714, 600);
             this.Name = "frmBillList";

@@ -103,6 +103,16 @@ namespace inventoryManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Folders_OS_Documents_Metro_icon {
+            get {
+                object obj = ResourceManager.GetObject("Folders-OS-Documents-Metro-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap mainBackground {
             get {
                 object obj = ResourceManager.GetObject("mainBackground", resourceCulture);
@@ -126,6 +136,26 @@ namespace inventoryManagement.Properties {
         internal static System.Drawing.Bitmap Save_icon {
             get {
                 object obj = ResourceManager.GetObject("Save-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Save_icon1 {
+            get {
+                object obj = ResourceManager.GetObject("Save-icon1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap search_icon {
+            get {
+                object obj = ResourceManager.GetObject("search-icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

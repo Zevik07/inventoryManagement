@@ -29,6 +29,7 @@ namespace inventoryManagement
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEmployeeList));
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -218,7 +219,7 @@ namespace inventoryManagement
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtName.Location = new System.Drawing.Point(119, 34);
             this.txtName.Margin = new System.Windows.Forms.Padding(1);
-            this.txtName.MinimumSize = new System.Drawing.Size(0, 24);
+            this.txtName.MinimumSize = new System.Drawing.Size(4, 24);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(159, 24);
             this.txtName.TabIndex = 7;
@@ -243,7 +244,7 @@ namespace inventoryManagement
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAddress.Location = new System.Drawing.Point(439, 1);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(1);
-            this.txtAddress.MinimumSize = new System.Drawing.Size(0, 24);
+            this.txtAddress.MinimumSize = new System.Drawing.Size(4, 24);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(209, 24);
             this.txtAddress.TabIndex = 9;
@@ -255,7 +256,7 @@ namespace inventoryManagement
             this.mtbPhone.Location = new System.Drawing.Point(439, 34);
             this.mtbPhone.Margin = new System.Windows.Forms.Padding(1);
             this.mtbPhone.Mask = "(0) 00000000";
-            this.mtbPhone.MinimumSize = new System.Drawing.Size(0, 24);
+            this.mtbPhone.MinimumSize = new System.Drawing.Size(4, 24);
             this.mtbPhone.Name = "mtbPhone";
             this.mtbPhone.Size = new System.Drawing.Size(209, 24);
             this.mtbPhone.TabIndex = 10;
@@ -267,7 +268,7 @@ namespace inventoryManagement
             this.dtpBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpBirthday.Location = new System.Drawing.Point(439, 66);
             this.dtpBirthday.Margin = new System.Windows.Forms.Padding(1);
-            this.dtpBirthday.MinimumSize = new System.Drawing.Size(0, 24);
+            this.dtpBirthday.MinimumSize = new System.Drawing.Size(4, 24);
             this.dtpBirthday.Name = "dtpBirthday";
             this.dtpBirthday.Size = new System.Drawing.Size(209, 24);
             this.dtpBirthday.TabIndex = 11;
@@ -278,7 +279,7 @@ namespace inventoryManagement
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtId.Location = new System.Drawing.Point(119, 1);
             this.txtId.Margin = new System.Windows.Forms.Padding(1);
-            this.txtId.MinimumSize = new System.Drawing.Size(0, 24);
+            this.txtId.MinimumSize = new System.Drawing.Size(4, 24);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(159, 24);
             this.txtId.TabIndex = 6;
@@ -585,6 +586,7 @@ namespace inventoryManagement
             this.Controls.Add(this.dvgEmployee);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(689, 418);
             this.Name = "frmEmployeeList";

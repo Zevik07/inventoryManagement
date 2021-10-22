@@ -29,6 +29,7 @@ namespace inventoryManagement
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCustomerList));
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,6 +43,10 @@ namespace inventoryManagement
             this.label4 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
             this.dvgEmployee = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -49,10 +54,6 @@ namespace inventoryManagement
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUndo = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -238,6 +239,35 @@ namespace inventoryManagement
             this.dvgEmployee.Size = new System.Drawing.Size(612, 198);
             this.dvgEmployee.TabIndex = 16;
             // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column1.HeaderText = "Mã khách";
+            this.Column1.MinimumWidth = 100;
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.HeaderText = "Họ tên";
+            this.Column2.Name = "Column2";
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Column4.HeaderText = "Địa chỉ";
+            this.Column4.MinimumWidth = 78;
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 78;
+            // 
+            // Column5
+            // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column5.HeaderText = "Số điện thoại";
+            this.Column5.MinimumWidth = 119;
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 119;
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
@@ -356,35 +386,6 @@ namespace inventoryManagement
             this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = true;
             // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column1.HeaderText = "Mã khách";
-            this.Column1.MinimumWidth = 100;
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.HeaderText = "Họ tên";
-            this.Column2.Name = "Column2";
-            // 
-            // Column4
-            // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Column4.HeaderText = "Địa chỉ";
-            this.Column4.MinimumWidth = 78;
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 78;
-            // 
-            // Column5
-            // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column5.HeaderText = "Số điện thoại";
-            this.Column5.MinimumWidth = 119;
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 119;
-            // 
             // frmCustomerList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -395,6 +396,7 @@ namespace inventoryManagement
             this.Controls.Add(this.dvgEmployee);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(652, 429);
             this.Name = "frmCustomerList";
