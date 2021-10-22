@@ -16,7 +16,7 @@ namespace inventoryManagement
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmBillSearch());
+            Application.Run(new frmMain());
 
         }
     }

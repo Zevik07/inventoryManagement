@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\db.cs" />
     <Compile Include="frmBillList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,8 +162,6 @@
   <ItemGroup>
     <None Include="Assets\Icons\Folders-OS-Documents-Metro-icon.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Core\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
