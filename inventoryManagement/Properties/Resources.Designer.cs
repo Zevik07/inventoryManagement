@@ -103,6 +103,16 @@ namespace inventoryManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FAQ_icon {
+            get {
+                object obj = ResourceManager.GetObject("FAQ-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Folders_OS_Documents_Metro_icon {
             get {
                 object obj = ResourceManager.GetObject("Folders-OS-Documents-Metro-icon", resourceCulture);
@@ -116,6 +126,16 @@ namespace inventoryManagement.Properties {
         internal static System.Drawing.Bitmap mainBackground {
             get {
                 object obj = ResourceManager.GetObject("mainBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap news_icon {
+            get {
+                object obj = ResourceManager.GetObject("news-icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -156,6 +176,16 @@ namespace inventoryManagement.Properties {
         internal static System.Drawing.Bitmap search_icon {
             get {
                 object obj = ResourceManager.GetObject("search-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap statistics_icon {
+            get {
+                object obj = ResourceManager.GetObject("statistics-icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
