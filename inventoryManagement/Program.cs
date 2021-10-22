@@ -16,9 +16,8 @@ namespace inventoryManagement
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
-            Form moreForm = new frmEmployeeList();
-            moreForm.ShowDialog();
+            Application.Run(new frmCategoryList());
+
         }
     }
 }
