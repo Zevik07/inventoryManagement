@@ -32,7 +32,7 @@ namespace inventoryManagement
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mnuCate = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuMaterial = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCategory = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuEmployee = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCustomer = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuGood = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,22 +45,22 @@ namespace inventoryManagement
             this.mnuReport = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuReportInventory = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuReportRevenue = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuOther = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.lblMainTitle = new System.Windows.Forms.Label();
             this.lblSubTitle = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -96,10 +96,10 @@ namespace inventoryManagement
             // 
             this.mnuCate.BackColor = System.Drawing.Color.White;
             this.mnuCate.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuMaterial,
-            this.mnuEmployee,
+            this.mnuGood,
+            this.mnuCategory,
             this.mnuCustomer,
-            this.mnuGood});
+            this.mnuEmployee});
             this.mnuCate.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mnuCate.Image = global::inventoryManagement.Properties.Resources.Folders_OS_Documents_Metro_icon;
             this.mnuCate.Name = "mnuCate";
@@ -107,11 +107,12 @@ namespace inventoryManagement
             this.mnuCate.Size = new System.Drawing.Size(115, 42);
             this.mnuCate.Text = "Danh mục";
             // 
-            // mnuMaterial
+            // mnuCategory
             // 
-            this.mnuMaterial.Name = "mnuMaterial";
-            this.mnuMaterial.Size = new System.Drawing.Size(180, 24);
-            this.mnuMaterial.Text = "Chất liệu";
+            this.mnuCategory.Name = "mnuCategory";
+            this.mnuCategory.Size = new System.Drawing.Size(180, 24);
+            this.mnuCategory.Text = "Ngành hàng";
+            this.mnuCategory.Click += new System.EventHandler(this.mnuCategory_Click);
             // 
             // mnuEmployee
             // 
@@ -130,6 +131,7 @@ namespace inventoryManagement
             this.mnuGood.Name = "mnuGood";
             this.mnuGood.Size = new System.Drawing.Size(180, 24);
             this.mnuGood.Text = "Hàng hóa";
+            this.mnuGood.Click += new System.EventHandler(this.mnuGood_Click);
             // 
             // mnuBills
             // 
@@ -147,7 +149,7 @@ namespace inventoryManagement
             // mnuBIll
             // 
             this.mnuBIll.Name = "mnuBIll";
-            this.mnuBIll.Size = new System.Drawing.Size(180, 24);
+            this.mnuBIll.Size = new System.Drawing.Size(165, 24);
             this.mnuBIll.Text = "Hóa đơn bán";
             // 
             // mnuSearch
@@ -168,19 +170,19 @@ namespace inventoryManagement
             // mnuFindBill
             // 
             this.mnuFindBill.Name = "mnuFindBill";
-            this.mnuFindBill.Size = new System.Drawing.Size(180, 24);
+            this.mnuFindBill.Size = new System.Drawing.Size(155, 24);
             this.mnuFindBill.Text = "Hóa đơn";
             // 
             // mnuFindGood
             // 
             this.mnuFindGood.Name = "mnuFindGood";
-            this.mnuFindGood.Size = new System.Drawing.Size(180, 24);
+            this.mnuFindGood.Size = new System.Drawing.Size(155, 24);
             this.mnuFindGood.Text = "Hàng";
             // 
             // mnuFindCustomer
             // 
             this.mnuFindCustomer.Name = "mnuFindCustomer";
-            this.mnuFindCustomer.Size = new System.Drawing.Size(180, 24);
+            this.mnuFindCustomer.Size = new System.Drawing.Size(155, 24);
             this.mnuFindCustomer.Text = "Khách hàng";
             // 
             // mnuReport
@@ -200,14 +202,111 @@ namespace inventoryManagement
             // mnuReportInventory
             // 
             this.mnuReportInventory.Name = "mnuReportInventory";
-            this.mnuReportInventory.Size = new System.Drawing.Size(180, 24);
+            this.mnuReportInventory.Size = new System.Drawing.Size(147, 24);
             this.mnuReportInventory.Text = "Hàng tồn";
             // 
             // mnuReportRevenue
             // 
             this.mnuReportRevenue.Name = "mnuReportRevenue";
-            this.mnuReportRevenue.Size = new System.Drawing.Size(180, 24);
+            this.mnuReportRevenue.Size = new System.Drawing.Size(147, 24);
             this.mnuReportRevenue.Text = "Doanh thu";
+            // 
+            // toolStripMenuItem10
+            // 
+            this.toolStripMenuItem10.BackColor = System.Drawing.Color.White;
+            this.toolStripMenuItem10.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem11});
+            this.toolStripMenuItem10.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripMenuItem10.Image = global::inventoryManagement.Properties.Resources.FAQ_icon;
+            this.toolStripMenuItem10.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
+            this.toolStripMenuItem10.Padding = new System.Windows.Forms.Padding(10, 0, 5, 0);
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(80, 42);
+            this.toolStripMenuItem10.Text = "Khác";
+            // 
+            // toolStripMenuItem11
+            // 
+            this.toolStripMenuItem11.Name = "toolStripMenuItem11";
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(216, 24);
+            this.toolStripMenuItem11.Text = "Thông tin phần mềm";
+            // 
+            // toolStripMenuItem7
+            // 
+            this.toolStripMenuItem7.BackColor = System.Drawing.Color.White;
+            this.toolStripMenuItem7.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem8,
+            this.toolStripMenuItem9});
+            this.toolStripMenuItem7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripMenuItem7.Image = global::inventoryManagement.Properties.Resources.statistics_icon;
+            this.toolStripMenuItem7.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+            this.toolStripMenuItem7.Padding = new System.Windows.Forms.Padding(10, 0, 5, 0);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(94, 42);
+            this.toolStripMenuItem7.Text = "Báo cáo";
+            // 
+            // toolStripMenuItem8
+            // 
+            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(136, 22);
+            this.toolStripMenuItem8.Text = "Hàng tồn";
+            // 
+            // toolStripMenuItem9
+            // 
+            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(136, 22);
+            this.toolStripMenuItem9.Text = "Doanh thu";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.BackColor = System.Drawing.Color.White;
+            this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem4,
+            this.toolStripMenuItem5,
+            this.toolStripMenuItem6});
+            this.toolStripMenuItem3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripMenuItem3.Image = global::inventoryManagement.Properties.Resources.search_icon;
+            this.toolStripMenuItem3.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Padding = new System.Windows.Forms.Padding(10, 0, 5, 0);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(99, 42);
+            this.toolStripMenuItem3.Text = "Tìm kiếm";
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(144, 22);
+            this.toolStripMenuItem4.Text = "Hóa đơn";
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(144, 22);
+            this.toolStripMenuItem5.Text = "Hàng";
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(144, 22);
+            this.toolStripMenuItem6.Text = "Khách hàng";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.BackColor = System.Drawing.Color.White;
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2});
+            this.toolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripMenuItem1.Image = global::inventoryManagement.Properties.Resources.news_icon;
+            this.toolStripMenuItem1.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Padding = new System.Windows.Forms.Padding(10, 0, 5, 0);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(106, 42);
+            this.toolStripMenuItem1.Text = "Hóa đơn";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(165, 24);
+            this.toolStripMenuItem2.Text = "Hóa đơn bán";
             // 
             // mnuOther
             // 
@@ -242,7 +341,6 @@ namespace inventoryManagement
             this.lblMainTitle.TabIndex = 1;
             this.lblMainTitle.Text = "Quản lý kho hàng";
             this.lblMainTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblMainTitle.Click += new System.EventHandler(this.lblMainTitle_Click);
             // 
             // lblSubTitle
             // 
@@ -276,104 +374,6 @@ namespace inventoryManagement
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(606, 177);
             this.tableLayoutPanel1.TabIndex = 3;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.BackColor = System.Drawing.Color.White;
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2});
-            this.toolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripMenuItem1.Image = global::inventoryManagement.Properties.Resources.news_icon;
-            this.toolStripMenuItem1.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Padding = new System.Windows.Forms.Padding(10, 0, 5, 0);
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(106, 42);
-            this.toolStripMenuItem1.Text = "Hóa đơn";
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 24);
-            this.toolStripMenuItem2.Text = "Hóa đơn bán";
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.BackColor = System.Drawing.Color.White;
-            this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem4,
-            this.toolStripMenuItem5,
-            this.toolStripMenuItem6});
-            this.toolStripMenuItem3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripMenuItem3.Image = global::inventoryManagement.Properties.Resources.search_icon;
-            this.toolStripMenuItem3.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Padding = new System.Windows.Forms.Padding(10, 0, 5, 0);
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(99, 42);
-            this.toolStripMenuItem3.Text = "Tìm kiếm";
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItem4.Text = "Hóa đơn";
-            // 
-            // toolStripMenuItem5
-            // 
-            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItem5.Text = "Hàng";
-            // 
-            // toolStripMenuItem6
-            // 
-            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItem6.Text = "Khách hàng";
-            // 
-            // toolStripMenuItem7
-            // 
-            this.toolStripMenuItem7.BackColor = System.Drawing.Color.White;
-            this.toolStripMenuItem7.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem8,
-            this.toolStripMenuItem9});
-            this.toolStripMenuItem7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripMenuItem7.Image = global::inventoryManagement.Properties.Resources.statistics_icon;
-            this.toolStripMenuItem7.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Padding = new System.Windows.Forms.Padding(10, 0, 5, 0);
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(94, 42);
-            this.toolStripMenuItem7.Text = "Báo cáo";
-            // 
-            // toolStripMenuItem8
-            // 
-            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItem8.Text = "Hàng tồn";
-            // 
-            // toolStripMenuItem9
-            // 
-            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItem9.Text = "Doanh thu";
-            // 
-            // toolStripMenuItem10
-            // 
-            this.toolStripMenuItem10.BackColor = System.Drawing.Color.White;
-            this.toolStripMenuItem10.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem11});
-            this.toolStripMenuItem10.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripMenuItem10.Image = global::inventoryManagement.Properties.Resources.FAQ_icon;
-            this.toolStripMenuItem10.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Padding = new System.Windows.Forms.Padding(10, 0, 5, 0);
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(80, 42);
-            this.toolStripMenuItem10.Text = "Khác";
-            // 
-            // toolStripMenuItem11
-            // 
-            this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(216, 24);
-            this.toolStripMenuItem11.Text = "Thông tin phần mềm";
             // 
             // frmMain
             // 
@@ -404,7 +404,7 @@ namespace inventoryManagement
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem mnuCate;
-        private System.Windows.Forms.ToolStripMenuItem mnuMaterial;
+        private System.Windows.Forms.ToolStripMenuItem mnuCategory;
         private System.Windows.Forms.ToolStripMenuItem mnuEmployee;
         private System.Windows.Forms.ToolStripMenuItem mnuCustomer;
         private System.Windows.Forms.ToolStripMenuItem mnuGood;

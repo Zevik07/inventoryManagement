@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient; 
+using inventoryManagement.Core;
 
 namespace inventoryManagement
 {
     public partial class frmCategoryList : Form
     {
+        private DataTable tblCategoryData;
         public frmCategoryList()
         {
             InitializeComponent();
@@ -19,27 +22,36 @@ namespace inventoryManagement
 
         private void frmCategoryList_Load(object sender, EventArgs e)
         {
-            this.dgvCategory.Rows.Add("1", "XsdfsdfsdX");
-            this.dgvCategory.Rows.Add("123", "XsdfsdfsdX");
-            this.dgvCategory.Rows.Add("11", "XXsss");
-            this.dgvCategory.Rows.Add("12", "XsdfX");
-            this.dgvCategory.Rows.Add("12", "XX");
-            this.dgvCategory.Rows.Add("1", "XsdfsX");
-            this.dgvCategory.Rows.Add("1", "XX");
-            this.dgvCategory.Rows.Add("1", "XX");
-            this.dgvCategory.Rows.Add("1", "XsdfsdfsdX");
-            this.dgvCategory.Rows.Add("123", "XsdfsdfsdX");
-            this.dgvCategory.Rows.Add("11", "XXsss");
-            this.dgvCategory.Rows.Add("121231231", "XsdfX");
-            this.dgvCategory.Rows.Add("12", "XX");
-            this.dgvCategory.Rows.Add("1", "XsdfsX");
-            this.dgvCategory.Rows.Add("1", "XX");
-            this.dgvCategory.Rows.Add("1", "XX");
+            disabledBtns();
+            LoadDataGridView();
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void disabledBtns()
         {
+            txtId.Enabled = false;
+            btnSave.Enabled = false;
+            btnUndo.Enabled = false;
+        }
 
+        private void LoadDataGridView()
+        {
+            string sql;
+            sql = "SELECT id, name FROM categories";
+            tblCategoryData = db.GetDataToTable(sql); //Đọc dữ liệu từ bảng
+            dgvCategory.DataSource = tblCategoryData; //Nguồn dữ liệu            
+            dgvCategory.Columns[0].HeaderText = "Mã ngành hàng";
+            dgvCategory.Columns[1].HeaderText = "Tên ngành hàng";
+            disabledDgv();
+            /*dgvCategory.Columns[0].Width = 100;
+            dgvCategory.Columns[1].Width = 300;*/
+            
+        }
+
+        private void disabledDgv()
+        {
+            // Ngăn sửa và thao tác trực tiếp
+            dgvCategory.AllowUserToAddRows = false; 
+            dgvCategory.EditMode = DataGridViewEditMode.EditProgrammatically;
         }
     }
 }

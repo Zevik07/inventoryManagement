@@ -23,14 +23,15 @@ namespace inventoryManagement
             Core.db.Connect();
         }
 
-        private void lblMainTitle_Click(object sender, EventArgs e)
+        private void mnuGood_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void mnuCategory_Click(object sender, EventArgs e)
         {
-
+            frmCategoryList frmCategoryList = new frmCategoryList();
+            frmCategoryList.ShowDialog();
         }
     }
 }
