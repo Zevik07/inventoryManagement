@@ -46,7 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\control.cs" />
     <Compile Include="Core\db.cs" />
+    <Compile Include="Core\notify.cs" />
     <Compile Include="frmBillList.cs">
       <SubType>Form</SubType>
     </Compile>
