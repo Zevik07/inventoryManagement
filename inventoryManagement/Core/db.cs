@@ -57,6 +57,27 @@ namespace inventoryManagement.Core
             cmd.Dispose();
         }
 
+        public static bool valid(string sql)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = Con;
+            cmd.CommandText = sql;
+            try
+            {
+                SqlDataReader dr = cmd.ExecuteReader();
+                int count = dr.Cast<object>().Count();
+
+                return count > 0 ? false : true;
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            cmd.Dispose();
+            return false;
+        }
+
         public static DataTable GetDataToTable(string sql)
         {
             SqlDataAdapter dap = new SqlDataAdapter(sql, Con); 

@@ -32,10 +32,10 @@ namespace inventoryManagement
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mnuCate = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCategory = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuEmployee = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCustomer = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuGood = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCategory = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCustomer = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuEmployee = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBills = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBIll = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSearch = new System.Windows.Forms.ToolStripMenuItem();
@@ -107,6 +107,13 @@ namespace inventoryManagement
             this.mnuCate.Size = new System.Drawing.Size(115, 42);
             this.mnuCate.Text = "Danh mục";
             // 
+            // mnuGood
+            // 
+            this.mnuGood.Name = "mnuGood";
+            this.mnuGood.Size = new System.Drawing.Size(180, 24);
+            this.mnuGood.Text = "Hàng hóa";
+            this.mnuGood.Click += new System.EventHandler(this.mnuGood_Click);
+            // 
             // mnuCategory
             // 
             this.mnuCategory.Name = "mnuCategory";
@@ -114,24 +121,18 @@ namespace inventoryManagement
             this.mnuCategory.Text = "Ngành hàng";
             this.mnuCategory.Click += new System.EventHandler(this.mnuCategory_Click);
             // 
-            // mnuEmployee
-            // 
-            this.mnuEmployee.Name = "mnuEmployee";
-            this.mnuEmployee.Size = new System.Drawing.Size(180, 24);
-            this.mnuEmployee.Text = "Nhân viên";
-            // 
             // mnuCustomer
             // 
             this.mnuCustomer.Name = "mnuCustomer";
             this.mnuCustomer.Size = new System.Drawing.Size(180, 24);
             this.mnuCustomer.Text = "Khách hàng";
+            this.mnuCustomer.Click += new System.EventHandler(this.mnuCustomer_Click);
             // 
-            // mnuGood
+            // mnuEmployee
             // 
-            this.mnuGood.Name = "mnuGood";
-            this.mnuGood.Size = new System.Drawing.Size(180, 24);
-            this.mnuGood.Text = "Hàng hóa";
-            this.mnuGood.Click += new System.EventHandler(this.mnuGood_Click);
+            this.mnuEmployee.Name = "mnuEmployee";
+            this.mnuEmployee.Size = new System.Drawing.Size(180, 24);
+            this.mnuEmployee.Text = "Nhân viên";
             // 
             // mnuBills
             // 

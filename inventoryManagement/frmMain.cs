@@ -33,5 +33,11 @@ namespace inventoryManagement
             frmCategoryList frmCategoryList = new frmCategoryList();
             frmCategoryList.ShowDialog();
         }
+
+        private void mnuCustomer_Click(object sender, EventArgs e)
+        {
+            frmCustomerList frmCustomerList = new frmCustomerList();
+            frmCustomerList.ShowDialog();
+        }
     }
 }

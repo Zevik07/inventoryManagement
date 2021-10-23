@@ -56,8 +56,7 @@ namespace inventoryManagement
             dgvCategory.DataSource = tblCategoryData;
 
             // Load textbox
-            txtId.Text = dgvCategory.CurrentRow.Cells[0].Value.ToString();
-            txtName.Text = dgvCategory.CurrentRow.Cells[1].Value.ToString();
+            setTxt();
 
             // Change button state
             if (dgvCategory.Rows.Count == 0)
@@ -86,8 +85,7 @@ namespace inventoryManagement
             control.disabledBtns(new[] { btnUndo, btnSave });
             control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit });
 
-            txtId.Text = dgvCategory.CurrentRow.Cells[0].Value.ToString();
-            txtName.Text = dgvCategory.CurrentRow.Cells[1].Value.ToString();
+            setTxt();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -118,7 +116,7 @@ namespace inventoryManagement
                             return;
                         }
 
-                        sql = "INSERT INTO categories(name) " +
+                        sql = "INSERT INTO categories(name, address, phone) " +
                               "VALUES('" + txtName.Text.ToString() + "')";
                     }
                     break;
