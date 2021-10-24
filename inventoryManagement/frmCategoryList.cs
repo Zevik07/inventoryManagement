@@ -14,19 +14,20 @@ namespace inventoryManagement
 {
     public partial class frmCategoryList : Form
     {
-        private DataTable tblCategoryData;
+        private DataTable CategoryData;
         private string preMethod;
         public frmCategoryList()
         {
             InitializeComponent();
-            //Default setting components
-            dgvCategory.AutoGenerateColumns = false;
         }
 
         private void frmCategoryList_Load(object sender, EventArgs e)
         {
             LoadDataGridView();
+            // Default buttons's state
             control.disabledBtns(new[] { btnUndo, btnSave });
+            // Default for control
+            setControlReadMode();
         }
 
         private void ResetTxt()
@@ -37,14 +38,31 @@ namespace inventoryManagement
 
         private void setTxt()
         {
-            txtId.Text = dgvCategory.CurrentRow.Cells[0].Value.ToString();
-            txtName.Text = dgvCategory.CurrentRow.Cells[1].Value.ToString();
+            if (dgvCategory.CurrentRow == null)
+                return;
+
+            txtId.Text = 
+                dgvCategory.CurrentRow.Cells[0].Value.ToString();
+            txtName.Text = 
+                dgvCategory.CurrentRow.Cells[1].Value.ToString();
         }
         private void disabledDgv()
         {
-            // prevent add, edi row
-            dgvCategory.AllowUserToAddRows = false;
+            // prevent edit
             dgvCategory.EditMode = DataGridViewEditMode.EditProgrammatically;
+        }
+
+        private void setControlReadMode(bool yes = true)
+        {
+            if (yes)
+            {
+                txtName.ReadOnly = true;
+            }
+            else
+            {
+
+                txtName.ReadOnly = false;
+            }
         }
 
         private void LoadDataGridView()
@@ -52,8 +70,8 @@ namespace inventoryManagement
             string sql;
             sql = "SELECT id, name FROM categories";
 
-            tblCategoryData = db.GetDataToTable(sql);
-            dgvCategory.DataSource = tblCategoryData;
+            CategoryData = db.GetDataToTable(sql);
+            dgvCategory.DataSource = CategoryData;
 
             // Load textbox
             setTxt();
@@ -94,10 +112,17 @@ namespace inventoryManagement
 
             control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
             control.enabledBtns(new[] { btnUndo, btnSave });
+
             ResetTxt();
 
-            // Txt
-            txtId.Text = (dgvCategory.Rows.Count + 1).ToString();
+            setControlReadMode(false);
+
+            // Increase id
+            string cellId = 
+                dgvCategory.Rows[dgvCategory.RowCount - 1].Cells[0].Value.ToString();
+            txtId.Text = (Int16.Parse(cellId) + 1)
+                        .ToString();
+
             txtName.Focus();
         }
 
@@ -117,7 +142,7 @@ namespace inventoryManagement
                         }
 
                         sql = "INSERT INTO categories(name, address, phone) " +
-                              "VALUES('" + txtName.Text.ToString() + "')";
+                              "VALUES(N'" + txtName.Text.ToString() + "')";
                     }
                     break;
                 case "edit":
@@ -129,7 +154,7 @@ namespace inventoryManagement
                             return;
                         }
 
-                        sql = "UPDATE categories SET name='" +
+                        sql = "UPDATE categories SET name=N'" +
                             txtName.Text.ToString() +
                             "' WHERE id='" + txtId.Text + "'";
                     }
@@ -140,7 +165,9 @@ namespace inventoryManagement
             }
 
             db.Write(sql);
+
             LoadDataGridView();
+
             control.disabledBtns(new[] { btnUndo, btnSave });
             control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit });
         }
@@ -151,6 +178,8 @@ namespace inventoryManagement
 
             control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
             control.enabledBtns(new[] { btnUndo, btnSave });
+
+            setControlReadMode(false);
 
             txtName.Focus();
         }

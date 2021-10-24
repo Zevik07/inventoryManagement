@@ -25,7 +25,12 @@ namespace inventoryManagement
         private void frmCustomerList_Load(object sender, EventArgs e)
         {
             LoadDataGridView();
+
+            // Default buttons's state
             control.disabledBtns(new[] { btnUndo, btnSave });
+
+            // Default textbox's state
+            controlReadMode();
         }
 
         private void ResetTxt()
@@ -38,6 +43,9 @@ namespace inventoryManagement
 
         private void setTxt()
         {
+            if (dgvCustomer.CurrentRow == null)
+                return;
+
             txtId.Text = dgvCustomer.CurrentRow.Cells[0].Value.ToString();
             txtName.Text = dgvCustomer.CurrentRow.Cells[1].Value.ToString();
             txtAddress.Text = dgvCustomer.CurrentRow.Cells[2].Value.ToString();
@@ -46,7 +54,6 @@ namespace inventoryManagement
         private void disabledDgv()
         {
             // Prevent add, edit row
-            dgvCustomer.AllowUserToAddRows = false;
             dgvCustomer.EditMode = DataGridViewEditMode.EditProgrammatically;
         }
 
@@ -60,6 +67,23 @@ namespace inventoryManagement
                 return false;
             }    
             return true;
+        }
+
+        private void controlReadMode(bool yes = true)
+        {
+            if (yes)
+            {
+                txtName.ReadOnly = true;
+                txtAddress.ReadOnly = true;
+                txtPhone.ReadOnly = true;
+            }
+            else
+            {
+               
+                txtName.ReadOnly = false;
+                txtAddress.ReadOnly = false;
+                txtPhone.ReadOnly = false;
+            }
         }
 
         private void LoadDataGridView()
@@ -109,12 +133,16 @@ namespace inventoryManagement
 
             control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
             control.enabledBtns(new[] { btnUndo, btnSave });
+
             ResetTxt();
 
-            // Txt
+            controlReadMode(false);
+
+            // Increase id
             string cellId = dgvCustomer.Rows[dgvCustomer.RowCount - 1].Cells[0].Value.ToString();
             txtId.Text = (Int16.Parse(cellId) + 1)
                         .ToString();
+            // Focus
             txtName.Focus();
         }
 
@@ -133,8 +161,8 @@ namespace inventoryManagement
                         }
 
                         sql = "INSERT INTO customers(name, address, phone) " +
-                              "VALUES('" + 
-                              txtName.Text.ToString() + "','" +
+                              "VALUES(N'" + 
+                              txtName.Text.ToString() + "',N'" +
                               txtAddress.Text.ToString() + "','" +
                               txtPhone.Text.ToString() +
                               "')";
@@ -148,8 +176,8 @@ namespace inventoryManagement
                             return;
                         }
 
-                        sql = "UPDATE customers SET name = '" + txtName.Text.ToString()
-                            + "', address = '" + txtAddress.Text.ToString()
+                        sql = "UPDATE customers SET name = N'" + txtName.Text.ToString()
+                            + "', address = N'" + txtAddress.Text.ToString()
                             + "', phone = '" + txtPhone.Text.ToString()
                             + "' WHERE id = '" + txtId.Text + "'";
                     }
@@ -171,6 +199,8 @@ namespace inventoryManagement
 
             control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
             control.enabledBtns(new[] { btnUndo, btnSave });
+
+            controlReadMode(false);
 
             txtName.Focus();
         }

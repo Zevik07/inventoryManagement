@@ -41,6 +41,7 @@ namespace inventoryManagement
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
+            this.txtPhone = new System.Windows.Forms.TextBox();
             this.dgvCustomer = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -49,7 +50,6 @@ namespace inventoryManagement
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUndo = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.txtPhone = new System.Windows.Forms.TextBox();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -173,7 +173,7 @@ namespace inventoryManagement
             this.txtName.MinimumSize = new System.Drawing.Size(4, 24);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(155, 24);
-            this.txtName.TabIndex = 7;
+            this.txtName.TabIndex = 2;
             // 
             // txtAddress
             // 
@@ -184,7 +184,7 @@ namespace inventoryManagement
             this.txtAddress.MinimumSize = new System.Drawing.Size(4, 24);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(188, 24);
-            this.txtAddress.TabIndex = 9;
+            this.txtAddress.TabIndex = 3;
             // 
             // label4
             // 
@@ -208,10 +208,22 @@ namespace inventoryManagement
             this.txtId.MinimumSize = new System.Drawing.Size(4, 24);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(155, 24);
-            this.txtId.TabIndex = 6;
+            this.txtId.TabIndex = 1;
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPhone.Location = new System.Drawing.Point(423, 41);
+            this.txtPhone.Margin = new System.Windows.Forms.Padding(1);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(188, 24);
+            this.txtPhone.TabIndex = 4;
             // 
             // dgvCustomer
             // 
+            this.dgvCustomer.AllowUserToAddRows = false;
+            this.dgvCustomer.AllowUserToDeleteRows = false;
             this.dgvCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -227,6 +239,7 @@ namespace inventoryManagement
             this.dgvCustomer.Name = "dgvCustomer";
             this.dgvCustomer.Size = new System.Drawing.Size(612, 198);
             this.dgvCustomer.TabIndex = 16;
+            this.dgvCustomer.TabStop = false;
             this.dgvCustomer.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvCustomer_CellMouseUp);
             // 
             // tableLayoutPanel1
@@ -271,7 +284,7 @@ namespace inventoryManagement
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Padding = new System.Windows.Forms.Padding(6, 1, 1, 1);
             this.btnAdd.Size = new System.Drawing.Size(98, 32);
-            this.btnAdd.TabIndex = 6;
+            this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -290,7 +303,7 @@ namespace inventoryManagement
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Padding = new System.Windows.Forms.Padding(6, 1, 1, 1);
             this.btnEdit.Size = new System.Drawing.Size(98, 32);
-            this.btnEdit.TabIndex = 7;
+            this.btnEdit.TabIndex = 6;
             this.btnEdit.Text = "Sửa";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
@@ -309,7 +322,7 @@ namespace inventoryManagement
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Padding = new System.Windows.Forms.Padding(6, 1, 1, 1);
             this.btnDelete.Size = new System.Drawing.Size(98, 32);
-            this.btnDelete.TabIndex = 8;
+            this.btnDelete.TabIndex = 7;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -328,7 +341,7 @@ namespace inventoryManagement
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.Padding = new System.Windows.Forms.Padding(6, 1, 1, 1);
             this.btnUndo.Size = new System.Drawing.Size(98, 32);
-            this.btnUndo.TabIndex = 10;
+            this.btnUndo.TabIndex = 8;
             this.btnUndo.Text = "  Quay lại";
             this.btnUndo.UseVisualStyleBackColor = true;
             this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
@@ -352,16 +365,6 @@ namespace inventoryManagement
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // txtPhone
-            // 
-            this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPhone.Location = new System.Drawing.Point(423, 41);
-            this.txtPhone.Margin = new System.Windows.Forms.Padding(1);
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(188, 24);
-            this.txtPhone.TabIndex = 10;
-            // 
             // Column1
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -372,19 +375,20 @@ namespace inventoryManagement
             // 
             // Column2
             // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column2.DataPropertyName = "name";
             this.Column2.HeaderText = "Họ tên";
+            this.Column2.MinimumWidth = 172;
             this.Column2.Name = "Column2";
+            this.Column2.Width = 172;
             // 
             // Column4
             // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Column4.DataPropertyName = "address";
             this.Column4.HeaderText = "Địa chỉ";
-            this.Column4.MinimumWidth = 78;
+            this.Column4.MinimumWidth = 178;
             this.Column4.Name = "Column4";
-            this.Column4.Width = 78;
+            this.Column4.Width = 178;
             // 
             // Column5
             // 

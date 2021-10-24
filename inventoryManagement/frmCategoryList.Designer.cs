@@ -39,8 +39,6 @@ namespace inventoryManagement
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvCategory = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -48,6 +46,8 @@ namespace inventoryManagement
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUndo = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -106,7 +106,7 @@ namespace inventoryManagement
             this.txtId.MinimumSize = new System.Drawing.Size(4, 24);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(234, 24);
-            this.txtId.TabIndex = 3;
+            this.txtId.TabIndex = 1;
             // 
             // txtName
             // 
@@ -118,7 +118,7 @@ namespace inventoryManagement
             this.txtName.MinimumSize = new System.Drawing.Size(4, 24);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(234, 24);
-            this.txtName.TabIndex = 4;
+            this.txtName.TabIndex = 2;
             // 
             // panel1
             // 
@@ -180,24 +180,8 @@ namespace inventoryManagement
             this.dgvCategory.Name = "dgvCategory";
             this.dgvCategory.Size = new System.Drawing.Size(531, 152);
             this.dgvCategory.TabIndex = 5;
+            this.dgvCategory.TabStop = false;
             this.dgvCategory.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvCategory_CellMouseUp);
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column1.DataPropertyName = "id";
-            this.Column1.Frozen = true;
-            this.Column1.HeaderText = "Mã ngành hàng";
-            this.Column1.MinimumWidth = 150;
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 150;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.DataPropertyName = "name";
-            this.Column2.HeaderText = "Tên ngành hàng";
-            this.Column2.Name = "Column2";
             // 
             // tableLayoutPanel1
             // 
@@ -241,7 +225,7 @@ namespace inventoryManagement
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Padding = new System.Windows.Forms.Padding(6, 1, 1, 1);
             this.btnAdd.Size = new System.Drawing.Size(98, 32);
-            this.btnAdd.TabIndex = 6;
+            this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -260,7 +244,7 @@ namespace inventoryManagement
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Padding = new System.Windows.Forms.Padding(6, 1, 1, 1);
             this.btnEdit.Size = new System.Drawing.Size(98, 32);
-            this.btnEdit.TabIndex = 7;
+            this.btnEdit.TabIndex = 4;
             this.btnEdit.Text = "Sửa";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
@@ -279,7 +263,7 @@ namespace inventoryManagement
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Padding = new System.Windows.Forms.Padding(6, 1, 1, 1);
             this.btnDelete.Size = new System.Drawing.Size(98, 32);
-            this.btnDelete.TabIndex = 8;
+            this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -298,7 +282,7 @@ namespace inventoryManagement
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.Padding = new System.Windows.Forms.Padding(6, 1, 1, 1);
             this.btnUndo.Size = new System.Drawing.Size(98, 32);
-            this.btnUndo.TabIndex = 10;
+            this.btnUndo.TabIndex = 6;
             this.btnUndo.Text = "  Quay lại";
             this.btnUndo.UseVisualStyleBackColor = true;
             this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
@@ -317,10 +301,28 @@ namespace inventoryManagement
             this.btnSave.Name = "btnSave";
             this.btnSave.Padding = new System.Windows.Forms.Padding(6, 1, 1, 1);
             this.btnSave.Size = new System.Drawing.Size(98, 32);
-            this.btnSave.TabIndex = 9;
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column1.DataPropertyName = "id";
+            this.Column1.Frozen = true;
+            this.Column1.HeaderText = "Mã ngành hàng";
+            this.Column1.MinimumWidth = 150;
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 150;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "name";
+            this.Column2.HeaderText = "Tên ngành hàng";
+            this.Column2.MinimumWidth = 338;
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 338;
             // 
             // frmCategoryList
             // 

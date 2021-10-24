@@ -133,6 +133,7 @@ namespace inventoryManagement
             this.mnuEmployee.Name = "mnuEmployee";
             this.mnuEmployee.Size = new System.Drawing.Size(180, 24);
             this.mnuEmployee.Text = "Nhân viên";
+            this.mnuEmployee.Click += new System.EventHandler(this.mnuEmployee_Click);
             // 
             // mnuBills
             // 

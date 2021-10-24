@@ -39,5 +39,11 @@ namespace inventoryManagement
             frmCustomerList frmCustomerList = new frmCustomerList();
             frmCustomerList.ShowDialog();
         }
+
+        private void mnuEmployee_Click(object sender, EventArgs e)
+        {
+            frmEmployeeList frmEmployeeList = new frmEmployeeList();
+            frmEmployeeList.ShowDialog();
+        }
     }
 }
