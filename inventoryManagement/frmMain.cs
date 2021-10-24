@@ -25,7 +25,8 @@ namespace inventoryManagement
 
         private void mnuGood_Click(object sender, EventArgs e)
         {
-
+            frmGoodList frmGoodList = new frmGoodList();
+            frmGoodList.ShowDialog();
         }
 
         private void mnuCategory_Click(object sender, EventArgs e)

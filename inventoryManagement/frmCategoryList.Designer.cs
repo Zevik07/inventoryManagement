@@ -310,7 +310,6 @@ namespace inventoryManagement
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column1.DataPropertyName = "id";
-            this.Column1.Frozen = true;
             this.Column1.HeaderText = "Mã ngành hàng";
             this.Column1.MinimumWidth = 150;
             this.Column1.Name = "Column1";
@@ -318,11 +317,11 @@ namespace inventoryManagement
             // 
             // Column2
             // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Column2.DataPropertyName = "name";
             this.Column2.HeaderText = "Tên ngành hàng";
-            this.Column2.MinimumWidth = 338;
+            this.Column2.MinimumWidth = 300;
             this.Column2.Name = "Column2";
-            this.Column2.Width = 338;
             // 
             // frmCategoryList
             // 
@@ -335,7 +334,7 @@ namespace inventoryManagement
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(531, 152);
+            this.MinimumSize = new System.Drawing.Size(573, 374);
             this.Name = "frmCategoryList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Danh sách ngành hàng";

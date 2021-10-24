@@ -458,7 +458,7 @@ namespace inventoryManagement
             // 
             this.txtSeach.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSeach.Location = new System.Drawing.Point(451, 7);
+            this.txtSeach.Location = new System.Drawing.Point(451, 9);
             this.txtSeach.Margin = new System.Windows.Forms.Padding(1);
             this.txtSeach.MinimumSize = new System.Drawing.Size(4, 24);
             this.txtSeach.Name = "txtSeach";

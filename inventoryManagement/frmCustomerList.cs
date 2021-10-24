@@ -30,7 +30,7 @@ namespace inventoryManagement
             control.disabledBtns(new[] { btnUndo, btnSave });
 
             // Default textbox's state
-            controlReadMode();
+            setControlReadMode();
         }
 
         private void ResetTxt()
@@ -54,7 +54,7 @@ namespace inventoryManagement
         private void disabledDgv()
         {
             // Prevent add, edit row
-            dgvCustomer.EditMode = DataGridViewEditMode.EditProgrammatically;
+            /*dgvCustomer.EditMode = DataGridViewEditMode.EditProgrammatically;*/
         }
 
         private bool validateTxt()
@@ -69,7 +69,7 @@ namespace inventoryManagement
             return true;
         }
 
-        private void controlReadMode(bool yes = true)
+        private void setControlReadMode(bool yes = true)
         {
             if (yes)
             {
@@ -136,7 +136,7 @@ namespace inventoryManagement
 
             ResetTxt();
 
-            controlReadMode(false);
+            setControlReadMode(false);
 
             // Increase id
             string cellId = dgvCustomer.Rows[dgvCustomer.RowCount - 1].Cells[0].Value.ToString();
@@ -200,7 +200,7 @@ namespace inventoryManagement
             control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
             control.enabledBtns(new[] { btnUndo, btnSave });
 
-            controlReadMode(false);
+            setControlReadMode(false);
 
             txtName.Focus();
         }
@@ -208,6 +208,8 @@ namespace inventoryManagement
         private void btnUndo_Click(object sender, EventArgs e)
         {
             setTxt();
+
+            setControlReadMode(false);
 
             control.disabledBtns(new[] { btnUndo, btnSave });
             control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit });

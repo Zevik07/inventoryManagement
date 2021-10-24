@@ -24,8 +24,10 @@ namespace inventoryManagement
         private void frmCategoryList_Load(object sender, EventArgs e)
         {
             LoadDataGridView();
+
             // Default buttons's state
             control.disabledBtns(new[] { btnUndo, btnSave });
+
             // Default for control
             setControlReadMode();
         }
@@ -49,7 +51,7 @@ namespace inventoryManagement
         private void disabledDgv()
         {
             // prevent edit
-            dgvCategory.EditMode = DataGridViewEditMode.EditProgrammatically;
+            /*dgvCategory.EditMode = DataGridViewEditMode.EditProgrammatically;*/
         }
 
         private void setControlReadMode(bool yes = true)
@@ -60,7 +62,6 @@ namespace inventoryManagement
             }
             else
             {
-
                 txtName.ReadOnly = false;
             }
         }
@@ -187,6 +188,8 @@ namespace inventoryManagement
         private void btnUndo_Click(object sender, EventArgs e)
         {
             setTxt();
+
+           setControlReadMode(false);
 
             control.disabledBtns(new[] { btnUndo, btnSave });
             control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit });

@@ -26,8 +26,10 @@ namespace inventoryManagement
         private void frmEmployeeList_Load(object sender, EventArgs e)
         {
             LoadDataGridView();
+            // Default buttons's state
             control.disabledBtns(new[] { btnUndo, btnSave });
-            controlReadMode();
+            // Default textbox's state
+            setControlReadMode();
         }
 
         private void ResetTxt()
@@ -40,7 +42,7 @@ namespace inventoryManagement
             dtpBirthday.Value = new DateTime(1985, 6, 20);
         }
 
-        private void controlReadMode(bool yes = true)
+        private void setControlReadMode(bool yes = true)
         {
             if (yes)
             {
@@ -92,9 +94,8 @@ namespace inventoryManagement
         }
         private void disabledDgv()
         {
-            // Prevent add, edit row
-            dgvEmployee.AllowUserToAddRows = false;
-            dgvEmployee.EditMode = DataGridViewEditMode.EditProgrammatically;
+            // Prevent edit row
+            /*dgvEmployee.EditMode = DataGridViewEditMode.EditProgrammatically;*/
         }
 
         private bool validateTxt()
@@ -165,7 +166,7 @@ namespace inventoryManagement
             control.enabledBtns(new[] { btnUndo, btnSave });
             ResetTxt();
 
-            controlReadMode(false);
+            setControlReadMode(false);
 
             // Increase Id
             string cellId =
@@ -235,7 +236,7 @@ namespace inventoryManagement
             control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
             control.enabledBtns(new[] { btnUndo, btnSave });
 
-            controlReadMode(false);
+            setControlReadMode(false);
 
             txtName.Focus();
         }
@@ -243,6 +244,8 @@ namespace inventoryManagement
         private void btnUndo_Click(object sender, EventArgs e)
         {
             setTxt();
+
+            setControlReadMode(false);
 
             control.disabledBtns(new[] { btnUndo, btnSave });
             control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit });

@@ -43,6 +43,10 @@ namespace inventoryManagement
             this.txtId = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.dgvCustomer = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -50,10 +54,6 @@ namespace inventoryManagement
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUndo = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -242,6 +242,40 @@ namespace inventoryManagement
             this.dgvCustomer.TabStop = false;
             this.dgvCustomer.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvCustomer_CellMouseUp);
             // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column1.DataPropertyName = "id";
+            this.Column1.HeaderText = "Mã khách";
+            this.Column1.MinimumWidth = 100;
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column2.DataPropertyName = "name";
+            this.Column2.HeaderText = "Họ tên";
+            this.Column2.MinimumWidth = 172;
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 172;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "address";
+            this.Column4.HeaderText = "Địa chỉ";
+            this.Column4.MinimumWidth = 178;
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 178;
+            // 
+            // Column5
+            // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column5.DataPropertyName = "phone";
+            this.Column5.HeaderText = "Số điện thoại";
+            this.Column5.MinimumWidth = 119;
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 119;
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
@@ -364,40 +398,6 @@ namespace inventoryManagement
             this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column1.DataPropertyName = "id";
-            this.Column1.HeaderText = "Mã khách";
-            this.Column1.MinimumWidth = 100;
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column2.DataPropertyName = "name";
-            this.Column2.HeaderText = "Họ tên";
-            this.Column2.MinimumWidth = 172;
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 172;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "address";
-            this.Column4.HeaderText = "Địa chỉ";
-            this.Column4.MinimumWidth = 178;
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 178;
-            // 
-            // Column5
-            // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column5.DataPropertyName = "phone";
-            this.Column5.HeaderText = "Số điện thoại";
-            this.Column5.MinimumWidth = 119;
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 119;
             // 
             // frmCustomerList
             // 
