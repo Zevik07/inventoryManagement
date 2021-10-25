@@ -31,9 +31,18 @@ namespace inventoryManagement
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGoodList));
             this.dgvGood = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.numQty = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtId = new System.Windows.Forms.TextBox();
@@ -50,11 +59,11 @@ namespace inventoryManagement
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUndo = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.btnList = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label15 = new System.Windows.Forms.Label();
             this.txtSeach = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.pbImg = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -63,18 +72,9 @@ namespace inventoryManagement
             this.btnOpenImg = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.numQty = new System.Windows.Forms.NumericUpDown();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGood)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numQty)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
@@ -83,7 +83,6 @@ namespace inventoryManagement
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numQty)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvGood
@@ -112,6 +111,73 @@ namespace inventoryManagement
             this.dgvGood.Size = new System.Drawing.Size(760, 172);
             this.dgvGood.TabIndex = 19;
             this.dgvGood.TabStop = false;
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column1.DataPropertyName = "id";
+            this.Column1.HeaderText = "Mã hàng";
+            this.Column1.MinimumWidth = 85;
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 85;
+            // 
+            // name
+            // 
+            this.name.DataPropertyName = "name";
+            this.name.HeaderText = "Tên hàng";
+            this.name.MinimumWidth = 150;
+            this.name.Name = "name";
+            this.name.Width = 150;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "category_name";
+            this.Column4.HeaderText = "Ngành hàng";
+            this.Column4.MinimumWidth = 106;
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 106;
+            // 
+            // Column5
+            // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column5.DataPropertyName = "quantity";
+            this.Column5.HeaderText = "Số lượng";
+            this.Column5.MinimumWidth = 86;
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 86;
+            // 
+            // Column3
+            // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column3.DataPropertyName = "price_in";
+            this.Column3.HeaderText = "Đơn giá nhập";
+            this.Column3.MinimumWidth = 112;
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 112;
+            // 
+            // Column6
+            // 
+            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column6.DataPropertyName = "price_out";
+            this.Column6.HeaderText = "Đơn giá bán";
+            this.Column6.MinimumWidth = 105;
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 105;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "image_url";
+            this.Column2.HeaderText = "Ảnh";
+            this.Column2.Name = "Column2";
+            this.Column2.Visible = false;
+            // 
+            // Column8
+            // 
+            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column8.DataPropertyName = "note";
+            this.Column8.HeaderText = "Ghi chú";
+            this.Column8.MinimumWidth = 120;
+            this.Column8.Name = "Column8";
             // 
             // label2
             // 
@@ -170,6 +236,19 @@ namespace inventoryManagement
             this.tableLayoutPanel2.Size = new System.Drawing.Size(356, 188);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
+            // numQty
+            // 
+            this.numQty.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.numQty.Location = new System.Drawing.Point(102, 95);
+            this.numQty.Margin = new System.Windows.Forms.Padding(1, 2, 1, 1);
+            this.numQty.MinimumSize = new System.Drawing.Size(117, 0);
+            this.numQty.Name = "numQty";
+            this.numQty.Size = new System.Drawing.Size(253, 22);
+            this.numQty.TabIndex = 4;
+            this.numQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // label3
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Top;
@@ -191,7 +270,7 @@ namespace inventoryManagement
             this.txtName.Margin = new System.Windows.Forms.Padding(1);
             this.txtName.MinimumSize = new System.Drawing.Size(4, 24);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(253, 24);
+            this.txtName.Size = new System.Drawing.Size(253, 22);
             this.txtName.TabIndex = 2;
             // 
             // txtId
@@ -204,7 +283,7 @@ namespace inventoryManagement
             this.txtId.Margin = new System.Windows.Forms.Padding(1);
             this.txtId.MinimumSize = new System.Drawing.Size(4, 24);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(253, 24);
+            this.txtId.Size = new System.Drawing.Size(253, 22);
             this.txtId.TabIndex = 1;
             // 
             // label4
@@ -276,7 +355,7 @@ namespace inventoryManagement
             this.txtPriceIn.Margin = new System.Windows.Forms.Padding(1);
             this.txtPriceIn.MinimumSize = new System.Drawing.Size(4, 24);
             this.txtPriceIn.Name = "txtPriceIn";
-            this.txtPriceIn.Size = new System.Drawing.Size(253, 24);
+            this.txtPriceIn.Size = new System.Drawing.Size(253, 22);
             this.txtPriceIn.TabIndex = 5;
             // 
             // txtPriceOut
@@ -288,7 +367,7 @@ namespace inventoryManagement
             this.txtPriceOut.Margin = new System.Windows.Forms.Padding(1);
             this.txtPriceOut.MinimumSize = new System.Drawing.Size(4, 24);
             this.txtPriceOut.Name = "txtPriceOut";
-            this.txtPriceOut.Size = new System.Drawing.Size(253, 24);
+            this.txtPriceOut.Size = new System.Drawing.Size(253, 22);
             this.txtPriceOut.TabIndex = 6;
             // 
             // flowLayoutPanel1
@@ -300,10 +379,9 @@ namespace inventoryManagement
             this.flowLayoutPanel1.Controls.Add(this.btnDelete);
             this.flowLayoutPanel1.Controls.Add(this.btnUndo);
             this.flowLayoutPanel1.Controls.Add(this.btnSave);
-            this.flowLayoutPanel1.Controls.Add(this.btnList);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(62, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(117, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(660, 44);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(550, 44);
             this.flowLayoutPanel1.TabIndex = 12;
             // 
             // btnAdd
@@ -323,6 +401,7 @@ namespace inventoryManagement
             this.btnAdd.TabIndex = 8;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnEdit
             // 
@@ -341,6 +420,7 @@ namespace inventoryManagement
             this.btnEdit.TabIndex = 9;
             this.btnEdit.Text = "Sửa";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 
@@ -359,6 +439,7 @@ namespace inventoryManagement
             this.btnDelete.TabIndex = 10;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUndo
             // 
@@ -377,6 +458,7 @@ namespace inventoryManagement
             this.btnUndo.TabIndex = 11;
             this.btnUndo.Text = "  Quay lại";
             this.btnUndo.UseVisualStyleBackColor = true;
+            this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
             // 
             // btnSave
             // 
@@ -395,24 +477,7 @@ namespace inventoryManagement
             this.btnSave.TabIndex = 12;
             this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = true;
-            // 
-            // btnList
-            // 
-            this.btnList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnList.AutoSize = true;
-            this.btnList.Image = global::inventoryManagement.Properties.Resources.Save_icon;
-            this.btnList.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnList.Location = new System.Drawing.Point(556, 4);
-            this.btnList.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.btnList.MinimumSize = new System.Drawing.Size(94, 32);
-            this.btnList.Name = "btnList";
-            this.btnList.Padding = new System.Windows.Forms.Padding(6, 1, 1, 1);
-            this.btnList.Size = new System.Drawing.Size(98, 32);
-            this.btnList.TabIndex = 14;
-            this.btnList.Text = "  Hiện DS";
-            this.btnList.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // panel1
             // 
@@ -441,7 +506,7 @@ namespace inventoryManagement
             this.tableLayoutPanel6.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(784, 28);
             this.tableLayoutPanel6.TabIndex = 6;
             // 
@@ -468,6 +533,21 @@ namespace inventoryManagement
             this.txtSeach.Name = "txtSeach";
             this.txtSeach.Size = new System.Drawing.Size(184, 24);
             this.txtSeach.TabIndex = 1;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearch.Image = global::inventoryManagement.Properties.Resources.search_icon;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(700, 3);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(1);
+            this.btnSearch.MinimumSize = new System.Drawing.Size(0, 24);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Padding = new System.Windows.Forms.Padding(6, 1, 1, 1);
+            this.btnSearch.Size = new System.Drawing.Size(73, 24);
+            this.btnSearch.TabIndex = 2;
+            this.btnSearch.Text = "Tìm";
+            this.btnSearch.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel5
             // 
@@ -549,6 +629,7 @@ namespace inventoryManagement
             this.btnOpenImg.TabIndex = 3;
             this.btnOpenImg.Text = "Chọn ảnh";
             this.btnOpenImg.UseVisualStyleBackColor = true;
+            this.btnOpenImg.Click += new System.EventHandler(this.btnOpenImg_Click);
             // 
             // tableLayoutPanel4
             // 
@@ -577,100 +658,6 @@ namespace inventoryManagement
             this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 50);
             this.tableLayoutPanel1.TabIndex = 17;
             // 
-            // btnSearch
-            // 
-            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.Image = global::inventoryManagement.Properties.Resources.search_icon;
-            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(700, 3);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(1);
-            this.btnSearch.MinimumSize = new System.Drawing.Size(0, 24);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Padding = new System.Windows.Forms.Padding(6, 1, 1, 1);
-            this.btnSearch.Size = new System.Drawing.Size(73, 24);
-            this.btnSearch.TabIndex = 2;
-            this.btnSearch.Text = "Tìm";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            // 
-            // numQty
-            // 
-            this.numQty.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.numQty.Location = new System.Drawing.Point(102, 95);
-            this.numQty.Margin = new System.Windows.Forms.Padding(1, 2, 1, 1);
-            this.numQty.MinimumSize = new System.Drawing.Size(117, 0);
-            this.numQty.Name = "numQty";
-            this.numQty.Size = new System.Drawing.Size(253, 22);
-            this.numQty.TabIndex = 4;
-            this.numQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column1.DataPropertyName = "id";
-            this.Column1.HeaderText = "Mã hàng";
-            this.Column1.MinimumWidth = 85;
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 85;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "Tên hàng";
-            this.name.MinimumWidth = 150;
-            this.name.Name = "name";
-            this.name.Width = 150;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "category_name";
-            this.Column4.HeaderText = "Ngành hàng";
-            this.Column4.MinimumWidth = 106;
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 106;
-            // 
-            // Column5
-            // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column5.DataPropertyName = "quantity";
-            this.Column5.HeaderText = "Số lượng";
-            this.Column5.MinimumWidth = 86;
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 86;
-            // 
-            // Column3
-            // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column3.DataPropertyName = "price_in";
-            this.Column3.HeaderText = "Đơn giá nhập";
-            this.Column3.MinimumWidth = 112;
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 112;
-            // 
-            // Column6
-            // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column6.DataPropertyName = "price_out";
-            this.Column6.HeaderText = "Đơn giá bán";
-            this.Column6.MinimumWidth = 105;
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 105;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "image_url";
-            this.Column2.HeaderText = "Ảnh";
-            this.Column2.Name = "Column2";
-            this.Column2.Visible = false;
-            // 
-            // Column8
-            // 
-            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column8.DataPropertyName = "note";
-            this.Column8.HeaderText = "Ghi chú";
-            this.Column8.MinimumWidth = 120;
-            this.Column8.Name = "Column8";
-            // 
             // frmGoodList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -690,6 +677,7 @@ namespace inventoryManagement
             ((System.ComponentModel.ISupportInitialize)(this.dgvGood)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numQty)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -703,7 +691,6 @@ namespace inventoryManagement
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numQty)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -734,7 +721,6 @@ namespace inventoryManagement
         private System.Windows.Forms.TextBox txtNote;
         private System.Windows.Forms.Button btnOpenImg;
         private System.Windows.Forms.PictureBox pbImg;
-        private System.Windows.Forms.Button btnList;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtPriceOut;

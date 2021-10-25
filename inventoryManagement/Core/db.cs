@@ -57,11 +57,32 @@ namespace inventoryManagement.Core
             cmd.Dispose();
         }
 
+        public static void Read(string sql)
+        {
+            /*SqlCommand cmd = new SqlCommand();
+            cmd.Connection = Con;
+            cmd.CommandText = sql;
+            try
+            {
+                SqlDataReader result = cmd.ExecuteReader();
+                //Khai báo đối tượng table thuộc lớp DataTable
+                DataTable table = new DataTable();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            cmd.Dispose();
+            return null;*/
+        }
+
         public static bool valid(string sql)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = Con;
             cmd.CommandText = sql;
+            
             try
             {
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -81,8 +102,10 @@ namespace inventoryManagement.Core
         public static DataTable GetDataToTable(string sql)
         {
             SqlDataAdapter dap = new SqlDataAdapter(sql, Con); 
+
             //Khai báo đối tượng table thuộc lớp DataTable
             DataTable table = new DataTable();
+
             // Đổ kết quả từ câu lệnh sql vào table
             dap.Fill(table);
 
