@@ -62,7 +62,7 @@ namespace inventoryManagement
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label15 = new System.Windows.Forms.Label();
-            this.txtSeach = new System.Windows.Forms.TextBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.pbImg = new System.Windows.Forms.PictureBox();
@@ -111,6 +111,7 @@ namespace inventoryManagement
             this.dgvGood.Size = new System.Drawing.Size(760, 172);
             this.dgvGood.TabIndex = 19;
             this.dgvGood.TabStop = false;
+            this.dgvGood.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvGood_CellMouseUp);
             // 
             // Column1
             // 
@@ -339,6 +340,7 @@ namespace inventoryManagement
             this.cbCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategory.FormattingEnabled = true;
             this.cbCategory.Location = new System.Drawing.Point(102, 63);
             this.cbCategory.Margin = new System.Windows.Forms.Padding(1);
@@ -498,7 +500,7 @@ namespace inventoryManagement
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.03488F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel6.Controls.Add(this.label15, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.txtSeach, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.txtSearch, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.btnSearch, 2, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 222);
@@ -523,16 +525,17 @@ namespace inventoryManagement
             this.label15.Text = "Nội dung tìm kiếm";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtSeach
+            // txtSearch
             // 
-            this.txtSeach.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSeach.Location = new System.Drawing.Point(513, 2);
-            this.txtSeach.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
-            this.txtSeach.MinimumSize = new System.Drawing.Size(4, 24);
-            this.txtSeach.Name = "txtSeach";
-            this.txtSeach.Size = new System.Drawing.Size(184, 24);
-            this.txtSeach.TabIndex = 1;
+            this.txtSearch.Location = new System.Drawing.Point(513, 4);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
+            this.txtSearch.MinimumSize = new System.Drawing.Size(4, 24);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(184, 24);
+            this.txtSearch.TabIndex = 1;
+            this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
             // btnSearch
             // 
@@ -548,6 +551,7 @@ namespace inventoryManagement
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Tìm";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // tableLayoutPanel5
             // 
@@ -727,7 +731,7 @@ namespace inventoryManagement
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox txtSeach;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.NumericUpDown numQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;

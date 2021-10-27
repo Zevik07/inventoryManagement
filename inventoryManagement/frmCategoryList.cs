@@ -43,8 +43,10 @@ namespace inventoryManagement
             if (dgvCategory.CurrentRow == null)
                 return;
 
-            txtId.Text = 
-                dgvCategory.CurrentRow.Cells[0].Value.ToString();
+            if (btnAdd.Enabled && btnEdit.Enabled) // Ở trạng thái bình thường
+                txtId.Text = 
+                    dgvCategory.CurrentRow.Cells[0].Value.ToString();
+
             txtName.Text = 
                 dgvCategory.CurrentRow.Cells[1].Value.ToString();
         }
@@ -66,6 +68,21 @@ namespace inventoryManagement
             }
         }
 
+        private void setId()
+        {
+            string cellId = "0";
+
+            if (dgvCategory.CurrentRow != null)
+            {
+                cellId =
+                    dgvCategory.Rows[dgvCategory.RowCount - 1]
+                    .Cells[0].Value.ToString();
+            }
+
+            txtId.Text = (Int16.Parse(cellId) + 1)
+                        .ToString();
+        }
+
         private void LoadDataGridView()
         {
             string sql;
@@ -82,27 +99,15 @@ namespace inventoryManagement
             {
                 control.disabledBtns(new[] { btnDelete, btnEdit });
             }    
-
-            disabledDgv();
         }
 
         private void dgvCategory_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (btnAdd.Enabled == false)
-            {
-                notify.showNoti("Bạn đang ở trạng thái thêm hoặc sửa, nhấn quay lại");
-                dgvCategory.Focus();
-                return;
-            }
-
             if (dgvCategory.Rows.Count == 0)
             {
                 notify.showNoti("Không có dữ liệu");
                 return;
             }
-
-            control.disabledBtns(new[] { btnUndo, btnSave });
-            control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit });
 
             setTxt();
         }
@@ -111,20 +116,16 @@ namespace inventoryManagement
         {
             preMethod = "add";
 
-            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
-            control.enabledBtns(new[] { btnUndo, btnSave });
-
             ResetTxt();
 
             setControlReadMode(false);
 
-            // Increase id
-            string cellId = 
-                dgvCategory.Rows[dgvCategory.RowCount - 1].Cells[0].Value.ToString();
-            txtId.Text = (Int16.Parse(cellId) + 1)
-                        .ToString();
+            setId();
 
             txtName.Focus();
+
+            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
+            control.enabledBtns(new[] { btnUndo, btnSave });
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -142,8 +143,11 @@ namespace inventoryManagement
                             return;
                         }
 
-                        sql = "INSERT INTO categories(name, address, phone) " +
-                              "VALUES(N'" + txtName.Text.ToString() + "')";
+                        sql = "INSERT INTO categories(id, name) " +
+                              "VALUES(N'" +
+                              txtId.Text.ToString() + "',N'" +
+                              txtName.Text.ToString() + 
+                              "')";
                     }
                     break;
                 case "edit":
@@ -169,6 +173,8 @@ namespace inventoryManagement
 
             LoadDataGridView();
 
+            setControlReadMode();
+
             control.disabledBtns(new[] { btnUndo, btnSave });
             control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit });
         }
@@ -177,19 +183,19 @@ namespace inventoryManagement
         {
             preMethod = "edit";
 
-            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
-            control.enabledBtns(new[] { btnUndo, btnSave });
-
             setControlReadMode(false);
 
             txtName.Focus();
+
+            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
+            control.enabledBtns(new[] { btnUndo, btnSave });
         }
 
         private void btnUndo_Click(object sender, EventArgs e)
         {
             setTxt();
 
-           setControlReadMode(false);
+            setControlReadMode(false);
 
             control.disabledBtns(new[] { btnUndo, btnSave });
             control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit });

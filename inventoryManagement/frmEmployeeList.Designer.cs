@@ -287,6 +287,7 @@ namespace inventoryManagement
             // 
             this.dgvEmployee.AllowUserToAddRows = false;
             this.dgvEmployee.AllowUserToDeleteRows = false;
+            this.dgvEmployee.AllowUserToOrderColumns = true;
             this.dgvEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -459,11 +460,12 @@ namespace inventoryManagement
             // 
             // Column4
             // 
-            this.Column4.DataPropertyName = "address";
-            this.Column4.HeaderText = "Địa chỉ";
-            this.Column4.MinimumWidth = 90;
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column4.DataPropertyName = "birthday";
+            this.Column4.HeaderText = "Ngày sinh";
+            this.Column4.MinimumWidth = 98;
             this.Column4.Name = "Column4";
-            this.Column4.Width = 90;
+            this.Column4.Width = 98;
             // 
             // Column5
             // 
@@ -476,12 +478,11 @@ namespace inventoryManagement
             // 
             // Column6
             // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column6.DataPropertyName = "birthday";
-            this.Column6.HeaderText = "Ngày sinh";
-            this.Column6.MinimumWidth = 98;
+            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column6.DataPropertyName = "address";
+            this.Column6.HeaderText = "Địa chỉ";
+            this.Column6.MinimumWidth = 78;
             this.Column6.Name = "Column6";
-            this.Column6.Width = 98;
             // 
             // frmEmployeeList
             // 

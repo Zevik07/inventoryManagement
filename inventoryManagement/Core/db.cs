@@ -57,24 +57,22 @@ namespace inventoryManagement.Core
             cmd.Dispose();
         }
 
-        public static void Read(string sql)
+        public static SqlDataReader Read(string sql)
         {
-            /*SqlCommand cmd = new SqlCommand();
+            SqlCommand cmd = new SqlCommand();
             cmd.Connection = Con;
             cmd.CommandText = sql;
             try
             {
                 SqlDataReader result = cmd.ExecuteReader();
-                //Khai báo đối tượng table thuộc lớp DataTable
-                DataTable table = new DataTable();
-
+                return result;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
             cmd.Dispose();
-            return null;*/
+            return null;
         }
 
         public static bool valid(string sql)

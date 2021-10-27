@@ -43,13 +43,21 @@ namespace inventoryManagement
 
         private void setTxt()
         {
-            if (dgvCustomer.CurrentRow == null)
+            DataGridViewRow cRow = dgvCustomer.CurrentRow;
+            if (cRow == null)
                 return;
+            
+            // In view mode
+            if (btnAdd.Enabled && btnEdit.Enabled)
+                txtId.Text = 
+                    cRow.Cells[0].Value.ToString();
 
-            txtId.Text = dgvCustomer.CurrentRow.Cells[0].Value.ToString();
-            txtName.Text = dgvCustomer.CurrentRow.Cells[1].Value.ToString();
-            txtAddress.Text = dgvCustomer.CurrentRow.Cells[2].Value.ToString();
-            txtPhone.Text = dgvCustomer.CurrentRow.Cells[3].Value.ToString();
+            txtName.Text = 
+                cRow.Cells[1].Value.ToString();
+            txtAddress.Text = 
+                cRow.Cells[2].Value.ToString();
+            txtPhone.Text = 
+                cRow.Cells[3].Value.ToString();
         }
         private void disabledDgv()
         {
@@ -102,27 +110,15 @@ namespace inventoryManagement
             {
                 control.disabledBtns(new[] { btnDelete, btnEdit });
             }
-
-            disabledDgv();
         }
 
         private void dgvCustomer_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (btnAdd.Enabled == false)
-            {
-                notify.showNoti("Bạn đang ở trạng thái thêm hoặc sửa, nhấn quay lại");
-                dgvCustomer.Focus();
-                return;
-            }
-
             if (dgvCustomer.Rows.Count == 0)
             {
                 notify.showNoti("Không có dữ liệu");
                 return;
             }
-
-            control.disabledBtns(new[] { btnUndo, btnSave });
-            control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit });
 
             setTxt();
         }
@@ -131,19 +127,20 @@ namespace inventoryManagement
         {
             preMethod = "add";
 
-            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
-            control.enabledBtns(new[] { btnUndo, btnSave });
-
             ResetTxt();
 
             setControlReadMode(false);
 
             // Increase id
-            string cellId = dgvCustomer.Rows[dgvCustomer.RowCount - 1].Cells[0].Value.ToString();
+            string cellId = 
+                dgvCustomer.Rows[dgvCustomer.RowCount - 1].Cells[0].Value.ToString();
             txtId.Text = (Int16.Parse(cellId) + 1)
                         .ToString();
             // Focus
             txtName.Focus();
+
+            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
+            control.enabledBtns(new[] { btnUndo, btnSave });
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -160,8 +157,9 @@ namespace inventoryManagement
                             return;
                         }
 
-                        sql = "INSERT INTO customers(name, address, phone) " +
-                              "VALUES(N'" + 
+                        sql = "INSERT INTO customers(id, name, address, phone) " +
+                              "VALUES(N'" +
+                              txtId.Text.ToString() + "',N'" +
                               txtName.Text.ToString() + "',N'" +
                               txtAddress.Text.ToString() + "','" +
                               txtPhone.Text.ToString() +
@@ -176,7 +174,8 @@ namespace inventoryManagement
                             return;
                         }
 
-                        sql = "UPDATE customers SET name = N'" + txtName.Text.ToString()
+                        sql = "UPDATE customers SET " +
+                            "name = N'" + txtName.Text.ToString()
                             + "', address = N'" + txtAddress.Text.ToString()
                             + "', phone = '" + txtPhone.Text.ToString()
                             + "' WHERE id = '" + txtId.Text + "'";
@@ -189,6 +188,8 @@ namespace inventoryManagement
 
             db.Write(sql);
             LoadDataGridView();
+            setControlReadMode();
+
             control.disabledBtns(new[] { btnUndo, btnSave });
             control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit });
         }
@@ -197,12 +198,12 @@ namespace inventoryManagement
         {
             preMethod = "edit";
 
-            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
-            control.enabledBtns(new[] { btnUndo, btnSave });
-
             setControlReadMode(false);
 
             txtName.Focus();
+
+            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
+            control.enabledBtns(new[] { btnUndo, btnSave });
         }
 
         private void btnUndo_Click(object sender, EventArgs e)

@@ -26,10 +26,16 @@ namespace inventoryManagement
         private void frmEmployeeList_Load(object sender, EventArgs e)
         {
             LoadDataGridView();
+
             // Default buttons's state
             control.disabledBtns(new[] { btnUndo, btnSave });
+
             // Default textbox's state
             setControlReadMode();
+
+            // Data grid view column order
+            dgvEmployee.Columns["Column5"].DisplayIndex = 4;
+            dgvEmployee.Columns["Column6"].DisplayIndex = 5;
         }
 
         private void ResetTxt()
@@ -39,7 +45,7 @@ namespace inventoryManagement
             chkGender.Checked = false;
             txtAddress.Text = "";
             txtPhone.Text = "";
-            dtpBirthday.Value = new DateTime(1985, 6, 20);
+            dtpBirthday.Value = new DateTime(1995, 6, 20);
         }
 
         private void setControlReadMode(bool yes = true)
@@ -76,8 +82,11 @@ namespace inventoryManagement
             if (cRow == null)
                 return;
 
-            txtId.Text =
-                    cRow.Cells[0].Value.ToString();
+            // In view mode
+            if (btnAdd.Enabled && btnEdit.Enabled)
+                txtId.Text =
+                        cRow.Cells[0].Value.ToString();
+
             txtName.Text =
                     cRow.Cells[1].Value.ToString();
             chkGender.Checked =
@@ -114,6 +123,21 @@ namespace inventoryManagement
         {
             return chkGender.Checked ? "Nữ" : "Nam";
         }
+
+        private void setId()
+        {
+            // Increase Id
+            string cellId = "0";
+            if (dgvEmployee.CurrentRow != null)
+            {
+                cellId =
+                    dgvEmployee.Rows[dgvEmployee.RowCount - 1].Cells[0].Value.ToString();
+            }
+
+            txtId.Text = (Int16.Parse(cellId) + 1)
+                        .ToString();
+        }
+
         private void LoadDataGridView()
         {
             string sql;
@@ -133,27 +157,15 @@ namespace inventoryManagement
             {
                 control.disabledBtns(new[] { btnDelete, btnEdit });
             }
-
-            disabledDgv();
         }
 
         private void dgvEmployee_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (btnAdd.Enabled == false)
-            {
-                notify.showNoti("Bạn đang ở trạng thái thêm hoặc sửa, nhấn quay lại");
-                dgvEmployee.Focus();
-                return;
-            }
-
             if (dgvEmployee.Rows.Count == 0)
             {
                 notify.showNoti("Không có dữ liệu");
                 return;
             }
-
-            control.disabledBtns(new[] { btnUndo, btnSave });
-            control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit });
 
             setTxt();
         }
@@ -162,18 +174,16 @@ namespace inventoryManagement
         {
             preMethod = "add";
 
-            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
-            control.enabledBtns(new[] { btnUndo, btnSave });
             ResetTxt();
+
+            setId();
 
             setControlReadMode(false);
 
-            // Increase Id
-            string cellId =
-                    dgvEmployee.Rows[dgvEmployee.RowCount - 1].Cells[0].Value.ToString();
-            txtId.Text = (Int16.Parse(cellId) + 1)
-                        .ToString();
             txtName.Focus();
+
+            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
+            control.enabledBtns(new[] { btnUndo, btnSave });
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -190,8 +200,9 @@ namespace inventoryManagement
                         }
 
                         sql =
-                            "INSERT INTO employees(name, gender, address, phone, birthday) " +
+                            "INSERT INTO employees(id, name, gender, address, phone, birthday) " +
                             "VALUES(N'" +
+                            txtId.Text.ToString() + "',N'" +
                             txtName.Text.ToString() + "',N'" +
                             getGender() + "',N'" +
                             txtAddress.Text.ToString() + "','" +
@@ -223,7 +234,10 @@ namespace inventoryManagement
             }
 
             db.Write(sql);
+
             LoadDataGridView();
+
+            setControlReadMode();
 
             control.disabledBtns(new[] { btnUndo, btnSave });
             control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit });
@@ -233,12 +247,12 @@ namespace inventoryManagement
         {
             preMethod = "edit";
 
-            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
-            control.enabledBtns(new[] { btnUndo, btnSave });
-
             setControlReadMode(false);
 
             txtName.Focus();
+
+            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
+            control.enabledBtns(new[] { btnUndo, btnSave });
         }
 
         private void btnUndo_Click(object sender, EventArgs e)

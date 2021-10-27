@@ -18,7 +18,8 @@ namespace inventoryManagement
     {
         private string preMethod;
         private DataTable goodData;
-
+        private string imgPath = @"Images\Good\";
+        private bool btnSearchIsClicked = false;
         public frmGoodList()
         {
             InitializeComponent();
@@ -37,6 +38,7 @@ namespace inventoryManagement
 
         private void ResetTxt()
         {
+            txtId.Text = "";
             txtName.Text = "";
             numQty.Value = 0;
             txtPriceIn.Text = "";
@@ -75,11 +77,13 @@ namespace inventoryManagement
 
             if (cRow == null)
                 return;
+            
+            if (btnAdd.Enabled && btnAdd.Enabled) // In add, edit mode
+                txtId.Text =
+                        cRow.Cells[0].Value.ToString();
 
-            txtId.Text =
-                    cRow.Cells[0].Value.ToString();
             txtName.Text = 
-                    cRow.Cells[1].Value.ToString();
+                cRow.Cells[1].Value.ToString();
 
             setCateCb();
 
@@ -90,9 +94,12 @@ namespace inventoryManagement
             txtPriceOut.Text = cRow.Cells[5].Value.ToString();
 
             pbImg.ImageLocation =
-                @"Images\Good\" + cRow.Cells[6].Value.ToString();
+                imgPath + cRow.Cells[6].Value.ToString();
 
-            txtNote.Text = cRow.Cells[7].Value.ToString();
+            // Thực tế khỏi cần kiểm tra null, vì đổ vào bảng là không còn null nữa
+            txtNote.Text = cRow.Cells[7].Value != null ?
+                           cRow.Cells[7].Value.ToString() :
+                           null;
         }
 
         private void setCateCb()
@@ -106,14 +113,32 @@ namespace inventoryManagement
 
             // If current row is selected
             DataGridViewRow cRow = dgvGood.CurrentRow;
-            string txtName =
-                    cRow.Cells[2].Value.ToString();
 
             if (cRow != null)
             {
+                string txtName =
+                    cRow.Cells[2].Value.ToString();
+
                 int index = cbCategory.FindString(txtName);
+
                 cbCategory.SelectedIndex = index;
             }
+        }
+
+        private void setTxtId()
+        {
+            // Increase Id
+            string cellId = "0";
+
+            if (dgvGood.CurrentRow != null)
+            {
+                cellId =
+                    dgvGood.Rows[dgvGood.RowCount - 1]
+                    .Cells[0].Value.ToString();
+            }
+
+            txtId.Text = (Int16.Parse(cellId) + 1)
+                        .ToString();
         }
 
         private void disabledDgv()
@@ -152,10 +177,10 @@ namespace inventoryManagement
             string sql;
             sql =
                 "select d.id, d.name, c.name as category_name, " +
-                "quantity, price_out, price_in, image_url, note " +
+                "quantity, price_in, price_out, image_url, note " +
                 "from goods d " +
                 "inner join categories c " +
-                "ON d.id = c.id; ";
+                "ON d.category_id = c.id; ";
 
             goodData = db.GetDataToTable(sql);
             dgvGood.DataSource = goodData;
@@ -168,27 +193,16 @@ namespace inventoryManagement
             {
                 control.disabledBtns(new[] { btnDelete, btnEdit });
             }
-
-            disabledDgv();
         }
 
         private void dgvGood_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (btnAdd.Enabled == false)
-            {
-                notify.showNoti("Bạn đang ở trạng thái thêm hoặc sửa, nhấn quay lại");
-                dgvGood.Focus();
-                return;
-            }
-
+            
             if (dgvGood.Rows.Count == 0)
             {
                 notify.showNoti("Không có dữ liệu");
                 return;
             }
-
-            control.disabledBtns(new[] { btnUndo, btnSave });
-            control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit });
 
             setTxt();
         }
@@ -197,41 +211,67 @@ namespace inventoryManagement
         {
             preMethod = "add";
 
-            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
-            control.enabledBtns(new[] { btnUndo, btnSave });
             ResetTxt();
+
+            setCateCb();
 
             setControlReadMode(false);
 
-            // Increase Id
-            string cellId =
-                    dgvGood.Rows[dgvGood.RowCount - 1].Cells[0].Value.ToString();
-            txtId.Text = (Int16.Parse(cellId) + 1)
-                        .ToString();
+            setTxtId();
 
             txtName.Focus();
+
+            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete, btnSearch });
+            control.enabledBtns(new[] { btnUndo, btnSave });
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             string sql;
 
-            // Image with url
-            string imgFile = pbImg.ImageLocation;
+            string ImgName = "";
 
-            // New name
-            string fileName =
-                DateTime.Now.ToString("yyyy-MM-dd_HH_mm_ss") +
-                Path.GetFileName("@C:/Images" + imgFile);
+            // if if there are a upload picture in picturebox
+            if (File.Exists(pbImg.ImageLocation))
+            {
+                DataGridViewRow cRow = dgvGood.CurrentRow;
 
-            notify.showNoti(imgFile);
-            /*// Dir contain img
-            string directory = "Assets/Images";
+                // exist current row and current row is selected row in edit mode
+                if (cRow != null && cRow.Cells[0].Value.ToString() == txtId.Text)
+                {
+                    ImgName = Path.GetFileName(cRow.Cells[6].Value.ToString());
+                }
 
-            if (!Directory.Exists(directory))
-                Directory.CreateDirectory(directory);
+                string oldImgName = ImgName;
 
-            File.Copy(url, Path.Combine(directory, fileName));*/
+                // Image url
+                string newImg = pbImg.ImageLocation;
+
+                // New name
+                string newImgName =
+                    DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") +
+                    "_" +
+                    control.convertToUnSign3(Path.GetFileName(newImg)); // bỏ dấu
+
+                // Create dir if it is not exists
+                if (!Directory.Exists(imgPath))
+                    Directory.CreateDirectory(imgPath);
+
+                // Copy img to dir
+                File.Copy(newImg, Path.Combine(imgPath, newImgName));
+
+                ImgName = newImgName;
+
+                // Get old img file = path + img name
+                string oldImgFile =
+                    imgPath + oldImgName;
+
+                // Delete previous img
+                if (File.Exists(oldImgFile))
+                {
+                    File.Delete(oldImgFile);
+                }
+            }
 
             switch (preMethod)
             {
@@ -244,14 +284,16 @@ namespace inventoryManagement
 
                         sql =
                             "INSERT INTO goods" +
-                            "(name, category_id, quantity, price_in, price_out, image_url, note) " +
+                            "(id, name, category_id, quantity," +
+                            " price_in, price_out, image_url, note) " +
                             "VALUES(N'" +
+                            txtId.Text.ToString() + "',N'" +
                             txtName.Text.ToString() + "',N'" +
                             cbCategory.SelectedValue + "',N'" +
                             numQty.Value + "','" +
                             txtPriceIn.Text + "','" +
                             txtPriceOut.Text + "','" +
-                            pbImg.ImageLocation.ToString() + "',N'" +
+                            ImgName + "',N'" +
                             txtNote.Text +
                             "')";
                     }
@@ -270,8 +312,8 @@ namespace inventoryManagement
                             + "', quantity = '" + numQty.Value
                             + "', price_in = '" + txtPriceIn.Text
                             + "', price_out = '" + txtPriceOut.Text
-                            + "', image_url = '" + pbImg.ImageLocation
-                            + "', note = '" + txtNote.ToString()
+                            + "', image_url = '" + ImgName
+                            + "', note = '" + txtNote.Text
                             + "' WHERE id = '" + txtId.Text + "'";
                     }
                     break;
@@ -281,32 +323,48 @@ namespace inventoryManagement
             }
 
             db.Write(sql);
+
             LoadDataGridView();
 
+            setControlReadMode();
+
             control.disabledBtns(new[] { btnUndo, btnSave });
-            control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit });
+            control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit, btnSearch });
+
+            if (btnSearchIsClicked)
+            {
+                btnSearchIsClicked = false;
+                btnSearch_Click(this, new EventArgs());
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
             preMethod = "edit";
 
-            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
-            control.enabledBtns(new[] { btnUndo, btnSave });
-
             setControlReadMode(false);
 
             txtName.Focus();
+
+            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete, btnSearch });
+            control.enabledBtns(new[] { btnUndo, btnSave });
         }
 
         private void btnUndo_Click(object sender, EventArgs e)
         {
+
             setTxt();
 
             setControlReadMode(false);
 
             control.disabledBtns(new[] { btnUndo, btnSave });
-            control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit });
+            control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit, btnSearch });
+
+            if (btnSearchIsClicked)
+            {
+                btnSearchIsClicked = false;
+                LoadDataGridView();
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -317,7 +375,22 @@ namespace inventoryManagement
             if (rs == DialogResult.Yes)
             {
                 string sql = "DELETE goods WHERE id='" + txtId.Text + "'";
+
+                string currentImgName =
+                    dgvGood.CurrentRow.Cells[6].Value.ToString();
+
+                // Get current img = path + img name
+                string currentImg =
+                    imgPath + currentImgName;
+
+                // Delete current img
+                if (File.Exists(currentImg))
+                {
+                    File.Delete(currentImg);
+                }
+
                 db.Write(sql);
+
                 LoadDataGridView();
             }
         }
@@ -330,8 +403,55 @@ namespace inventoryManagement
             dlgOpen.Title = "Chọn ảnh minh hoạ cho sản phẩm";
             if (dlgOpen.ShowDialog() == DialogResult.OK)
             {
-                pbImg.Image = Image.FromFile(dlgOpen.FileName);
-                //otify.showNoti(Path.GetFileNameWithoutExtension(dlgOpen.FileName));
+                pbImg.ImageLocation = dlgOpen.FileName;
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            btnSearchIsClicked = true;
+
+            if (txtSearch.Text.ToString().Trim() == "")
+            {
+                notify.showNoti("Vui lòng nhập nội dung tìm kiếm");
+                return;
+            }
+
+            string qr = 
+                "select d.id, d.name, c.name as category_name, " +
+                "quantity, price_in, price_out, image_url, note " +
+                "from goods d " +
+                "inner join categories c " +
+                "ON d.category_id = c.id " +
+                "where d.name like '%" + txtSearch.Text + "%'" +
+                "or d.quantity like '%" + txtSearch.Text +"%'" +
+                "or d.price_in like '%" + txtSearch.Text + "%'" +
+                "or d.price_out like '%" + txtSearch.Text + "%'" +
+                "or note like '%" + txtSearch.Text + "%'" +
+                "or c.name like '%" + txtSearch.Text + "%'";
+
+            DataTable search = db.GetDataToTable(qr);
+
+            dgvGood.DataSource = search;
+
+            ResetTxt();
+
+            setTxt();
+
+            // Change button state
+            if (dgvGood.Rows.Count == 0)
+            {
+                control.disabledBtns(new[] { btnAdd, btnDelete, btnEdit, btnSave });
+            }
+
+            control.enabledBtns(new[] { btnUndo });
+        }
+
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch_Click(this, new EventArgs());
             }
         }
     }
