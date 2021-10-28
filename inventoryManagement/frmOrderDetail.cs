@@ -10,14 +10,19 @@ using System.Windows.Forms;
 
 namespace inventoryManagement
 {
-    public partial class frmBillSearch : Form
+    public partial class frmOrderDetail : Form
     {
-        public frmBillSearch()
+        public frmOrderDetail()
         {
             InitializeComponent();
         }
 
         private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void frmOrderDetail_Load(object sender, EventArgs e)
         {
 
         }

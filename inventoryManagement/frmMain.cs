@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using inventoryManagement.Core;
 
 namespace inventoryManagement
 {
@@ -19,7 +20,7 @@ namespace inventoryManagement
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            // Kết nối database 
+            // Connect to db
             Core.db.Connect();
         }
 
@@ -45,6 +46,25 @@ namespace inventoryManagement
         {
             frmEmployeeList frmEmployeeList = new frmEmployeeList();
             frmEmployeeList.ShowDialog();
+        }
+
+        private void mnuBIll_Click(object sender, EventArgs e)
+        {
+            frmOrderDetail frmOrderDetail = new frmOrderDetail();
+            frmOrderDetail.ShowDialog();
+        }
+
+        private void toolStripMenuItem11_Click(object sender, EventArgs e)
+        {
+            notify.showNoti("Phần mềm được viết bởi Nguyền Hữu Thiên Phú \n" +
+                "Đại học cần thơ" +
+                "github.com/zevik07");
+        }
+
+        private void mnuOrderList_Click(object sender, EventArgs e)
+        {
+            frmOrderList frmOrderList = new frmOrderList();
+            frmOrderList.ShowDialog();
         }
     }
 }

@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,17 +50,17 @@
     <Compile Include="Core\control.cs" />
     <Compile Include="Core\db.cs" />
     <Compile Include="Core\notify.cs" />
-    <Compile Include="frmBillList.cs">
+    <Compile Include="frmOrderList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmBillList.Designer.cs">
-      <DependentUpon>frmBillList.cs</DependentUpon>
+    <Compile Include="frmOrderList.Designer.cs">
+      <DependentUpon>frmOrderList.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmBillSearch.cs">
+    <Compile Include="frmOrderDetail.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmBillSearch.Designer.cs">
-      <DependentUpon>frmBillSearch.cs</DependentUpon>
+    <Compile Include="frmOrderDetail.Designer.cs">
+      <DependentUpon>frmOrderDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCustomerList.cs">
       <SubType>Form</SubType>
@@ -93,11 +94,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmBillList.resx">
-      <DependentUpon>frmBillList.cs</DependentUpon>
+    <EmbeddedResource Include="frmOrderList.resx">
+      <DependentUpon>frmOrderList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmBillSearch.resx">
-      <DependentUpon>frmBillSearch.cs</DependentUpon>
+    <EmbeddedResource Include="frmOrderDetail.resx">
+      <DependentUpon>frmOrderDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmCustomerList.resx">
       <DependentUpon>frmCustomerList.cs</DependentUpon>
@@ -172,6 +173,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Icons\FAQ-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Icons\search-icon %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
