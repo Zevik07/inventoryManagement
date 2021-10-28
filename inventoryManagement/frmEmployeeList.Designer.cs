@@ -47,6 +47,12 @@ namespace inventoryManagement
             this.label4 = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.dgvEmployee = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -54,18 +60,17 @@ namespace inventoryManagement
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUndo = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployee)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -76,7 +81,7 @@ namespace inventoryManagement
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(673, 144);
+            this.panel1.Size = new System.Drawing.Size(598, 132);
             this.panel1.TabIndex = 0;
             // 
             // tableLayoutPanel4
@@ -89,19 +94,19 @@ namespace inventoryManagement
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(673, 41);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(598, 36);
             this.tableLayoutPanel4.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DarkRed;
             this.label1.Location = new System.Drawing.Point(4, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(665, 41);
+            this.label1.Size = new System.Drawing.Size(590, 36);
             this.label1.TabIndex = 1;
             this.label1.Text = "Danh sách nhân viên";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -129,14 +134,14 @@ namespace inventoryManagement
             this.tableLayoutPanel1.Controls.Add(this.txtId, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label4, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtPhone, 4, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 45);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(11, 40);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.55704F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.22148F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.22148F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(649, 99);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(574, 88);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label2
@@ -144,9 +149,9 @@ namespace inventoryManagement
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(1, 1);
             this.label2.Margin = new System.Windows.Forms.Padding(1);
-            this.label2.MinimumSize = new System.Drawing.Size(0, 24);
+            this.label2.MinimumSize = new System.Drawing.Size(0, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 24);
+            this.label2.Size = new System.Drawing.Size(87, 22);
             this.label2.TabIndex = 0;
             this.label2.Text = "Mã nhân viên";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -154,11 +159,11 @@ namespace inventoryManagement
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1, 34);
+            this.label3.Location = new System.Drawing.Point(1, 30);
             this.label3.Margin = new System.Windows.Forms.Padding(1);
-            this.label3.MinimumSize = new System.Drawing.Size(0, 24);
+            this.label3.MinimumSize = new System.Drawing.Size(0, 22);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 24);
+            this.label3.Size = new System.Drawing.Size(92, 22);
             this.label3.TabIndex = 1;
             this.label3.Text = "Tên nhân viên";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -166,11 +171,11 @@ namespace inventoryManagement
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(333, 34);
+            this.label5.Location = new System.Drawing.Point(294, 30);
             this.label5.Margin = new System.Windows.Forms.Padding(1);
-            this.label5.MinimumSize = new System.Drawing.Size(0, 24);
+            this.label5.MinimumSize = new System.Drawing.Size(0, 22);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(94, 24);
+            this.label5.Size = new System.Drawing.Size(86, 22);
             this.label5.TabIndex = 3;
             this.label5.Text = "Số điện thoại";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -178,11 +183,11 @@ namespace inventoryManagement
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1, 66);
+            this.label6.Location = new System.Drawing.Point(1, 59);
             this.label6.Margin = new System.Windows.Forms.Padding(1);
-            this.label6.MinimumSize = new System.Drawing.Size(0, 24);
+            this.label6.MinimumSize = new System.Drawing.Size(0, 22);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(62, 24);
+            this.label6.Size = new System.Drawing.Size(55, 22);
             this.label6.TabIndex = 4;
             this.label6.Text = "Giới tính";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -190,11 +195,11 @@ namespace inventoryManagement
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(333, 66);
+            this.label7.Location = new System.Drawing.Point(294, 59);
             this.label7.Margin = new System.Windows.Forms.Padding(1);
-            this.label7.MinimumSize = new System.Drawing.Size(0, 24);
+            this.label7.MinimumSize = new System.Drawing.Size(0, 22);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 24);
+            this.label7.Size = new System.Drawing.Size(68, 22);
             this.label7.TabIndex = 5;
             this.label7.Text = "Ngày sinh";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -203,24 +208,24 @@ namespace inventoryManagement
             // 
             this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtName.Location = new System.Drawing.Point(119, 34);
+            this.txtName.Location = new System.Drawing.Point(105, 30);
             this.txtName.Margin = new System.Windows.Forms.Padding(1);
-            this.txtName.MinimumSize = new System.Drawing.Size(4, 24);
+            this.txtName.MinimumSize = new System.Drawing.Size(4, 22);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(169, 24);
-            this.txtName.TabIndex = 7;
+            this.txtName.Size = new System.Drawing.Size(149, 22);
+            this.txtName.TabIndex = 2;
             // 
             // chkGender
             // 
             this.chkGender.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chkGender.AutoSize = true;
-            this.chkGender.Location = new System.Drawing.Point(119, 66);
+            this.chkGender.Location = new System.Drawing.Point(105, 59);
             this.chkGender.Margin = new System.Windows.Forms.Padding(1);
-            this.chkGender.MinimumSize = new System.Drawing.Size(0, 24);
+            this.chkGender.MinimumSize = new System.Drawing.Size(0, 22);
             this.chkGender.Name = "chkGender";
-            this.chkGender.Size = new System.Drawing.Size(169, 24);
-            this.chkGender.TabIndex = 8;
+            this.chkGender.Size = new System.Drawing.Size(149, 22);
+            this.chkGender.TabIndex = 3;
             this.chkGender.Text = "Nữ";
             this.chkGender.UseVisualStyleBackColor = true;
             // 
@@ -228,12 +233,12 @@ namespace inventoryManagement
             // 
             this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAddress.Location = new System.Drawing.Point(448, 1);
+            this.txtAddress.Location = new System.Drawing.Point(395, 1);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(1);
-            this.txtAddress.MinimumSize = new System.Drawing.Size(4, 24);
+            this.txtAddress.MinimumSize = new System.Drawing.Size(4, 22);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(200, 24);
-            this.txtAddress.TabIndex = 9;
+            this.txtAddress.Size = new System.Drawing.Size(178, 22);
+            this.txtAddress.TabIndex = 4;
             // 
             // dtpBirthday
             // 
@@ -241,33 +246,33 @@ namespace inventoryManagement
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpBirthday.CustomFormat = "dd/MM/yyyy";
             this.dtpBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpBirthday.Location = new System.Drawing.Point(448, 66);
+            this.dtpBirthday.Location = new System.Drawing.Point(395, 59);
             this.dtpBirthday.Margin = new System.Windows.Forms.Padding(1);
-            this.dtpBirthday.MinimumSize = new System.Drawing.Size(4, 24);
+            this.dtpBirthday.MinimumSize = new System.Drawing.Size(4, 22);
             this.dtpBirthday.Name = "dtpBirthday";
-            this.dtpBirthday.Size = new System.Drawing.Size(200, 24);
-            this.dtpBirthday.TabIndex = 11;
+            this.dtpBirthday.Size = new System.Drawing.Size(178, 22);
+            this.dtpBirthday.TabIndex = 6;
             // 
             // txtId
             // 
             this.txtId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtId.Enabled = false;
-            this.txtId.Location = new System.Drawing.Point(119, 1);
+            this.txtId.Location = new System.Drawing.Point(105, 1);
             this.txtId.Margin = new System.Windows.Forms.Padding(1);
-            this.txtId.MinimumSize = new System.Drawing.Size(4, 24);
+            this.txtId.MinimumSize = new System.Drawing.Size(4, 22);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(169, 24);
-            this.txtId.TabIndex = 6;
+            this.txtId.Size = new System.Drawing.Size(149, 22);
+            this.txtId.TabIndex = 1;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(333, 1);
+            this.label4.Location = new System.Drawing.Point(294, 1);
             this.label4.Margin = new System.Windows.Forms.Padding(1);
-            this.label4.MinimumSize = new System.Drawing.Size(0, 24);
+            this.label4.MinimumSize = new System.Drawing.Size(0, 22);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 24);
+            this.label4.Size = new System.Drawing.Size(48, 22);
             this.label4.TabIndex = 2;
             this.label4.Text = "Địa chỉ";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -276,12 +281,13 @@ namespace inventoryManagement
             // 
             this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPhone.Location = new System.Drawing.Point(448, 34);
+            this.txtPhone.Location = new System.Drawing.Point(395, 30);
             this.txtPhone.Margin = new System.Windows.Forms.Padding(1);
+            this.txtPhone.MinimumSize = new System.Drawing.Size(4, 22);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtPhone.Size = new System.Drawing.Size(200, 24);
-            this.txtPhone.TabIndex = 10;
+            this.txtPhone.Size = new System.Drawing.Size(178, 22);
+            this.txtPhone.TabIndex = 5;
             // 
             // dgvEmployee
             // 
@@ -301,12 +307,65 @@ namespace inventoryManagement
             this.Column4,
             this.Column5,
             this.Column6});
-            this.dgvEmployee.Location = new System.Drawing.Point(12, 151);
+            this.dgvEmployee.Location = new System.Drawing.Point(11, 169);
             this.dgvEmployee.Name = "dgvEmployee";
-            this.dgvEmployee.Size = new System.Drawing.Size(649, 175);
+            this.dgvEmployee.Size = new System.Drawing.Size(573, 190);
             this.dgvEmployee.TabIndex = 1;
             this.dgvEmployee.TabStop = false;
             this.dgvEmployee.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEmployee_CellMouseUp);
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column1.DataPropertyName = "id";
+            this.Column1.FillWeight = 10F;
+            this.Column1.HeaderText = "Mã NV";
+            this.Column1.MinimumWidth = 80;
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column2.DataPropertyName = "name";
+            this.Column2.HeaderText = "Họ tên";
+            this.Column2.MinimumWidth = 110;
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 110;
+            // 
+            // Column3
+            // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column3.DataPropertyName = "gender";
+            this.Column3.FillWeight = 10F;
+            this.Column3.HeaderText = "Giới tính";
+            this.Column3.MinimumWidth = 87;
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column4.DataPropertyName = "birthday";
+            this.Column4.FillWeight = 10F;
+            this.Column4.HeaderText = "Ngày sinh";
+            this.Column4.MinimumWidth = 98;
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column5.DataPropertyName = "phone";
+            this.Column5.FillWeight = 10F;
+            this.Column5.HeaderText = "Số điện thoại";
+            this.Column5.MinimumWidth = 119;
+            this.Column5.Name = "Column5";
+            // 
+            // Column6
+            // 
+            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column6.DataPropertyName = "address";
+            this.Column6.HeaderText = "Địa chỉ";
+            this.Column6.MinimumWidth = 78;
+            this.Column6.Name = "Column6";
             // 
             // tableLayoutPanel3
             // 
@@ -314,12 +373,12 @@ namespace inventoryManagement
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel2, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 332);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 362);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(673, 47);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(598, 47);
             this.tableLayoutPanel3.TabIndex = 18;
             // 
             // flowLayoutPanel2
@@ -331,9 +390,9 @@ namespace inventoryManagement
             this.flowLayoutPanel2.Controls.Add(this.btnDelete);
             this.flowLayoutPanel2.Controls.Add(this.btnUndo);
             this.flowLayoutPanel2.Controls.Add(this.btnSave);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(61, 3);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(48, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(550, 41);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(502, 41);
             this.flowLayoutPanel2.TabIndex = 12;
             // 
             // btnAdd
@@ -344,13 +403,13 @@ namespace inventoryManagement
             this.btnAdd.AutoSize = true;
             this.btnAdd.Image = global::inventoryManagement.Properties.Resources.add_icon;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(6, 4);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.btnAdd.MinimumSize = new System.Drawing.Size(94, 32);
+            this.btnAdd.Location = new System.Drawing.Point(6, 1);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(6, 1, 6, 1);
+            this.btnAdd.MinimumSize = new System.Drawing.Size(84, 28);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Padding = new System.Windows.Forms.Padding(6, 1, 1, 1);
-            this.btnAdd.Size = new System.Drawing.Size(98, 32);
-            this.btnAdd.TabIndex = 12;
+            this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 1, 1, 1);
+            this.btnAdd.Size = new System.Drawing.Size(87, 34);
+            this.btnAdd.TabIndex = 7;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -363,13 +422,13 @@ namespace inventoryManagement
             this.btnEdit.AutoSize = true;
             this.btnEdit.Image = global::inventoryManagement.Properties.Resources.edit_icon;
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(116, 4);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.btnEdit.MinimumSize = new System.Drawing.Size(94, 32);
+            this.btnEdit.Location = new System.Drawing.Point(105, 1);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(6, 1, 6, 1);
+            this.btnEdit.MinimumSize = new System.Drawing.Size(84, 28);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Padding = new System.Windows.Forms.Padding(6, 1, 1, 1);
-            this.btnEdit.Size = new System.Drawing.Size(98, 32);
-            this.btnEdit.TabIndex = 13;
+            this.btnEdit.Padding = new System.Windows.Forms.Padding(5, 1, 1, 1);
+            this.btnEdit.Size = new System.Drawing.Size(87, 34);
+            this.btnEdit.TabIndex = 8;
             this.btnEdit.Text = "Sửa";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
@@ -382,13 +441,13 @@ namespace inventoryManagement
             this.btnDelete.AutoSize = true;
             this.btnDelete.Image = global::inventoryManagement.Properties.Resources.delete_icon;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(226, 4);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.btnDelete.MinimumSize = new System.Drawing.Size(94, 32);
+            this.btnDelete.Location = new System.Drawing.Point(204, 1);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(6, 1, 6, 1);
+            this.btnDelete.MinimumSize = new System.Drawing.Size(84, 28);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Padding = new System.Windows.Forms.Padding(6, 1, 1, 1);
-            this.btnDelete.Size = new System.Drawing.Size(98, 32);
-            this.btnDelete.TabIndex = 14;
+            this.btnDelete.Padding = new System.Windows.Forms.Padding(5, 1, 1, 1);
+            this.btnDelete.Size = new System.Drawing.Size(87, 34);
+            this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -401,13 +460,13 @@ namespace inventoryManagement
             this.btnUndo.AutoSize = true;
             this.btnUndo.Image = global::inventoryManagement.Properties.Resources.Undo_icon;
             this.btnUndo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUndo.Location = new System.Drawing.Point(336, 4);
-            this.btnUndo.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.btnUndo.MinimumSize = new System.Drawing.Size(94, 32);
+            this.btnUndo.Location = new System.Drawing.Point(303, 1);
+            this.btnUndo.Margin = new System.Windows.Forms.Padding(6, 1, 6, 1);
+            this.btnUndo.MinimumSize = new System.Drawing.Size(94, 28);
             this.btnUndo.Name = "btnUndo";
-            this.btnUndo.Padding = new System.Windows.Forms.Padding(6, 1, 1, 1);
-            this.btnUndo.Size = new System.Drawing.Size(98, 32);
-            this.btnUndo.TabIndex = 15;
+            this.btnUndo.Padding = new System.Windows.Forms.Padding(5, 1, 1, 1);
+            this.btnUndo.Size = new System.Drawing.Size(94, 34);
+            this.btnUndo.TabIndex = 10;
             this.btnUndo.Text = "  Quay lại";
             this.btnUndo.UseVisualStyleBackColor = true;
             this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
@@ -420,82 +479,87 @@ namespace inventoryManagement
             this.btnSave.AutoSize = true;
             this.btnSave.Image = global::inventoryManagement.Properties.Resources.Save_icon;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(446, 4);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(6, 4, 6, 4);
-            this.btnSave.MinimumSize = new System.Drawing.Size(94, 32);
+            this.btnSave.Location = new System.Drawing.Point(409, 1);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(6, 1, 6, 1);
+            this.btnSave.MinimumSize = new System.Drawing.Size(84, 28);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Padding = new System.Windows.Forms.Padding(6, 1, 1, 1);
-            this.btnSave.Size = new System.Drawing.Size(98, 32);
-            this.btnSave.TabIndex = 16;
+            this.btnSave.Padding = new System.Windows.Forms.Padding(5, 1, 1, 1);
+            this.btnSave.Size = new System.Drawing.Size(87, 34);
+            this.btnSave.TabIndex = 11;
             this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // Column1
+            // tableLayoutPanel6
             // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column1.DataPropertyName = "id";
-            this.Column1.HeaderText = "Mã nhân viên";
-            this.Column1.MinimumWidth = 120;
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 120;
+            this.tableLayoutPanel6.ColumnCount = 3;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.30303F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.69697F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel6.Controls.Add(this.label15, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.txtSearch, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.btnSearch, 2, 0);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(11, 135);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(573, 30);
+            this.tableLayoutPanel6.TabIndex = 20;
             // 
-            // Column2
+            // label15
             // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column2.DataPropertyName = "name";
-            this.Column2.HeaderText = "Họ tên";
-            this.Column2.MinimumWidth = 104;
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 104;
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(233, 6);
+            this.label15.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
+            this.label15.MinimumSize = new System.Drawing.Size(0, 22);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(114, 22);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "Nội dung tìm kiếm";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // Column3
+            // txtSearch
             // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Column3.DataPropertyName = "gender";
-            this.Column3.HeaderText = "Giới tính";
-            this.Column3.MinimumWidth = 87;
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 87;
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.Location = new System.Drawing.Point(349, 6);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
+            this.txtSearch.MinimumSize = new System.Drawing.Size(4, 22);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(145, 22);
+            this.txtSearch.TabIndex = 1;
             // 
-            // Column4
+            // btnSearch
             // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column4.DataPropertyName = "birthday";
-            this.Column4.HeaderText = "Ngày sinh";
-            this.Column4.MinimumWidth = 98;
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 98;
-            // 
-            // Column5
-            // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column5.DataPropertyName = "phone";
-            this.Column5.HeaderText = "Số điện thoại";
-            this.Column5.MinimumWidth = 119;
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 119;
-            // 
-            // Column6
-            // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column6.DataPropertyName = "address";
-            this.Column6.HeaderText = "Địa chỉ";
-            this.Column6.MinimumWidth = 78;
-            this.Column6.Name = "Column6";
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Image = global::inventoryManagement.Properties.Resources.search_icon__1_;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(497, 5);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(1);
+            this.btnSearch.MinimumSize = new System.Drawing.Size(0, 22);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Padding = new System.Windows.Forms.Padding(6, 1, 1, 1);
+            this.btnSearch.Size = new System.Drawing.Size(75, 24);
+            this.btnSearch.TabIndex = 2;
+            this.btnSearch.Text = "Tìm";
+            this.btnSearch.UseVisualStyleBackColor = true;
             // 
             // frmEmployeeList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(673, 379);
+            this.ClientSize = new System.Drawing.Size(598, 409);
+            this.Controls.Add(this.tableLayoutPanel6);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.dgvEmployee);
             this.Controls.Add(this.panel1);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(689, 418);
+            this.MinimumSize = new System.Drawing.Size(614, 376);
             this.Name = "frmEmployeeList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Danh sách nhân viên";
@@ -511,6 +575,8 @@ namespace inventoryManagement
             this.tableLayoutPanel3.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -541,6 +607,10 @@ namespace inventoryManagement
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TextBox txtPhone;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
