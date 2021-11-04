@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,13 +34,15 @@ namespace inventoryManagement
             setControlReadMode();
         }
 
-        private void ResetTxt()
+        private void resetTxt()
         {
             txtOrderId.Text = "";
             txtEmployeeName.Text = "";
             txtCustomerName.Text = "";
             txtCustomerAddress.Text = "";
             txtCustomerPhone.Text = "";
+            txtOrderPrice.Text = "";
+            dtpOrderDate.Value = DateTime.Now;
         }
 
         private void setControlReadMode(bool yes = true)
@@ -48,11 +51,13 @@ namespace inventoryManagement
             {
                 cbCustomerId.Enabled = false;
                 cbEmployeeId.Enabled = false;
+                dtpOrderDate.Enabled = false;
             }
             else
             {
                 cbCustomerId.Enabled = true;
                 cbEmployeeId.Enabled = true;
+                dtpOrderDate.Enabled = true;
             }
         }
 
@@ -84,6 +89,14 @@ namespace inventoryManagement
 
             txtCustomerPhone.Text =
                  cRow.Cells["customer_phone"].Value.ToString();
+
+            dtpOrderDate.Value = 
+                control.getVnDateTime(cRow.Cells["created_at"].Value.ToString());
+
+            txtOrderPrice.Text = cRow.Cells["price"].Value.ToString();
+
+            lblOrderPrice.Text = 
+                control.NumberToText(Double.Parse(txtOrderPrice.Text));
         }
 
         private void setCbCustomerId()
@@ -92,7 +105,6 @@ namespace inventoryManagement
 
             DataTable cbData = db.GetDataToTable(qr);
 
-            cbCustomerId.ValueMember = "id";
             cbCustomerId.DisplayMember = "id";
             cbCustomerId.DataSource = cbData;
 
@@ -104,7 +116,7 @@ namespace inventoryManagement
                 string idValue =
                     cRow.Cells["customer_id"].Value.ToString();
 
-                cbCustomerId.SelectedValue = idValue;
+                cbCustomerId.Text = idValue;
             }
         }
 
@@ -114,9 +126,8 @@ namespace inventoryManagement
 
             DataTable cbData = db.GetDataToTable(qr);
 
-            cbCustomerId.ValueMember = "id";
-            cbCustomerId.DisplayMember = "id";
-            cbCustomerId.DataSource = cbData;
+            cbEmployeeId.DisplayMember = "id";
+            cbEmployeeId.DataSource = cbData;
 
             // If current row is selected
             DataGridViewRow cRow = dgvOrder.CurrentRow;
@@ -126,11 +137,11 @@ namespace inventoryManagement
                 string idValue =
                     cRow.Cells["employee_id"].Value.ToString();
 
-                cbCustomerId.SelectedValue = idValue;
+                cbEmployeeId.Text = idValue;
             }
         }
 
-        private void setId()
+        private void generateId()
         {
             // Increase Id
             string cellId = "0";
@@ -169,10 +180,14 @@ namespace inventoryManagement
         {
             string sql;
             sql =
-                "select o.id, o.employee_id, " +
-                "o.customer_id, created_at, price, " +
+                "select " +
+                "o.id, " +
+                "o.employee_id, " +
+                "o.customer_id, " +
+                "FORMAT(o.created_at, 'hh:mm tt - dd/MM/yyyy') as created_at, " +
+                "price, " +
                 "e.name as employee_name, " +
-                " c.name as customer_name, " +
+                "c.name as customer_name, " +
                 "c.address as customer_address, " +
                 "c.phone as customer_phone " +
                 "from orders o " +
@@ -196,9 +211,8 @@ namespace inventoryManagement
             }
         }
 
-        private void dgvOrder_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        private void dgvOrder_SelectionChanged(object sender, EventArgs e)
         {
-
             if (dgvOrder.Rows.Count == 0)
             {
                 notify.showNoti("Không có dữ liệu");
@@ -212,7 +226,9 @@ namespace inventoryManagement
         {
             preMethod = "add";
 
-            ResetTxt();
+            resetTxt();
+
+            generateId();
 
             setCbCustomerId();
 
@@ -220,20 +236,17 @@ namespace inventoryManagement
 
             setControlReadMode(false);
 
-            setId();
-
-            dtpOrderDate.Focus();
+            cbEmployeeId.Focus();
 
             control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete,
                 btnSearch, btnDetail, btnPrint });
+
             control.enabledBtns(new[] { btnUndo, btnSave });
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             string sql;
-
-            string ImgName = "";
 
             switch (preMethod)
             {
@@ -247,13 +260,13 @@ namespace inventoryManagement
                         sql =
                             "insert into orders " +
                             "(id, created_at, employee_id, customer_id, price) " +
-                            "values(" +
-                            txtOrderId + ", " +
-                            dtpOrderDate.Value + ", " +
-                            cbEmployeeId.SelectedValue + ", " +
-                            cbCustomerId.SelectedValue + ", " +
+                            "values('" +
+                            txtOrderId.Text + "', '" +
+                            dtpOrderDate.Value + "', '" +
+                            cbEmployeeId.Text + "', '" +
+                            cbCustomerId.Text + "', '" +
                             0 +
-                            ")";
+                            "')";
                     }
                     break;
                 case "edit":
@@ -265,9 +278,9 @@ namespace inventoryManagement
                         }
 
                         sql = "UPDATE orders SET"
-                            + " created_at = N'" + dtpOrderDate.Value
-                            + "', employee_id = '" + cbEmployeeId.SelectedValue
-                            + "', customer_id = '" + cbCustomerId.SelectedValue
+                            + " created_at = '" + dtpOrderDate.Value
+                            + "', employee_id = '" + cbEmployeeId.Text
+                            + "', customer_id = '" + cbCustomerId.Text
                             + "' WHERE id = '" + txtOrderId.Text + "'";
                     }
                     break;
@@ -298,6 +311,11 @@ namespace inventoryManagement
         {
             preMethod = "edit";
 
+
+            setCbCustomerId();
+
+            setCbEmployeeId();
+
             setControlReadMode(false);
 
             dtpOrderDate.Focus();
@@ -309,10 +327,9 @@ namespace inventoryManagement
 
         private void btnUndo_Click(object sender, EventArgs e)
         {
-
             setTxt();
 
-            setControlReadMode(false);
+            setControlReadMode();
 
             control.disabledBtns(new[] { btnUndo, btnSave });
             control.enabledBtns(new[] { btnDelete, btnAdd, 
@@ -328,9 +345,9 @@ namespace inventoryManagement
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DialogResult rs =
-                   MessageBox.Show("Bạn có chắc muốn xoá không? " +
-                   "Điều này sẽ xóa mọi chi tiết hóa đơn", "Xác nhận",
-                   MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                   MessageBox.Show("Bạn có chắc muốn xoá không? \n" +
+                   "ĐIỀU NÀY SẼ XÓA MỌI CHI TIẾT HÓA ĐƠN", "Xác nhận",
+                   MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (rs == DialogResult.Yes)
             {
@@ -356,8 +373,12 @@ namespace inventoryManagement
             }
 
             string qr =
-                "select o.id, o.employee_id, " +
-                "o.customer_id, created_at, price, " +
+                 "select " +
+                "o.id, " +
+                "o.employee_id, " +
+                "o.customer_id, " +
+                "FORMAT(o.created_at, 'hh:mm tt - dd/MM/yyyy') as created_at, " +
+                "price, " +
                 "e.name as employee_name, " +
                 "c.name as customer_name, " +
                 "c.address as customer_address, " +
@@ -369,19 +390,21 @@ namespace inventoryManagement
                 "inner " +
                 "join customers c " +
                 "on c.id = o.customer_id " +
-                "where o.id like '%" + txtSearch.Text + "%'" +
-                "or o.created_at like '%" + txtSearch.Text + "%'" +
+                "where " +
+                "o.id like '%" + txtSearch.Text + "%'" +
+                "or o.price like '%" + txtSearch.Text + "%'" +
+                "or FORMAT(o.created_at, 'hh:mm tt - dd/MM/yyyy') like '%" + txtSearch.Text + "%'" +
                 "or o.employee_id like '%" + txtSearch.Text + "%'" +
                 "or o.customer_id like '%" + txtSearch.Text + "%'" +
-                "or employee_name like '%" + txtSearch.Text + "%'" +
-                "or customer_name like '%" + txtSearch.Text + "%'" +
-                "or customer_phone like '%" + txtSearch.Text + "%'";
+                "or e.name like '%" + txtSearch.Text + "%'" +
+                "or c.name like '%" + txtSearch.Text + "%'" +
+                "or c.phone like '%" + txtSearch.Text + "%'";
 
             DataTable search = db.GetDataToTable(qr);
 
             dgvOrder.DataSource = search;
 
-            ResetTxt();
+            resetTxt();
 
             setTxt();
 
@@ -410,6 +433,22 @@ namespace inventoryManagement
         private void btnPrint_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void lblSearch_MouseMove(object sender, MouseEventArgs e)
+        {
+            string msg = 
+                "Có thể tìm kiếm bằng: \n" +
+                "- Mã hóa đơn \n" +
+                "- Ngày tạo (định dạng năm-tháng-ngày) \n" +
+                "- Tổng thanh toán \n" +
+                "- Mã nhân viên \n" +
+                "- Mã khách hàng \n" +
+                "- Tên nhân viên \n" +
+                "- Tên khách \n" +
+                "- Số điện thoại khách";
+
+            toolTip1.SetToolTip(lblSearch, msg);
         }
     }
 }
