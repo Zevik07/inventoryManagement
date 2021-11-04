@@ -29,6 +29,7 @@ namespace inventoryManagement
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGoodList));
             this.dgvGood = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,7 +62,6 @@ namespace inventoryManagement
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.label15 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -72,6 +72,8 @@ namespace inventoryManagement
             this.btnOpenImg = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblSearch = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvGood)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numQty)).BeginInit();
@@ -111,6 +113,7 @@ namespace inventoryManagement
             this.dgvGood.Size = new System.Drawing.Size(760, 180);
             this.dgvGood.TabIndex = 19;
             this.dgvGood.TabStop = false;
+            this.dgvGood.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.s);
             this.dgvGood.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvGood_CellMouseUp);
             // 
             // Column1
@@ -495,7 +498,7 @@ namespace inventoryManagement
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.96512F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.03488F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel6.Controls.Add(this.label15, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.lblSearch, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.txtSearch, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.btnSearch, 2, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -507,19 +510,6 @@ namespace inventoryManagement
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(784, 28);
             this.tableLayoutPanel6.TabIndex = 6;
-            // 
-            // label15
-            // 
-            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(396, 4);
-            this.label15.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
-            this.label15.MinimumSize = new System.Drawing.Size(0, 22);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(114, 22);
-            this.label15.TabIndex = 0;
-            this.label15.Text = "Nội dung tìm kiếm";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtSearch
             // 
@@ -658,6 +648,22 @@ namespace inventoryManagement
             this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 47);
             this.tableLayoutPanel1.TabIndex = 17;
             // 
+            // lblSearch
+            // 
+            this.lblSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Image = global::inventoryManagement.Properties.Resources.Button_Help_icon;
+            this.lblSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblSearch.Location = new System.Drawing.Point(380, 4);
+            this.lblSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
+            this.lblSearch.MinimumSize = new System.Drawing.Size(130, 22);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(130, 22);
+            this.lblSearch.TabIndex = 3;
+            this.lblSearch.Text = "Nội dung tìm kiếm";
+            this.lblSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSearch.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblSearch_MouseMove);
+            // 
             // frmGoodList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -726,7 +732,6 @@ namespace inventoryManagement
         private System.Windows.Forms.TextBox txtPriceOut;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.NumericUpDown numQty;
@@ -738,5 +743,7 @@ namespace inventoryManagement
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

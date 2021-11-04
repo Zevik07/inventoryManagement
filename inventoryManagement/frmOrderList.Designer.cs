@@ -61,18 +61,13 @@ namespace inventoryManagement
             this.customer_phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblSearch = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtOrderPrice = new System.Windows.Forms.TextBox();
-            this.lblOrderPrice = new System.Windows.Forms.Label();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.lblSearch = new System.Windows.Forms.Label();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -80,6 +75,11 @@ namespace inventoryManagement
             this.btnSave = new System.Windows.Forms.Button();
             this.btnDetail = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtOrderPrice = new System.Windows.Forms.TextBox();
+            this.lblOrderPrice = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrder)).BeginInit();
             this.panel1.SuspendLayout();
@@ -464,16 +464,49 @@ namespace inventoryManagement
             this.tableLayoutPanel5.Size = new System.Drawing.Size(683, 34);
             this.tableLayoutPanel5.TabIndex = 5;
             // 
+            // lblSearch
+            // 
+            this.lblSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Image = global::inventoryManagement.Properties.Resources.Button_Help_icon;
+            this.lblSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblSearch.Location = new System.Drawing.Point(272, 10);
+            this.lblSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
+            this.lblSearch.MinimumSize = new System.Drawing.Size(130, 22);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(130, 22);
+            this.lblSearch.TabIndex = 0;
+            this.lblSearch.Text = "Nội dung tìm kiếm";
+            this.lblSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSearch.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblSearch_MouseMove);
+            // 
             // txtSearch
             // 
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.Location = new System.Drawing.Point(405, 12);
+            this.txtSearch.Location = new System.Drawing.Point(404, 12);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
             this.txtSearch.MinimumSize = new System.Drawing.Size(4, 22);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(189, 22);
+            this.txtSearch.Size = new System.Drawing.Size(188, 22);
             this.txtSearch.TabIndex = 1;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearch.Image = global::inventoryManagement.Properties.Resources.search_icon__1_;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(594, 9);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(1);
+            this.btnSearch.MinimumSize = new System.Drawing.Size(0, 22);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.btnSearch.Size = new System.Drawing.Size(88, 24);
+            this.btnSearch.TabIndex = 2;
+            this.btnSearch.Text = "Tìm";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // groupBox1
             // 
@@ -531,96 +564,6 @@ namespace inventoryManagement
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(693, 41);
             this.flowLayoutPanel2.TabIndex = 12;
-            // 
-            // tableLayoutPanel6
-            // 
-            this.tableLayoutPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel6.ColumnCount = 3;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel6.Controls.Add(this.label16, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.txtOrderPrice, 1, 0);
-            this.tableLayoutPanel6.Controls.Add(this.lblOrderPrice, 2, 0);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(22, 439);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 1;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(683, 28);
-            this.tableLayoutPanel6.TabIndex = 22;
-            // 
-            // label16
-            // 
-            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(182, 1);
-            this.label16.Margin = new System.Windows.Forms.Padding(1);
-            this.label16.MinimumSize = new System.Drawing.Size(0, 22);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(107, 22);
-            this.label16.TabIndex = 0;
-            this.label16.Text = "Tổng thanh toán:";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtOrderPrice
-            // 
-            this.txtOrderPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOrderPrice.Enabled = false;
-            this.txtOrderPrice.Location = new System.Drawing.Point(291, 2);
-            this.txtOrderPrice.Margin = new System.Windows.Forms.Padding(1, 2, 1, 1);
-            this.txtOrderPrice.MinimumSize = new System.Drawing.Size(4, 22);
-            this.txtOrderPrice.Name = "txtOrderPrice";
-            this.txtOrderPrice.ReadOnly = true;
-            this.txtOrderPrice.Size = new System.Drawing.Size(203, 22);
-            this.txtOrderPrice.TabIndex = 18;
-            // 
-            // lblOrderPrice
-            // 
-            this.lblOrderPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblOrderPrice.AutoSize = true;
-            this.lblOrderPrice.Location = new System.Drawing.Point(496, 1);
-            this.lblOrderPrice.Margin = new System.Windows.Forms.Padding(1);
-            this.lblOrderPrice.MinimumSize = new System.Drawing.Size(0, 22);
-            this.lblOrderPrice.Name = "lblOrderPrice";
-            this.lblOrderPrice.Size = new System.Drawing.Size(186, 22);
-            this.lblOrderPrice.TabIndex = 2;
-            this.lblOrderPrice.Text = "(Ba trăm sáu mươi ngàn đồng)";
-            this.lblOrderPrice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblSearch
-            // 
-            this.lblSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSearch.AutoSize = true;
-            this.lblSearch.Image = global::inventoryManagement.Properties.Resources.Button_Help_icon;
-            this.lblSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblSearch.Location = new System.Drawing.Point(273, 10);
-            this.lblSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
-            this.lblSearch.MinimumSize = new System.Drawing.Size(130, 22);
-            this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(130, 22);
-            this.lblSearch.TabIndex = 0;
-            this.lblSearch.Text = "Nội dung tìm kiếm";
-            this.lblSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblSearch.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblSearch_MouseMove);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.Image = global::inventoryManagement.Properties.Resources.search_icon__1_;
-            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(596, 9);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(1);
-            this.btnSearch.MinimumSize = new System.Drawing.Size(0, 22);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.btnSearch.Size = new System.Drawing.Size(86, 24);
-            this.btnSearch.TabIndex = 2;
-            this.btnSearch.Text = "Tìm";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnAdd
             // 
@@ -747,6 +690,63 @@ namespace inventoryManagement
             this.btnPrint.Text = "In";
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel6.ColumnCount = 3;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel6.Controls.Add(this.label16, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.txtOrderPrice, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.lblOrderPrice, 2, 0);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(22, 439);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(683, 28);
+            this.tableLayoutPanel6.TabIndex = 22;
+            // 
+            // label16
+            // 
+            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(182, 1);
+            this.label16.Margin = new System.Windows.Forms.Padding(1);
+            this.label16.MinimumSize = new System.Drawing.Size(0, 22);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(107, 22);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "Tổng thanh toán:";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtOrderPrice
+            // 
+            this.txtOrderPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtOrderPrice.Enabled = false;
+            this.txtOrderPrice.Location = new System.Drawing.Point(291, 2);
+            this.txtOrderPrice.Margin = new System.Windows.Forms.Padding(1, 2, 1, 1);
+            this.txtOrderPrice.MinimumSize = new System.Drawing.Size(4, 22);
+            this.txtOrderPrice.Name = "txtOrderPrice";
+            this.txtOrderPrice.ReadOnly = true;
+            this.txtOrderPrice.Size = new System.Drawing.Size(203, 22);
+            this.txtOrderPrice.TabIndex = 18;
+            // 
+            // lblOrderPrice
+            // 
+            this.lblOrderPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblOrderPrice.AutoSize = true;
+            this.lblOrderPrice.Location = new System.Drawing.Point(496, 1);
+            this.lblOrderPrice.Margin = new System.Windows.Forms.Padding(1);
+            this.lblOrderPrice.MinimumSize = new System.Drawing.Size(0, 22);
+            this.lblOrderPrice.Name = "lblOrderPrice";
+            this.lblOrderPrice.Size = new System.Drawing.Size(186, 22);
+            this.lblOrderPrice.TabIndex = 2;
+            this.lblOrderPrice.Text = "(Ba trăm sáu mươi ngàn đồng)";
+            this.lblOrderPrice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // frmOrderList
             // 

@@ -227,5 +227,21 @@ namespace inventoryManagement
                 LoadDataGridView();
             }
         }
+
+        private void lblSearch_Click(object sender, EventArgs e)
+        {
+            string msg =
+               "Có thể tìm kiếm bằng: \n" +
+               "- Mã hóa đơn \n" +
+               "- Ngày tạo (định dạng năm-tháng-ngày) \n" +
+               "- Tổng thanh toán \n" +
+               "- Mã nhân viên \n" +
+               "- Mã khách hàng \n" +
+               "- Tên nhân viên \n" +
+               "- Tên khách \n" +
+               "- Số điện thoại khách";
+
+            toolTip1.SetToolTip(lblSearch, msg);
+        }
     }
 }

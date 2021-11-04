@@ -35,7 +35,7 @@ namespace inventoryManagement
             setControlReadMode();
         }
 
-        private void ResetTxt()
+        private void resetTxt()
         {
             txtId.Text = "";
             txtName.Text = "";
@@ -124,7 +124,7 @@ namespace inventoryManagement
             }
         }
 
-        private void setTxtId()
+        private void generateId()
         {
             // Increase Id
             string cellId = "0";
@@ -210,13 +210,13 @@ namespace inventoryManagement
         {
             preMethod = "add";
 
-            ResetTxt();
+            resetTxt();
 
             setCateCb();
 
             setControlReadMode(false);
 
-            setTxtId();
+            generateId();
 
             txtName.Focus();
 
@@ -422,8 +422,9 @@ namespace inventoryManagement
                 "from goods d " +
                 "inner join categories c " +
                 "ON d.category_id = c.id " +
-                "where d.name like '%" + txtSearch.Text + "%'" +
-                "or d.quantity like '%" + txtSearch.Text +"%'" +
+                "where " +
+                "d.name like '%" + txtSearch.Text + "%'" +
+                "or d.id like '%" + txtSearch.Text +"%'" +
                 "or d.price_in like '%" + txtSearch.Text + "%'" +
                 "or d.price_out like '%" + txtSearch.Text + "%'" +
                 "or note like '%" + txtSearch.Text + "%'" +
@@ -433,7 +434,7 @@ namespace inventoryManagement
 
             dgvGood.DataSource = search;
 
-            ResetTxt();
+            resetTxt();
 
             setTxt();
 
@@ -452,6 +453,25 @@ namespace inventoryManagement
             {
                 btnSearch_Click(this, new EventArgs());
             }
+        }
+
+        private void lblSearch_MouseMove(object sender, MouseEventArgs e)
+        {
+            string msg =
+               "Có thể tìm kiếm bằng: \n" +
+               "- Mã sản phẩm \n" +
+               "- Tên sản phẩm \n" +
+               "- Giá nhập \n" +
+               "- Giá bán \n" +
+               "- Ghi chú \n" +
+               "- Tên ngành \n";
+
+            toolTip1.SetToolTip(lblSearch, msg);
+        }
+
+        private void s(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
