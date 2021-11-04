@@ -427,7 +427,8 @@ namespace inventoryManagement
 
         private void btnDetail_Click(object sender, EventArgs e)
         {
-            frmOrderDetail frmOrderDetail = new frmOrderDetail();
+            frmOrderDetail frmOrderDetail = 
+                new frmOrderDetail(Int32.Parse(txtOrderId.Text));
             frmOrderDetail.ShowDialog();
         }
 

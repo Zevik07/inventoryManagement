@@ -29,56 +29,60 @@ namespace inventoryManagement
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOrderDetail));
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.cbGoodQty = new System.Windows.Forms.TextBox();
             this.cbGoodId = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.txtGoodName = new System.Windows.Forms.TextBox();
-            this.txtGoodDiscount = new System.Windows.Forms.TextBox();
+            this.txtDiscount = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.txtGoodPrice = new System.Windows.Forms.TextBox();
+            this.txtGoodPriceOut = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.txtGoodTotalPrice = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.dgvCategory = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtPriceTotal = new System.Windows.Forms.TextBox();
+            this.numQty = new System.Windows.Forms.NumericUpDown();
+            this.dgvOrderDetail = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.order_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.good_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.good_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.price_unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.price_total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label16 = new System.Windows.Forms.Label();
-            this.txtBillTotal = new System.Windows.Forms.TextBox();
-            this.txtBillTotalString = new System.Windows.Forms.Label();
+            this.txtOrderPrice = new System.Windows.Forms.TextBox();
+            this.lblOrderPrice = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUndo = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.lblSearch = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numQty)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrderDetail)).BeginInit();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -97,8 +101,8 @@ namespace inventoryManagement
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.tableLayoutPanel2);
             this.panel1.Controls.Add(this.groupBox2);
-            this.panel1.Controls.Add(this.tableLayoutPanel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
@@ -106,16 +110,43 @@ namespace inventoryManagement
             this.panel1.Size = new System.Drawing.Size(684, 166);
             this.panel1.TabIndex = 21;
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.lblTitle, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(684, 35);
+            this.tableLayoutPanel2.TabIndex = 9;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblTitle.Location = new System.Drawing.Point(4, 0);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(676, 35);
+            this.lblTitle.TabIndex = 1;
+            this.lblTitle.Text = "Chi tiết hóa đơn";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.tableLayoutPanel4);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.groupBox2.Location = new System.Drawing.Point(15, 41);
+            this.groupBox2.Location = new System.Drawing.Point(12, 40);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(10, 10, 10, 5);
-            this.groupBox2.Size = new System.Drawing.Size(656, 122);
+            this.groupBox2.Size = new System.Drawing.Size(660, 122);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông tin mặt hàng";
@@ -124,22 +155,22 @@ namespace inventoryManagement
             // 
             this.tableLayoutPanel4.ColumnCount = 5;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.36478F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.4717F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.874214F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.8239F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.15094F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.93082F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.188679F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.72327F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.63522F));
             this.tableLayoutPanel4.Controls.Add(this.label9, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.label12, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.cbGoodQty, 1, 1);
             this.tableLayoutPanel4.Controls.Add(this.cbGoodId, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.label10, 3, 0);
             this.tableLayoutPanel4.Controls.Add(this.label11, 3, 1);
             this.tableLayoutPanel4.Controls.Add(this.txtGoodName, 4, 0);
-            this.tableLayoutPanel4.Controls.Add(this.txtGoodDiscount, 4, 1);
+            this.tableLayoutPanel4.Controls.Add(this.txtDiscount, 4, 1);
             this.tableLayoutPanel4.Controls.Add(this.label14, 0, 2);
-            this.tableLayoutPanel4.Controls.Add(this.txtGoodPrice, 1, 2);
+            this.tableLayoutPanel4.Controls.Add(this.txtGoodPriceOut, 1, 2);
             this.tableLayoutPanel4.Controls.Add(this.label13, 3, 2);
-            this.tableLayoutPanel4.Controls.Add(this.txtGoodTotalPrice, 4, 2);
+            this.tableLayoutPanel4.Controls.Add(this.txtPriceTotal, 4, 2);
+            this.tableLayoutPanel4.Controls.Add(this.numQty, 1, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(10, 25);
@@ -149,7 +180,7 @@ namespace inventoryManagement
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(636, 92);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(640, 92);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // label9
@@ -176,32 +207,22 @@ namespace inventoryManagement
             this.label12.Text = "Số lượng";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // cbGoodQty
-            // 
-            this.cbGoodQty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbGoodQty.Location = new System.Drawing.Point(86, 31);
-            this.cbGoodQty.Margin = new System.Windows.Forms.Padding(1);
-            this.cbGoodQty.MinimumSize = new System.Drawing.Size(4, 22);
-            this.cbGoodQty.Name = "cbGoodQty";
-            this.cbGoodQty.Size = new System.Drawing.Size(160, 22);
-            this.cbGoodQty.TabIndex = 2;
-            // 
             // cbGoodId
             // 
             this.cbGoodId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbGoodId.Enabled = false;
             this.cbGoodId.FormattingEnabled = true;
             this.cbGoodId.Location = new System.Drawing.Point(86, 1);
             this.cbGoodId.Margin = new System.Windows.Forms.Padding(1);
             this.cbGoodId.Name = "cbGoodId";
-            this.cbGoodId.Size = new System.Drawing.Size(160, 24);
+            this.cbGoodId.Size = new System.Drawing.Size(183, 24);
             this.cbGoodId.TabIndex = 1;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(279, 1);
+            this.label10.Location = new System.Drawing.Point(304, 1);
             this.label10.Margin = new System.Windows.Forms.Padding(1);
             this.label10.MinimumSize = new System.Drawing.Size(0, 22);
             this.label10.Name = "label10";
@@ -213,7 +234,7 @@ namespace inventoryManagement
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(279, 31);
+            this.label11.Location = new System.Drawing.Point(304, 31);
             this.label11.Margin = new System.Windows.Forms.Padding(1);
             this.label11.MinimumSize = new System.Drawing.Size(0, 22);
             this.label11.Name = "label11";
@@ -227,23 +248,26 @@ namespace inventoryManagement
             this.txtGoodName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtGoodName.Enabled = false;
-            this.txtGoodName.Location = new System.Drawing.Point(386, 1);
+            this.txtGoodName.Location = new System.Drawing.Point(404, 1);
             this.txtGoodName.Margin = new System.Windows.Forms.Padding(1);
             this.txtGoodName.MinimumSize = new System.Drawing.Size(4, 22);
             this.txtGoodName.Name = "txtGoodName";
-            this.txtGoodName.Size = new System.Drawing.Size(249, 22);
+            this.txtGoodName.ReadOnly = true;
+            this.txtGoodName.Size = new System.Drawing.Size(235, 22);
             this.txtGoodName.TabIndex = 3;
+            this.txtGoodName.TabStop = false;
             // 
-            // txtGoodDiscount
+            // txtDiscount
             // 
-            this.txtGoodDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGoodDiscount.Location = new System.Drawing.Point(386, 31);
-            this.txtGoodDiscount.Margin = new System.Windows.Forms.Padding(1);
-            this.txtGoodDiscount.MinimumSize = new System.Drawing.Size(4, 22);
-            this.txtGoodDiscount.Name = "txtGoodDiscount";
-            this.txtGoodDiscount.Size = new System.Drawing.Size(249, 22);
-            this.txtGoodDiscount.TabIndex = 4;
+            this.txtDiscount.Location = new System.Drawing.Point(404, 31);
+            this.txtDiscount.Margin = new System.Windows.Forms.Padding(1);
+            this.txtDiscount.MinimumSize = new System.Drawing.Size(4, 22);
+            this.txtDiscount.Name = "txtDiscount";
+            this.txtDiscount.Size = new System.Drawing.Size(235, 22);
+            this.txtDiscount.TabIndex = 2;
+            this.txtDiscount.Text = "0";
             // 
             // label14
             // 
@@ -257,22 +281,24 @@ namespace inventoryManagement
             this.label14.Text = "Đơn giá";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtGoodPrice
+            // txtGoodPriceOut
             // 
-            this.txtGoodPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtGoodPriceOut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGoodPrice.Enabled = false;
-            this.txtGoodPrice.Location = new System.Drawing.Point(86, 61);
-            this.txtGoodPrice.Margin = new System.Windows.Forms.Padding(1);
-            this.txtGoodPrice.MinimumSize = new System.Drawing.Size(4, 22);
-            this.txtGoodPrice.Name = "txtGoodPrice";
-            this.txtGoodPrice.Size = new System.Drawing.Size(160, 22);
-            this.txtGoodPrice.TabIndex = 5;
+            this.txtGoodPriceOut.Enabled = false;
+            this.txtGoodPriceOut.Location = new System.Drawing.Point(86, 61);
+            this.txtGoodPriceOut.Margin = new System.Windows.Forms.Padding(1);
+            this.txtGoodPriceOut.MinimumSize = new System.Drawing.Size(4, 22);
+            this.txtGoodPriceOut.Name = "txtGoodPriceOut";
+            this.txtGoodPriceOut.ReadOnly = true;
+            this.txtGoodPriceOut.Size = new System.Drawing.Size(183, 22);
+            this.txtGoodPriceOut.TabIndex = 5;
+            this.txtGoodPriceOut.TabStop = false;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(279, 61);
+            this.label13.Location = new System.Drawing.Point(304, 61);
             this.label13.Margin = new System.Windows.Forms.Padding(1);
             this.label13.MinimumSize = new System.Drawing.Size(0, 22);
             this.label13.Name = "label13";
@@ -281,196 +307,149 @@ namespace inventoryManagement
             this.label13.Text = "Thành tiền";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtGoodTotalPrice
+            // txtPriceTotal
             // 
-            this.txtGoodTotalPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtPriceTotal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGoodTotalPrice.Enabled = false;
-            this.txtGoodTotalPrice.Location = new System.Drawing.Point(386, 61);
-            this.txtGoodTotalPrice.Margin = new System.Windows.Forms.Padding(1);
-            this.txtGoodTotalPrice.MinimumSize = new System.Drawing.Size(4, 22);
-            this.txtGoodTotalPrice.Name = "txtGoodTotalPrice";
-            this.txtGoodTotalPrice.Size = new System.Drawing.Size(249, 22);
-            this.txtGoodTotalPrice.TabIndex = 6;
+            this.txtPriceTotal.Enabled = false;
+            this.txtPriceTotal.Location = new System.Drawing.Point(404, 61);
+            this.txtPriceTotal.Margin = new System.Windows.Forms.Padding(1);
+            this.txtPriceTotal.MinimumSize = new System.Drawing.Size(4, 22);
+            this.txtPriceTotal.Name = "txtPriceTotal";
+            this.txtPriceTotal.ReadOnly = true;
+            this.txtPriceTotal.Size = new System.Drawing.Size(235, 22);
+            this.txtPriceTotal.TabIndex = 6;
+            this.txtPriceTotal.TabStop = false;
             // 
-            // tableLayoutPanel3
+            // numQty
             // 
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(684, 38);
-            this.tableLayoutPanel3.TabIndex = 6;
-            this.tableLayoutPanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel3_Paint);
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.numQty.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.09524F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.90476F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.Controls.Add(this.lblSearch, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.txtSearch, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnSearch, 2, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(25, 170);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(636, 27);
-            this.tableLayoutPanel2.TabIndex = 5;
+            this.numQty.Location = new System.Drawing.Point(88, 33);
+            this.numQty.Name = "numQty";
+            this.numQty.Size = new System.Drawing.Size(179, 22);
+            this.numQty.TabIndex = 28;
             // 
-            // txtSearch
+            // dgvOrderDetail
             // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.Location = new System.Drawing.Point(391, 4);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
-            this.txtSearch.MinimumSize = new System.Drawing.Size(4, 22);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(164, 22);
-            this.txtSearch.TabIndex = 14;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.Image = global::inventoryManagement.Properties.Resources.search_icon__1_;
-            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(557, 1);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(1);
-            this.btnSearch.MinimumSize = new System.Drawing.Size(0, 22);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.btnSearch.Size = new System.Drawing.Size(78, 24);
-            this.btnSearch.TabIndex = 18;
-            this.btnSearch.Text = "Tìm";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            // 
-            // dgvCategory
-            // 
-            this.dgvCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvOrderDetail.AllowUserToAddRows = false;
+            this.dgvOrderDetail.AllowUserToDeleteRows = false;
+            this.dgvOrderDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvCategory.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dgvCategory.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgvCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCategory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
+            this.dgvOrderDetail.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dgvOrderDetail.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvOrderDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOrderDetail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id,
             this.order_id,
-            this.Column3,
-            this.Column4,
-            this.Column2,
-            this.Column6,
-            this.Column7,
-            this.Column8});
-            this.dgvCategory.Location = new System.Drawing.Point(25, 201);
-            this.dgvCategory.Margin = new System.Windows.Forms.Padding(4);
-            this.dgvCategory.Name = "dgvCategory";
-            this.dgvCategory.Size = new System.Drawing.Size(636, 193);
-            this.dgvCategory.TabIndex = 20;
-            this.dgvCategory.TabStop = false;
+            this.good_id,
+            this.good_name,
+            this.quantity,
+            this.price_unit,
+            this.discount,
+            this.price_total});
+            this.dgvOrderDetail.Location = new System.Drawing.Point(22, 201);
+            this.dgvOrderDetail.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvOrderDetail.Name = "dgvOrderDetail";
+            this.dgvOrderDetail.Size = new System.Drawing.Size(640, 193);
+            this.dgvOrderDetail.TabIndex = 20;
+            this.dgvOrderDetail.TabStop = false;
             // 
-            // Column1
+            // id
             // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column1.DataPropertyName = "id";
-            this.Column1.Frozen = true;
-            this.Column1.HeaderText = "Mã CTHD";
-            this.Column1.MinimumWidth = 93;
-            this.Column1.Name = "Column1";
-            this.Column1.Visible = false;
+            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.id.DataPropertyName = "id";
+            this.id.Frozen = true;
+            this.id.HeaderText = "Mã CTHD";
+            this.id.MinimumWidth = 93;
+            this.id.Name = "id";
+            this.id.Visible = false;
             // 
             // order_id
             // 
             this.order_id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.order_id.DataPropertyName = "order_id";
             this.order_id.HeaderText = "Mã HD";
             this.order_id.MinimumWidth = 112;
             this.order_id.Name = "order_id";
             this.order_id.Visible = false;
             // 
-            // Column3
+            // good_id
             // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.FillWeight = 10F;
-            this.Column3.HeaderText = "Mã HH";
-            this.Column3.MinimumWidth = 80;
-            this.Column3.Name = "Column3";
+            this.good_id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.good_id.DataPropertyName = "good_id";
+            this.good_id.FillWeight = 10F;
+            this.good_id.HeaderText = "Mã HH";
+            this.good_id.MinimumWidth = 80;
+            this.good_id.Name = "good_id";
             // 
-            // Column4
+            // good_name
             // 
-            this.Column4.DataPropertyName = "good_name";
-            this.Column4.HeaderText = "Tên hàng";
-            this.Column4.MinimumWidth = 120;
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 120;
+            this.good_name.DataPropertyName = "good_name";
+            this.good_name.HeaderText = "Tên hàng";
+            this.good_name.MinimumWidth = 120;
+            this.good_name.Name = "good_name";
+            this.good_name.Width = 120;
             // 
-            // Column2
+            // quantity
             // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.DataPropertyName = "quantity";
-            this.Column2.FillWeight = 10F;
-            this.Column2.HeaderText = "Số lượng";
-            this.Column2.MinimumWidth = 95;
-            this.Column2.Name = "Column2";
+            this.quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.quantity.DataPropertyName = "quantity";
+            this.quantity.FillWeight = 10F;
+            this.quantity.HeaderText = "Số lượng";
+            this.quantity.MinimumWidth = 95;
+            this.quantity.Name = "quantity";
             // 
-            // Column6
+            // price_unit
             // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column6.DataPropertyName = "price_unit";
-            this.Column6.FillWeight = 10F;
-            this.Column6.HeaderText = "Đơn giá";
-            this.Column6.MinimumWidth = 98;
-            this.Column6.Name = "Column6";
+            this.price_unit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.price_unit.DataPropertyName = "good_price_out";
+            this.price_unit.FillWeight = 10F;
+            this.price_unit.HeaderText = "Đơn giá";
+            this.price_unit.MinimumWidth = 98;
+            this.price_unit.Name = "price_unit";
             // 
-            // Column7
+            // discount
             // 
-            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column7.DataPropertyName = "discount";
-            this.Column7.FillWeight = 10F;
-            this.Column7.HeaderText = "Giảm giá (%)";
-            this.Column7.MinimumWidth = 110;
-            this.Column7.Name = "Column7";
+            this.discount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.discount.DataPropertyName = "discount";
+            this.discount.FillWeight = 10F;
+            this.discount.HeaderText = "Giảm giá (%)";
+            this.discount.MinimumWidth = 110;
+            this.discount.Name = "discount";
             // 
-            // Column8
+            // price_total
             // 
-            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column8.DataPropertyName = "price_total";
-            this.Column8.HeaderText = "Thành tiền";
-            this.Column8.MinimumWidth = 100;
-            this.Column8.Name = "Column8";
+            this.price_total.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.price_total.DataPropertyName = "price_total";
+            this.price_total.HeaderText = "Thành tiền";
+            this.price_total.MinimumWidth = 100;
+            this.price_total.Name = "price_total";
             // 
             // tableLayoutPanel6
             // 
             this.tableLayoutPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel6.ColumnCount = 3;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.42451F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.57549F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel6.Controls.Add(this.label16, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.txtBillTotal, 1, 0);
-            this.tableLayoutPanel6.Controls.Add(this.txtBillTotalString, 2, 0);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(25, 398);
+            this.tableLayoutPanel6.Controls.Add(this.txtOrderPrice, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.lblOrderPrice, 2, 0);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(22, 398);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(636, 28);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(639, 28);
             this.tableLayoutPanel6.TabIndex = 23;
             // 
             // label16
             // 
             this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(153, 1);
+            this.label16.Location = new System.Drawing.Point(157, 1);
             this.label16.Margin = new System.Windows.Forms.Padding(1);
             this.label16.MinimumSize = new System.Drawing.Size(0, 22);
             this.label16.Name = "label16";
@@ -479,30 +458,31 @@ namespace inventoryManagement
             this.label16.Text = "Tổng thanh toán:";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // txtBillTotal
+            // txtOrderPrice
             // 
-            this.txtBillTotal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtOrderPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBillTotal.Enabled = false;
-            this.txtBillTotal.Location = new System.Drawing.Point(262, 2);
-            this.txtBillTotal.Margin = new System.Windows.Forms.Padding(1, 2, 1, 1);
-            this.txtBillTotal.MinimumSize = new System.Drawing.Size(4, 22);
-            this.txtBillTotal.Name = "txtBillTotal";
-            this.txtBillTotal.Size = new System.Drawing.Size(184, 22);
-            this.txtBillTotal.TabIndex = 1;
+            this.txtOrderPrice.Enabled = false;
+            this.txtOrderPrice.Location = new System.Drawing.Point(266, 2);
+            this.txtOrderPrice.Margin = new System.Windows.Forms.Padding(1, 2, 1, 1);
+            this.txtOrderPrice.MinimumSize = new System.Drawing.Size(4, 22);
+            this.txtOrderPrice.Name = "txtOrderPrice";
+            this.txtOrderPrice.Size = new System.Drawing.Size(184, 22);
+            this.txtOrderPrice.TabIndex = 1;
+            this.txtOrderPrice.TabStop = false;
             // 
-            // txtBillTotalString
+            // lblOrderPrice
             // 
-            this.txtBillTotalString.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBillTotalString.AutoSize = true;
-            this.txtBillTotalString.Location = new System.Drawing.Point(449, 1);
-            this.txtBillTotalString.Margin = new System.Windows.Forms.Padding(1);
-            this.txtBillTotalString.MinimumSize = new System.Drawing.Size(0, 22);
-            this.txtBillTotalString.Name = "txtBillTotalString";
-            this.txtBillTotalString.Size = new System.Drawing.Size(186, 22);
-            this.txtBillTotalString.TabIndex = 2;
-            this.txtBillTotalString.Text = "(Ba trăm sáu mươi ngàn đồng)";
-            this.txtBillTotalString.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblOrderPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblOrderPrice.AutoSize = true;
+            this.lblOrderPrice.Location = new System.Drawing.Point(452, 1);
+            this.lblOrderPrice.Margin = new System.Windows.Forms.Padding(1);
+            this.lblOrderPrice.MinimumSize = new System.Drawing.Size(0, 22);
+            this.lblOrderPrice.Name = "lblOrderPrice";
+            this.lblOrderPrice.Size = new System.Drawing.Size(186, 22);
+            this.lblOrderPrice.TabIndex = 2;
+            this.lblOrderPrice.Text = "(Ba trăm sáu mươi ngàn đồng)";
+            this.lblOrderPrice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tableLayoutPanel1
             // 
@@ -522,7 +502,7 @@ namespace inventoryManagement
             // 
             this.flowLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.flowLayoutPanel2.AutoSize = true;
-            this.flowLayoutPanel2.Controls.Add(this.button1);
+            this.flowLayoutPanel2.Controls.Add(this.btnAdd);
             this.flowLayoutPanel2.Controls.Add(this.btnDelete);
             this.flowLayoutPanel2.Controls.Add(this.btnUndo);
             this.flowLayoutPanel2.Controls.Add(this.btnSave);
@@ -532,22 +512,23 @@ namespace inventoryManagement
             this.flowLayoutPanel2.Size = new System.Drawing.Size(420, 41);
             this.flowLayoutPanel2.TabIndex = 12;
             // 
-            // button1
+            // btnAdd
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.AutoSize = true;
-            this.button1.Image = global::inventoryManagement.Properties.Resources.add_icon;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(6, 1);
-            this.button1.Margin = new System.Windows.Forms.Padding(6, 1, 6, 1);
-            this.button1.MinimumSize = new System.Drawing.Size(93, 35);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(93, 35);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Thêm";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAdd.AutoSize = true;
+            this.btnAdd.Image = global::inventoryManagement.Properties.Resources.add_icon;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(6, 1);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(6, 1, 6, 1);
+            this.btnAdd.MinimumSize = new System.Drawing.Size(93, 35);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
+            this.btnAdd.Size = new System.Drawing.Size(93, 35);
+            this.btnAdd.TabIndex = 5;
+            this.btnAdd.Text = "Thêm";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnDelete
             // 
@@ -562,9 +543,10 @@ namespace inventoryManagement
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
             this.btnDelete.Size = new System.Drawing.Size(93, 35);
-            this.btnDelete.TabIndex = 9;
+            this.btnDelete.TabIndex = 6;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUndo
             // 
@@ -579,9 +561,10 @@ namespace inventoryManagement
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
             this.btnUndo.Size = new System.Drawing.Size(93, 35);
-            this.btnUndo.TabIndex = 10;
+            this.btnUndo.TabIndex = 7;
             this.btnUndo.Text = "  Quay lại";
             this.btnUndo.UseVisualStyleBackColor = true;
+            this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
             // 
             // btnSave
             // 
@@ -596,9 +579,28 @@ namespace inventoryManagement
             this.btnSave.Name = "btnSave";
             this.btnSave.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
             this.btnSave.Size = new System.Drawing.Size(93, 35);
-            this.btnSave.TabIndex = 11;
+            this.btnSave.TabIndex = 8;
             this.btnSave.Text = "Lưu";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel5.ColumnCount = 3;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.92114F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.07885F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel5.Controls.Add(this.lblSearch, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.txtSearch, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnSearch, 2, 0);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(22, 168);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(640, 30);
+            this.tableLayoutPanel5.TabIndex = 25;
             // 
             // lblSearch
             // 
@@ -606,49 +608,78 @@ namespace inventoryManagement
             this.lblSearch.AutoSize = true;
             this.lblSearch.Image = global::inventoryManagement.Properties.Resources.Button_Help_icon;
             this.lblSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblSearch.Location = new System.Drawing.Point(259, 27);
+            this.lblSearch.Location = new System.Drawing.Point(239, 6);
             this.lblSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
             this.lblSearch.MinimumSize = new System.Drawing.Size(130, 22);
             this.lblSearch.Name = "lblSearch";
             this.lblSearch.Size = new System.Drawing.Size(130, 22);
-            this.lblSearch.TabIndex = 19;
+            this.lblSearch.TabIndex = 0;
             this.lblSearch.Text = "Nội dung tìm kiếm";
             this.lblSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSearch.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblSearch_MouseMove);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.Location = new System.Drawing.Point(371, 8);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
+            this.txtSearch.MinimumSize = new System.Drawing.Size(4, 22);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(172, 22);
+            this.txtSearch.TabIndex = 3;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearch.Image = global::inventoryManagement.Properties.Resources.search_icon__1_;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(545, 5);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(1);
+            this.btnSearch.MinimumSize = new System.Drawing.Size(0, 22);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.btnSearch.Size = new System.Drawing.Size(94, 24);
+            this.btnSearch.TabIndex = 4;
+            this.btnSearch.Text = "Tìm";
+            this.btnSearch.UseVisualStyleBackColor = true;
             // 
             // frmOrderDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 477);
+            this.Controls.Add(this.tableLayoutPanel5);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.tableLayoutPanel6);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.tableLayoutPanel2);
-            this.Controls.Add(this.dgvCategory);
+            this.Controls.Add(this.dgvOrderDetail);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(700, 489);
+            this.MinimumSize = new System.Drawing.Size(700, 516);
             this.Name = "frmOrderDetail";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Chi tiết hóa đơn";
             this.Load += new System.EventHandler(this.frmOrderDetail_Load);
             this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numQty)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrderDetail)).EndInit();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -657,43 +688,45 @@ namespace inventoryManagement
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.DataGridView dgvCategory;
+        private System.Windows.Forms.DataGridView dgvOrderDetail;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtGoodPrice;
+        private System.Windows.Forms.TextBox txtGoodPriceOut;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox cbGoodQty;
-        private System.Windows.Forms.TextBox txtGoodTotalPrice;
+        private System.Windows.Forms.TextBox txtPriceTotal;
         private System.Windows.Forms.ComboBox cbGoodId;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtGoodName;
-        private System.Windows.Forms.TextBox txtGoodDiscount;
+        private System.Windows.Forms.TextBox txtDiscount;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txtBillTotal;
-        private System.Windows.Forms.Label txtBillTotalString;
+        private System.Windows.Forms.TextBox txtOrderPrice;
+        private System.Windows.Forms.Label lblOrderPrice;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUndo;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn order_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.NumericUpDown numQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn order_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn good_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn good_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn price_unit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn discount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn price_total;
     }
 }

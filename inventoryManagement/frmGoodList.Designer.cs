@@ -62,6 +62,7 @@ namespace inventoryManagement
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblSearch = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -72,7 +73,6 @@ namespace inventoryManagement
             this.btnOpenImg = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblSearch = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvGood)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -511,6 +511,22 @@ namespace inventoryManagement
             this.tableLayoutPanel6.Size = new System.Drawing.Size(784, 28);
             this.tableLayoutPanel6.TabIndex = 6;
             // 
+            // lblSearch
+            // 
+            this.lblSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Image = global::inventoryManagement.Properties.Resources.Button_Help_icon;
+            this.lblSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblSearch.Location = new System.Drawing.Point(380, 4);
+            this.lblSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
+            this.lblSearch.MinimumSize = new System.Drawing.Size(130, 22);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(130, 22);
+            this.lblSearch.TabIndex = 3;
+            this.lblSearch.Text = "Nội dung tìm kiếm";
+            this.lblSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSearch.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblSearch_MouseMove);
+            // 
             // txtSearch
             // 
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -647,22 +663,6 @@ namespace inventoryManagement
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 47);
             this.tableLayoutPanel1.TabIndex = 17;
-            // 
-            // lblSearch
-            // 
-            this.lblSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSearch.AutoSize = true;
-            this.lblSearch.Image = global::inventoryManagement.Properties.Resources.Button_Help_icon;
-            this.lblSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblSearch.Location = new System.Drawing.Point(380, 4);
-            this.lblSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
-            this.lblSearch.MinimumSize = new System.Drawing.Size(130, 22);
-            this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(130, 22);
-            this.lblSearch.TabIndex = 3;
-            this.lblSearch.Text = "Nội dung tìm kiếm";
-            this.lblSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblSearch.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblSearch_MouseMove);
             // 
             // frmGoodList
             // 
