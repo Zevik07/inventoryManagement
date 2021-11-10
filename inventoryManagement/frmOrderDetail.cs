@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,9 +14,13 @@ namespace inventoryManagement
 {
     public partial class frmOrderDetail : Form
     {
+        // Data attribute
         private int orderId;
-        private string preMethod;
+        private int orderDetailId = 0;
+        private decimal totalOrderPrice;
         private DataTable oderDetailData;
+        // For controls
+        private string preMethod;
         private bool btnSearchIsClicked = false;
 
         public frmOrderDetail(int orderIdParam = 1)
@@ -42,10 +47,10 @@ namespace inventoryManagement
         private void resetTxt()
         {
             cbGoodId.Text = "";
-            numQty.Value = 0;
+            numQty.Value = 1;
             txtGoodName.Text = "";
-            txtDiscount.Text = "";
-            txtGoodPriceOut.Text = "";
+            numDiscount.Value = 0;
+            txtPriceUnit.Text = "";
             txtOrderPrice.Text = "";
             txtPriceTotal.Text = "";
         }
@@ -54,14 +59,18 @@ namespace inventoryManagement
             if (yes)
             {
                 cbGoodId.Enabled = false;
-                numQty.Enabled = false;
-                txtDiscount.Enabled = false;
+                numQty.ReadOnly = true;
+                numDiscount.ReadOnly = true;
+                numQty.Increment = 0;
+                numDiscount.Increment = 0;
             }
             else
             {
-                cbGoodId.Enabled = false;
-                numQty.Enabled = false;
-                txtDiscount.Enabled = false;
+                cbGoodId.Enabled = true;
+                numQty.ReadOnly = false;
+                numDiscount.ReadOnly = false;
+                numQty.Increment = 1;
+                numDiscount.Increment = 1;
             }
         }
 
@@ -76,25 +85,28 @@ namespace inventoryManagement
                 cbGoodId.Text =
                         cRow.Cells["good_id"].Value.ToString();
 
-            numQty.Value =
-                Int32.Parse(cRow.Cells["quantity"].Value.ToString());
-
-            txtGoodPriceOut.Text =
-                 cRow.Cells["good_price_out"].Value.ToString();
-
             txtGoodName.Text =
                 cRow.Cells["good_name"].Value.ToString();
 
-            txtDiscount.Text =
+            numQty.Value =
+                Int32.Parse(cRow.Cells["quantity"].Value.ToString());
+
+            txtPriceUnit.Text =
+                 cRow.Cells["price_unit"].Value.ToString();
+
+            numDiscount.Text =
                  cRow.Cells["discount"].Value.ToString();
 
             txtPriceTotal.Text =
                  cRow.Cells["price_total"].Value.ToString();
+
+            orderDetailId = 
+                Int32.Parse(cRow.Cells["id"].Value.ToString());
         }
 
         private void setCbGoodId()
         {
-            /*string qr = "select id from goods";
+            string qr = "select id from goods";
 
             DataTable cbData = db.GetDataToTable(qr);
 
@@ -102,7 +114,7 @@ namespace inventoryManagement
             cbGoodId.DataSource = cbData;
 
             // If current row is selected
-            DataGridViewRow cRow = dgvOrderDetailDetail.CurrentRow;
+            DataGridViewRow cRow = dgvOrderDetail.CurrentRow;
 
             if (cRow != null)
             {
@@ -110,12 +122,12 @@ namespace inventoryManagement
                     cRow.Cells["good_id"].Value.ToString();
 
                 cbGoodId.Text = idValue;
-            }*/
+            }
         }
 
-        private void generateId()
+        private string generateId()
         {
-           /* // Increase Id
+            // Increase Id
             string cellId = "0";
 
             // If dgv is not empty
@@ -126,197 +138,255 @@ namespace inventoryManagement
                     .Cells["id"].Value.ToString();
             }
 
-            txtOrderId.Text = (Int16.Parse(cellId) + 1)
-                        .ToString();*/
+            return (Int16.Parse(cellId) + 1)
+                        .ToString();
         }
 
-        private void disabledDgv()
+        private void setPriceTotalOrder()
         {
+            // Get in db
+            string sql =
+                "select sum(price_total) " +
+                "from order_details od " +
+                "where order_id = '1'";
+
+            var rs = db.ReadScalar(sql);
+
+            if (rs != DBNull.Value)
+            {
+                totalOrderPrice = Convert.ToDecimal(rs);
+                txtOrderPrice.Text = totalOrderPrice.ToString();
+                lblOrderPrice.Text = 
+                    control.NumberToText(Double.Parse(totalOrderPrice.ToString()));
+            }
         }
 
-        private bool validateTxt()
+        private bool validate()
         {
-            /*if (cbCustomerId.Text.Trim().Length == 0 ||
-                cbEmployeeId.Text.Trim().Length == 0)
+            if (cbGoodId.Text.Trim().Length == 0)
             {
                 notify.showNoti("Không được để trống mã nhân viên và mã khách");
                 return false;
             }
 
-            return true;*/
+            if (numQty.Value == 0)
+            {
+                notify.showNoti("Số lượng phải lớn hơn 0");
+                return false;
+            }
+
+            if (txtGoodName.Text.Trim().Length == 0 ||
+                txtPriceUnit.Text.Trim().Length == 0)
+            {
+                notify.showNoti("Hàng hóa không tồn tại");
+                return false;
+            }
+
             return true;
         }
 
         private void LoadDataGridView()
         {
-            /*string sql;
+            string sql;
+
             sql =
                 "select " +
-                "o.id, " +
-                "o.employee_id, " +
-                "o.customer_id, " +
-                "FORMAT(o.created_at, 'hh:mm tt - dd/MM/yyyy') as created_at, " +
-                "price, " +
-                "e.name as employee_name, " +
-                "c.name as customer_name, " +
-                "c.address as customer_address, " +
-                "c.phone as customer_phone " +
-                "from orders o " +
-                "inner " +
-                "join employees e " +
-                "on e.id = o.employee_id " +
-                "inner " +
-                "join customers c " +
-                "on c.id = o.customer_id ";
+                "od.id, " +
+                "od.order_id, " +
+                "od.good_id, " +
+                "od.quantity, " +
+                "od.price_unit, " +
+                "od.discount, " +
+                "od.price_total, " +
+                "g.name as good_name " +
+                "from order_details od " +
+                "left join goods g " +
+                "on g.id = od.good_id";
 
-            OrderData = db.GetDataToTable(sql);
-            dgvOrderDetail.DataSource = OrderData;
+            oderDetailData = db.GetDataToTable(sql);
+            dgvOrderDetail.DataSource = oderDetailData;
 
             // Load textbox
             setTxt();
 
+            setPriceTotalOrder();
+
             // Change button state
             if (dgvOrderDetail.Rows.Count == 0)
             {
-                control.disabledBtns(new[] { btnDelete, btnEdit, btnDetail, btnPrint });
-            }*/
+                control.disabledBtns(new[] { btnDelete, btnEdit });
+            }
         }
 
         private void dgvOrderDetail_SelectionChanged(object sender, EventArgs e)
         {
+            if (dgvOrderDetail.Rows.Count == 0)
+            {
+                notify.showNoti("Không có dữ liệu");
+                return;
+            }
 
+            setTxt();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-           /* preMethod = "add";
+            preMethod = "add";
 
             resetTxt();
 
-            generateId();
-
-            setCbCustomerId();
-
-            setCbEmployeeId();
+            setCbGoodId();
 
             setControlReadMode(false);
 
-            cbEmployeeId.Focus();
+            cbGoodId.Focus();
 
-            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete,
-                btnSearch, btnDetail, btnPrint });
+            control.disabledBtns(new[] { btnAdd, btnDelete, 
+                btnSearch, btnEdit });
+            control.enabledBtns(new[] { btnUndo, btnSave });
+        }
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            preMethod = "edit";
 
-            control.enabledBtns(new[] { btnUndo, btnSave });*/
+            setCbGoodId();
+
+            setControlReadMode(false);
+
+            cbGoodId.Focus();
+
+            control.disabledBtns(new[] { btnAdd, btnEdit,
+                btnDelete, btnSearch});
+            control.enabledBtns(new[] { btnUndo, btnSave });
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-           /* string sql;
+            string sql = "";
+
+            decimal priceTotalItem =
+                            numQty.Value *
+                            Decimal.Parse(txtPriceUnit.Text.ToString()) *
+                            (1 - numDiscount.Value / 100);
 
             switch (preMethod)
             {
                 case "add":
                     {
-                        if (!validateTxt())
+                        if (!validate())
                         {
                             return;
                         }
 
                         sql =
-                            "insert into orders " +
-                            "(id, created_at, employee_id, customer_id, price) " +
-                            "values('" +
-                            txtOrderId.Text + "', '" +
-                            dtpOrderDate.Value + "', '" +
-                            cbEmployeeId.Text + "', '" +
-                            cbCustomerId.Text + "', '" +
-                            0 +
-                            "')";
+                            "insert into " +
+                            "order_details " +
+                            "values ('" +
+                            generateId() + "', '" +
+                            orderId + "', '" +
+                            cbGoodId.Text + "', '" +
+                            numQty.Value + "', '" +
+                            txtPriceUnit.Text + "', '" +
+                            numDiscount.Value + "', '" +
+                            priceTotalItem + "'" +
+                            ")";
                     }
                     break;
                 case "edit":
                     {
-                        if (!validateTxt())
+                        if (!validate())
                         {
-                            dtpOrderDate.Focus();
+                            cbGoodId.Focus();
                             return;
                         }
 
-                        sql = "UPDATE orders SET"
-                            + " created_at = '" + dtpOrderDate.Value
-                            + "', employee_id = '" + cbEmployeeId.Text
-                            + "', customer_id = '" + cbCustomerId.Text
-                            + "' WHERE id = '" + txtOrderId.Text + "'";
+                        sql = "UPDATE order_details SET"
+                            + " good_id = '" 
+                            + cbGoodId.Text
+                            + "', quantity = '" 
+                            + numQty.Value
+                            + "', discount = '" 
+                            + numDiscount.Value
+                            + "', price_total = '" 
+                            + priceTotalItem
+                            + "' WHERE id = '" 
+                            + orderDetailId  + "'";
                     }
                     break;
                 default:
-                    sql = "";
                     break;
             }
+
+            if (db.Write(sql))
+            {
+                setPriceTotalOrder();
+
+                // Update order price in db
+                string orderSql =
+                    "update orders " +
+                    "set price = '" + totalOrderPrice + "' " +
+                    "where id = " + orderId;
+                db.Write(orderSql);
+
+                setControlReadMode();
+
+                control.disabledBtns(new[] { btnUndo, btnSave });
+                control.enabledBtns(new[] { btnDelete, btnAdd,
+                btnEdit, btnSearch});
+
+                LoadDataGridView();
+
+                // If in search mode, search again after save
+                if (btnSearchIsClicked)
+                {
+                    btnSearchIsClicked = false;
+                    btnSearch_Click(this, new EventArgs());
+                }
+            }
+            else
+            {
+                numQty.Focus();
+            }
+        }
+
+        private void btnUndo_Click(object sender, EventArgs e)
+        {
+            setTxt();
+
+            setControlReadMode();
+
+            control.disabledBtns(new[] { btnUndo, btnSave });
+            control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit, btnSearch});
+
+            if (btnSearchIsClicked)
+            {
+                btnSearchIsClicked = false;
+                LoadDataGridView();
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            string currentId =
+                dgvOrderDetail.CurrentRow.Cells["id"].Value.ToString();
+
+            string sql = "DELETE order_details WHERE id='" + currentId + "'";
 
             db.Write(sql);
 
             LoadDataGridView();
 
-            setControlReadMode();
-
-            control.disabledBtns(new[] { btnUndo, btnSave });
-            control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit,
-                btnSearch, btnDetail, btnPrint });
-
-            // If in search mode, search again after save
+            // If in search mode, search again after delete
             if (btnSearchIsClicked)
             {
                 btnSearchIsClicked = false;
                 btnSearch_Click(this, new EventArgs());
-            }*/
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnUndo_Click(object sender, EventArgs e)
-        {
-            /*setTxt();
-
-            setControlReadMode();
-
-            control.disabledBtns(new[] { btnUndo, btnSave });
-            control.enabledBtns(new[] { btnDelete, btnAdd,
-                btnEdit, btnSearch, btnPrint, btnDetail });
-
-            if (btnSearchIsClicked)
-            {
-                btnSearchIsClicked = false;
-                LoadDataGridView();
-            }*/
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-           /* DialogResult rs =
-                   MessageBox.Show("Bạn có chắc muốn xoá không? \n" +
-                   "ĐIỀU NÀY SẼ XÓA MỌI CHI TIẾT HÓA ĐƠN", "Xác nhận",
-                   MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-            if (rs == DialogResult.Yes)
-            {
-                string sql = "DELETE orders WHERE id='" + txtOrderId.Text + "'";
-
-                string currentImgName =
-                    dgvOrderDetail.CurrentRow.Cells[6].Value.ToString();
-
-                db.Write(sql);
-
-                LoadDataGridView();
-            }*/
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            /*btnSearchIsClicked = true;
+            btnSearchIsClicked = true;
 
             if (txtSearch.Text.ToString().Trim() == "")
             {
@@ -325,48 +395,36 @@ namespace inventoryManagement
             }
 
             string qr =
-                 "select " +
-                "o.id, " +
-                "o.employee_id, " +
-                "o.customer_id, " +
-                "FORMAT(o.created_at, 'hh:mm tt - dd/MM/yyyy') as created_at, " +
-                "price, " +
-                "e.name as employee_name, " +
-                "c.name as customer_name, " +
-                "c.address as customer_address, " +
-                "c.phone as customer_phone " +
-                "from orders o " +
-                "inner " +
-                "join employees e " +
-                "on e.id = o.employee_id " +
-                "inner " +
-                "join customers c " +
-                "on c.id = o.customer_id " +
+                "select " +
+                "od.id, " +
+                "od.order_id, " +
+                "od.good_id, " +
+                "od.quantity, " +
+                "od.price_unit, " +
+                "od.discount, " +
+                "od.price_total, " +
+                "g.name as good_name " +
+                "from order_details od " +
+                "inner join goods g " +
+                "on g.id = od.good_id " +
                 "where " +
-                "o.id like '%" + txtSearch.Text + "%'" +
-                "or o.price like '%" + txtSearch.Text + "%'" +
-                "or FORMAT(o.created_at, 'hh:mm tt - dd/MM/yyyy') like '%" + txtSearch.Text + "%'" +
-                "or o.employee_id like '%" + txtSearch.Text + "%'" +
-                "or o.customer_id like '%" + txtSearch.Text + "%'" +
-                "or e.name like '%" + txtSearch.Text + "%'" +
-                "or c.name like '%" + txtSearch.Text + "%'" +
-                "or c.phone like '%" + txtSearch.Text + "%'";
+                "g.id like N'%" + txtSearch.Text + "%' " +
+                "or g.name like N'%" + txtSearch.Text + "%'";
 
             DataTable search = db.GetDataToTable(qr);
 
             dgvOrderDetail.DataSource = search;
 
-            resetTxt();
-
             setTxt();
+
+            control.enabledBtns(new[] { btnUndo });
+            control.disabledBtns(new[] { btnAdd });
 
             // Change button state
             if (dgvOrderDetail.Rows.Count == 0)
             {
-                control.disabledBtns(new[] { btnAdd, btnDelete, btnEdit, btnSave });
+                control.disabledBtns(new[] { btnAdd, btnDelete, btnEdit });
             }
-
-            control.enabledBtns(new[] { btnUndo });*/
         }
 
         private void txtSearch_KeyDown(object sender, KeyEventArgs e)
@@ -381,16 +439,41 @@ namespace inventoryManagement
         {
             string msg =
                 "Có thể tìm kiếm bằng: \n" +
-                "- Mã hóa đơn \n" +
-                "- Ngày tạo (định dạng năm-tháng-ngày) \n" +
-                "- Tổng thanh toán \n" +
-                "- Mã nhân viên \n" +
-                "- Mã khách hàng \n" +
-                "- Tên nhân viên \n" +
-                "- Tên khách \n" +
-                "- Số điện thoại khách";
+                "- Mã hàng hóa \n" +
+                "- Tên hàng hóa \n";
 
             toolTip1.SetToolTip(lblSearch, msg);
         }
+
+        private void cbGoodId_TextChanged(object sender, EventArgs e)
+        {
+            // Load good info 
+            string sql =
+                "select " +
+                "g.name, " +
+                "g.price_out " +
+                "from goods g " +
+                "where g.id ='" +
+                cbGoodId.Text + "'";
+
+            SqlDataReader goodData = db.Read(sql);
+
+            if (goodData.HasRows)
+            {
+                if (goodData.Read())
+                {
+                    txtGoodName.Text = goodData["name"].ToString();
+                    txtPriceUnit.Text = goodData["price_out"].ToString();
+                }
+            }
+            else
+            {
+                txtGoodName.Text = "";
+                txtPriceUnit.Text = "";
+            }
+
+            goodData.Close();
+        }
+
     }
 }

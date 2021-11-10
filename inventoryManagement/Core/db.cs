@@ -41,7 +41,7 @@ namespace inventoryManagement.Core
             }
         }
 
-        public static void Write(string sql)
+        public static bool Write(string sql)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = Con; 
@@ -50,11 +50,14 @@ namespace inventoryManagement.Core
             {
                 cmd.ExecuteNonQuery(); 
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message);
+                return false;
             }
+
             cmd.Dispose();
+            return true;
         }
 
         public static SqlDataReader Read(string sql)
@@ -62,17 +65,35 @@ namespace inventoryManagement.Core
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = Con;
             cmd.CommandText = sql;
+            SqlDataReader result = null;
             try
             {
-                SqlDataReader result = cmd.ExecuteReader();
-                return result;
+                result = cmd.ExecuteReader();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            cmd.Dispose();
+            return result;
+        }
+
+        public static object ReadScalar(string sql)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = Con;
+            cmd.CommandText = sql;
+            object result = null;
+            try
+            {
+                result = cmd.ExecuteScalar();
+            }
+            catch (SqlException ex)
             {
                 MessageBox.Show(ex.ToString());
             }
             cmd.Dispose();
-            return null;
+            return result;
         }
 
         public static bool valid(string sql)
@@ -99,15 +120,24 @@ namespace inventoryManagement.Core
 
         public static DataTable GetDataToTable(string sql)
         {
-            SqlDataAdapter dap = new SqlDataAdapter(sql, Con); 
+            DataTable rs = null;
+            try
+            {
+                SqlDataAdapter dap = new SqlDataAdapter(sql, Con);
 
-            //Khai báo đối tượng table thuộc lớp DataTable
-            DataTable table = new DataTable();
+                //Khai báo đối tượng table thuộc lớp DataTable
+                DataTable table = new DataTable();
 
-            // Đổ kết quả từ câu lệnh sql vào table
-            dap.Fill(table);
+                // Đổ kết quả từ câu lệnh sql vào table
+                dap.Fill(table);
 
-            return table;
+                rs = table;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            return rs;
         }
     }
 }

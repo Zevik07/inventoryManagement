@@ -373,6 +373,7 @@ namespace inventoryManagement
             this.id.HeaderText = "Mã HĐ";
             this.id.MinimumWidth = 80;
             this.id.Name = "id";
+            this.id.ReadOnly = true;
             // 
             // employee_id
             // 
@@ -470,7 +471,7 @@ namespace inventoryManagement
             this.lblSearch.AutoSize = true;
             this.lblSearch.Image = global::inventoryManagement.Properties.Resources.Button_Help_icon;
             this.lblSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblSearch.Location = new System.Drawing.Point(268, 10);
+            this.lblSearch.Location = new System.Drawing.Point(263, 10);
             this.lblSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
             this.lblSearch.MinimumSize = new System.Drawing.Size(130, 22);
             this.lblSearch.Name = "lblSearch";
@@ -484,11 +485,11 @@ namespace inventoryManagement
             // 
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.Location = new System.Drawing.Point(400, 12);
+            this.txtSearch.Location = new System.Drawing.Point(395, 12);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
             this.txtSearch.MinimumSize = new System.Drawing.Size(4, 22);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(186, 22);
+            this.txtSearch.Size = new System.Drawing.Size(184, 22);
             this.txtSearch.TabIndex = 1;
             // 
             // btnSearch
@@ -497,12 +498,12 @@ namespace inventoryManagement
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearch.Image = global::inventoryManagement.Properties.Resources.search_icon__1_;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(588, 9);
+            this.btnSearch.Location = new System.Drawing.Point(581, 9);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(1);
             this.btnSearch.MinimumSize = new System.Drawing.Size(0, 22);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.btnSearch.Size = new System.Drawing.Size(94, 24);
+            this.btnSearch.Size = new System.Drawing.Size(101, 24);
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Tìm";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -825,6 +826,7 @@ namespace inventoryManagement
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.ComboBox cbEmployeeId;
+        private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn employee_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn customer_id;
@@ -834,6 +836,5 @@ namespace inventoryManagement
         private System.Windows.Forms.DataGridViewTextBoxColumn customer_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn customer_address;
         private System.Windows.Forms.DataGridViewTextBoxColumn customer_phone;
-        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

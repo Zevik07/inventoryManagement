@@ -311,7 +311,6 @@ namespace inventoryManagement
         {
             preMethod = "edit";
 
-
             setCbCustomerId();
 
             setCbEmployeeId();
