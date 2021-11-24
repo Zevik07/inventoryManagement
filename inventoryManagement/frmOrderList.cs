@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -158,18 +159,14 @@ namespace inventoryManagement
                         .ToString();
         }
 
-        private void disabledDgv()
-        {
-            // Prevent edit row
-            /*dgvOrder.EditMode = DataGridViewEditMode.EditProgrammatically;*/
-        }
-
         private bool validateTxt()
         {
             if (cbCustomerId.Text.Trim().Length == 0 ||
-                cbEmployeeId.Text.Trim().Length == 0)
+                cbEmployeeId.Text.Trim().Length == 0 ||
+                txtEmployeeName.Text.Trim().Length == 0 ||
+                txtCustomerName.Text.Trim().Length == 0)
             {
-                notify.showNoti("Không được để trống mã nhân viên và mã khách");
+                notify.showNoti("Thông tin khách hoặc nhân viên không hợp lệ");
                 return false;
             }
 
@@ -291,13 +288,13 @@ namespace inventoryManagement
 
             db.Write(sql);
 
-            LoadDataGridView();
-
             setControlReadMode();
 
             control.disabledBtns(new[] { btnUndo, btnSave });
-            control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit, 
+            control.enabledBtns(new[] { btnAdd, btnEdit, 
                 btnSearch, btnDetail, btnPrint });
+
+            LoadDataGridView();
 
             // If in search mode, search again after save
             if (btnSearchIsClicked)
@@ -336,6 +333,7 @@ namespace inventoryManagement
 
             if (btnSearchIsClicked)
             {
+                txtSearch.Text = "";
                 btnSearchIsClicked = false;
                 LoadDataGridView();
             }
@@ -395,8 +393,8 @@ namespace inventoryManagement
                 "or FORMAT(o.created_at, 'hh:mm tt - dd/MM/yyyy') like '%" + txtSearch.Text + "%'" +
                 "or o.employee_id like '%" + txtSearch.Text + "%'" +
                 "or o.customer_id like '%" + txtSearch.Text + "%'" +
-                "or e.name like '%" + txtSearch.Text + "%'" +
-                "or c.name like '%" + txtSearch.Text + "%'" +
+                "or e.name like N'%" + txtSearch.Text + "%'" +
+                "or c.name like N'%" + txtSearch.Text + "%'" +
                 "or c.phone like '%" + txtSearch.Text + "%'";
 
             DataTable search = db.GetDataToTable(qr);
@@ -407,10 +405,12 @@ namespace inventoryManagement
 
             setTxt();
 
-            // Change button state
+            control.disabledBtns(new[] { btnAdd});
+
             if (dgvOrder.Rows.Count == 0)
             {
-                control.disabledBtns(new[] { btnAdd, btnDelete, btnEdit, btnSave });
+                control.disabledBtns(new[] {btnDelete, btnEdit, 
+                    btnSave, btnPrint, btnDetail});
             }
 
             control.enabledBtns(new[] { btnUndo });
@@ -450,6 +450,60 @@ namespace inventoryManagement
                 "- Số điện thoại khách";
 
             toolTip1.SetToolTip(lblSearch, msg);
+        }
+
+        private void cbEmployeeId_TextChanged(object sender, EventArgs e)
+        {
+            // Load good info 
+            string sql =
+                "select " +
+                "e.name " +
+                "from employees e " +
+                "where e.id ='" +
+                cbEmployeeId.Text + "'";
+
+            SqlDataReader emData = db.Read(sql);
+
+            if (emData.HasRows)
+            {
+                if (emData.Read())
+                {
+                    txtEmployeeName.Text = emData["name"].ToString();
+                }
+            }
+            else
+            {
+                txtEmployeeName.Text = "";
+            }
+
+            emData.Close();
+        }
+
+        private void cbCustomerId_TextChanged(object sender, EventArgs e)
+        {
+            // Load good info 
+            string sql =
+                "select " +
+                "c.name " +
+                "from customers c " +
+                "where e.id ='" +
+                cbEmployeeId.Text + "'";
+
+            SqlDataReader emData = db.Read(sql);
+
+            if (emData.HasRows)
+            {
+                if (emData.Read())
+                {
+                    txtEmployeeName.Text = emData["name"].ToString();
+                }
+            }
+            else
+            {
+                txtEmployeeName.Text = "";
+            }
+
+            emData.Close();
         }
     }
 }

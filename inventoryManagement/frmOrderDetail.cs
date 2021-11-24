@@ -360,6 +360,7 @@ namespace inventoryManagement
 
             if (btnSearchIsClicked)
             {
+                txtSearch.Text = "";
                 btnSearchIsClicked = false;
                 LoadDataGridView();
             }
@@ -390,9 +391,11 @@ namespace inventoryManagement
 
             if (txtSearch.Text.ToString().Trim() == "")
             {
-                notify.showNoti("Vui lòng nhập nội dung tìm kiếm");
+                notify.showNoti("Vui lòng nhập nội dung tìm kiếm"); 
                 return;
             }
+
+            string searchTxt = txtSearch.Text;
 
             string qr =
                 "select " +
@@ -408,8 +411,8 @@ namespace inventoryManagement
                 "inner join goods g " +
                 "on g.id = od.good_id " +
                 "where " +
-                "g.id like N'%" + txtSearch.Text + "%' " +
-                "or g.name like N'%" + txtSearch.Text + "%'";
+                "g.id like N'%" + searchTxt + "%' " +
+                "or g.name like N'%" + searchTxt + "%'";
 
             DataTable search = db.GetDataToTable(qr);
 
@@ -423,7 +426,7 @@ namespace inventoryManagement
             // Change button state
             if (dgvOrderDetail.Rows.Count == 0)
             {
-                control.disabledBtns(new[] { btnAdd, btnDelete, btnEdit });
+                control.disabledBtns(new[] { btnDelete, btnEdit });
             }
         }
 
@@ -475,5 +478,9 @@ namespace inventoryManagement
             goodData.Close();
         }
 
+        private void lblTitle_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

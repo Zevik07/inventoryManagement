@@ -423,12 +423,12 @@ namespace inventoryManagement
                 "inner join categories c " +
                 "ON d.category_id = c.id " +
                 "where " +
-                "d.name like '%" + txtSearch.Text + "%'" +
+                "d.name like N'%" + txtSearch.Text + "%'" +
                 "or d.id like '%" + txtSearch.Text +"%'" +
                 "or d.price_in like '%" + txtSearch.Text + "%'" +
                 "or d.price_out like '%" + txtSearch.Text + "%'" +
-                "or note like '%" + txtSearch.Text + "%'" +
-                "or c.name like '%" + txtSearch.Text + "%'";
+                "or note like N'%" + txtSearch.Text + "%'" +
+                "or c.name like N'%" + txtSearch.Text + "%'";
 
             DataTable search = db.GetDataToTable(qr);
 

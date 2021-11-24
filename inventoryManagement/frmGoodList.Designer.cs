@@ -32,6 +32,14 @@ namespace inventoryManagement
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGoodList));
             this.dgvGood = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -66,14 +74,6 @@ namespace inventoryManagement
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGood)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numQty)).BeginInit();
@@ -115,6 +115,76 @@ namespace inventoryManagement
             this.dgvGood.TabStop = false;
             this.dgvGood.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.s);
             this.dgvGood.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvGood_CellMouseUp);
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column1.DataPropertyName = "id";
+            this.Column1.FillWeight = 10F;
+            this.Column1.HeaderText = "Mã HH";
+            this.Column1.MinimumWidth = 85;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // name
+            // 
+            this.name.DataPropertyName = "name";
+            this.name.HeaderText = "Tên hàng";
+            this.name.MinimumWidth = 150;
+            this.name.Name = "name";
+            this.name.Width = 150;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "category_name";
+            this.Column4.HeaderText = "Ngành hàng";
+            this.Column4.MinimumWidth = 106;
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 106;
+            // 
+            // Column5
+            // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column5.DataPropertyName = "quantity";
+            this.Column5.FillWeight = 10F;
+            this.Column5.HeaderText = "Số lượng";
+            this.Column5.MinimumWidth = 86;
+            this.Column5.Name = "Column5";
+            // 
+            // Column3
+            // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column3.DataPropertyName = "price_in";
+            this.Column3.FillWeight = 10F;
+            this.Column3.HeaderText = "Giá nhập";
+            this.Column3.MinimumWidth = 112;
+            this.Column3.Name = "Column3";
+            // 
+            // Column6
+            // 
+            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column6.DataPropertyName = "price_out";
+            this.Column6.FillWeight = 10F;
+            this.Column6.HeaderText = "Giá bán";
+            this.Column6.MinimumWidth = 105;
+            this.Column6.Name = "Column6";
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Column2.DataPropertyName = "image_url";
+            this.Column2.HeaderText = "Ảnh";
+            this.Column2.Name = "Column2";
+            this.Column2.Visible = false;
+            // 
+            // Column8
+            // 
+            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column8.DataPropertyName = "note";
+            this.Column8.FillWeight = 10F;
+            this.Column8.HeaderText = "Ghi chú";
+            this.Column8.MinimumWidth = 120;
+            this.Column8.Name = "Column8";
             // 
             // label2
             // 
@@ -599,77 +669,6 @@ namespace inventoryManagement
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 47);
             this.tableLayoutPanel1.TabIndex = 17;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.DataPropertyName = "id";
-            this.Column1.FillWeight = 10F;
-            this.Column1.HeaderText = "Mã HH";
-            this.Column1.MinimumWidth = 85;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // name
-            // 
-            this.name.DataPropertyName = "name";
-            this.name.HeaderText = "Tên hàng";
-            this.name.MinimumWidth = 150;
-            this.name.Name = "name";
-            this.name.Width = 150;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "category_name";
-            this.Column4.HeaderText = "Ngành hàng";
-            this.Column4.MinimumWidth = 106;
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 106;
-            // 
-            // Column5
-            // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column5.DataPropertyName = "quantity";
-            this.Column5.FillWeight = 10F;
-            this.Column5.HeaderText = "Số lượng";
-            this.Column5.MinimumWidth = 86;
-            this.Column5.Name = "Column5";
-            // 
-            // Column3
-            // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.DataPropertyName = "price_in";
-            this.Column3.FillWeight = 10F;
-            this.Column3.HeaderText = "Giá nhập";
-            this.Column3.MinimumWidth = 112;
-            this.Column3.Name = "Column3";
-            // 
-            // Column6
-            // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column6.DataPropertyName = "price_out";
-            this.Column6.FillWeight = 10F;
-            this.Column6.HeaderText = "Giá bán";
-            this.Column6.MinimumWidth = 105;
-            this.Column6.Name = "Column6";
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Column2.DataPropertyName = "image_url";
-            this.Column2.HeaderText = "Ảnh";
-            this.Column2.Name = "Column2";
-            this.Column2.Visible = false;
-            this.Column2.Width = 56;
-            // 
-            // Column8
-            // 
-            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column8.DataPropertyName = "note";
-            this.Column8.FillWeight = 10F;
-            this.Column8.HeaderText = "Ghi chú";
-            this.Column8.MinimumWidth = 120;
-            this.Column8.Name = "Column8";
             // 
             // frmGoodList
             // 
