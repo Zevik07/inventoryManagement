@@ -23,7 +23,7 @@ namespace inventoryManagement
         private string preMethod;
         private bool btnSearchIsClicked = false;
 
-        public frmOrderDetail(int orderIdParam = 1)
+        public frmOrderDetail(int orderIdParam = 0)
         {
             InitializeComponent();
 
@@ -36,9 +36,6 @@ namespace inventoryManagement
         private void frmOrderDetail_Load(object sender, EventArgs e)
         {
             LoadDataGridView();
-
-            // Default buttons's state
-            control.disabledBtns(new[] { btnUndo, btnSave });
 
             // Default textbox's state
             setControlReadMode();
@@ -148,7 +145,7 @@ namespace inventoryManagement
             string sql =
                 "select sum(price_total) " +
                 "from order_details od " +
-                "where order_id = '1'";
+                "where order_id = '"+ orderId +"'";
 
             var rs = db.ReadScalar(sql);
 
@@ -201,9 +198,11 @@ namespace inventoryManagement
                 "g.name as good_name " +
                 "from order_details od " +
                 "left join goods g " +
-                "on g.id = od.good_id";
+                "on g.id = od.good_id " +
+                "where order_id = '" + orderId + "'";
 
             oderDetailData = db.GetDataToTable(sql);
+
             dgvOrderDetail.DataSource = oderDetailData;
 
             // Load textbox
@@ -211,10 +210,17 @@ namespace inventoryManagement
 
             setPriceTotalOrder();
 
+            control.enabledBtns(new[] { btnAdd, btnSearch });
+            control.disabledBtns(new[] { btnUndo, btnSave });
+
             // Change button state
             if (dgvOrderDetail.Rows.Count == 0)
             {
                 control.disabledBtns(new[] { btnDelete, btnEdit });
+            }
+            else
+            {
+                control.enabledBtns(new[] { btnDelete, btnEdit });
             }
         }
 
@@ -253,10 +259,13 @@ namespace inventoryManagement
 
             setControlReadMode(false);
 
+            // Prevent update good_id, it can make trigger wrong
+            cbGoodId.Enabled = false;
+
             cbGoodId.Focus();
 
-            control.disabledBtns(new[] { btnAdd, btnEdit,
-                btnDelete, btnSearch});
+            control.disabledBtns(new[] { btnAdd, btnDelete,
+                btnSearch, btnEdit });
             control.enabledBtns(new[] { btnUndo, btnSave });
         }
 
@@ -326,13 +335,10 @@ namespace inventoryManagement
                     "update orders " +
                     "set price = '" + totalOrderPrice + "' " +
                     "where id = " + orderId;
+
                 db.Write(orderSql);
 
                 setControlReadMode();
-
-                control.disabledBtns(new[] { btnUndo, btnSave });
-                control.enabledBtns(new[] { btnDelete, btnAdd,
-                btnEdit, btnSearch});
 
                 LoadDataGridView();
 
@@ -356,7 +362,13 @@ namespace inventoryManagement
             setControlReadMode();
 
             control.disabledBtns(new[] { btnUndo, btnSave });
-            control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit, btnSearch});
+            control.enabledBtns(new[] { btnDelete, btnAdd, 
+                btnEdit, btnSearch});
+
+            if (dgvOrderDetail.Rows.Count == 0)
+            {
+                control.disabledBtns(new[] { btnDelete, btnEdit });
+            }
 
             if (btnSearchIsClicked)
             {
@@ -427,6 +439,10 @@ namespace inventoryManagement
             if (dgvOrderDetail.Rows.Count == 0)
             {
                 control.disabledBtns(new[] { btnDelete, btnEdit });
+            }
+            else
+            {
+                control.enabledBtns(new[] { btnDelete, btnEdit });
             }
         }
 

@@ -596,6 +596,7 @@ namespace inventoryManagement
             this.btnUndo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUndo.AutoSize = true;
+            this.btnUndo.Enabled = false;
             this.btnUndo.Image = global::inventoryManagement.Properties.Resources.Undo_icon;
             this.btnUndo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUndo.Location = new System.Drawing.Point(313, 1);
@@ -614,6 +615,7 @@ namespace inventoryManagement
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.AutoSize = true;
+            this.btnSave.Enabled = false;
             this.btnSave.Image = global::inventoryManagement.Properties.Resources.Save_icon;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSave.Location = new System.Drawing.Point(418, 1);
@@ -651,7 +653,7 @@ namespace inventoryManagement
             this.lblSearch.AutoSize = true;
             this.lblSearch.Image = global::inventoryManagement.Properties.Resources.Button_Help_icon;
             this.lblSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblSearch.Location = new System.Drawing.Point(233, 6);
+            this.lblSearch.Location = new System.Drawing.Point(230, 6);
             this.lblSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
             this.lblSearch.MinimumSize = new System.Drawing.Size(130, 22);
             this.lblSearch.Name = "lblSearch";
@@ -665,11 +667,11 @@ namespace inventoryManagement
             // 
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.Location = new System.Drawing.Point(365, 8);
+            this.txtSearch.Location = new System.Drawing.Point(362, 8);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
             this.txtSearch.MinimumSize = new System.Drawing.Size(4, 22);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(169, 22);
+            this.txtSearch.Size = new System.Drawing.Size(168, 22);
             this.txtSearch.TabIndex = 1;
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
@@ -679,12 +681,12 @@ namespace inventoryManagement
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearch.Image = global::inventoryManagement.Properties.Resources.search_icon__1_;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(536, 5);
+            this.btnSearch.Location = new System.Drawing.Point(532, 5);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(1);
             this.btnSearch.MinimumSize = new System.Drawing.Size(0, 22);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.btnSearch.Size = new System.Drawing.Size(103, 24);
+            this.btnSearch.Size = new System.Drawing.Size(107, 24);
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Tìm";
             this.btnSearch.UseVisualStyleBackColor = true;

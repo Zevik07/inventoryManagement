@@ -44,6 +44,10 @@ namespace inventoryManagement
             this.txtId = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.dgvCustomer = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -56,10 +60,6 @@ namespace inventoryManagement
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -250,6 +250,42 @@ namespace inventoryManagement
             this.dgvCustomer.TabStop = false;
             this.dgvCustomer.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvCustomer_CellMouseUp);
             // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column1.DataPropertyName = "id";
+            this.Column1.FillWeight = 10F;
+            this.Column1.HeaderText = "Mã KH";
+            this.Column1.MinimumWidth = 80;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column2.DataPropertyName = "name";
+            this.Column2.HeaderText = "Họ tên";
+            this.Column2.MinimumWidth = 130;
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 130;
+            // 
+            // Column5
+            // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column5.DataPropertyName = "phone";
+            this.Column5.FillWeight = 10F;
+            this.Column5.HeaderText = "Số điện thoại";
+            this.Column5.MinimumWidth = 124;
+            this.Column5.Name = "Column5";
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column4.DataPropertyName = "address";
+            this.Column4.HeaderText = "Địa chỉ";
+            this.Column4.MinimumWidth = 150;
+            this.Column4.Name = "Column4";
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
@@ -341,6 +377,7 @@ namespace inventoryManagement
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUndo.AutoSize = true;
+            this.btnUndo.Enabled = false;
             this.btnUndo.Image = global::inventoryManagement.Properties.Resources.Undo_icon;
             this.btnUndo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUndo.Location = new System.Drawing.Point(303, 1);
@@ -360,6 +397,7 @@ namespace inventoryManagement
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.AutoSize = true;
+            this.btnSave.Enabled = false;
             this.btnSave.Image = global::inventoryManagement.Properties.Resources.Save_icon;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSave.Location = new System.Drawing.Point(409, 1);
@@ -375,6 +413,8 @@ namespace inventoryManagement
             // 
             // tableLayoutPanel6
             // 
+            this.tableLayoutPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel6.ColumnCount = 3;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.52248F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.47752F));
@@ -404,7 +444,7 @@ namespace inventoryManagement
             this.lblSearch.TabIndex = 3;
             this.lblSearch.Text = "Nội dung tìm kiếm";
             this.lblSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblSearch.Click += new System.EventHandler(this.lblSearch_Click);
+            this.lblSearch.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblSearch_MouseMove);
             // 
             // txtSearch
             // 
@@ -416,6 +456,7 @@ namespace inventoryManagement
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(145, 22);
             this.txtSearch.TabIndex = 1;
+            this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
             // btnSearch
             // 
@@ -432,42 +473,7 @@ namespace inventoryManagement
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Tìm";
             this.btnSearch.UseVisualStyleBackColor = true;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.DataPropertyName = "id";
-            this.Column1.FillWeight = 10F;
-            this.Column1.HeaderText = "Mã KH";
-            this.Column1.MinimumWidth = 80;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column2.DataPropertyName = "name";
-            this.Column2.HeaderText = "Họ tên";
-            this.Column2.MinimumWidth = 130;
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 130;
-            // 
-            // Column5
-            // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column5.DataPropertyName = "phone";
-            this.Column5.FillWeight = 10F;
-            this.Column5.HeaderText = "Số điện thoại";
-            this.Column5.MinimumWidth = 124;
-            this.Column5.Name = "Column5";
-            // 
-            // Column4
-            // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column4.DataPropertyName = "address";
-            this.Column4.HeaderText = "Địa chỉ";
-            this.Column4.MinimumWidth = 150;
-            this.Column4.Name = "Column4";
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // frmCustomerList
             // 

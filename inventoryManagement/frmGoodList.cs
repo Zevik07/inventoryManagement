@@ -21,15 +21,12 @@ namespace inventoryManagement
         private bool btnSearchIsClicked = false;
         public frmGoodList()
         {
-            InitializeComponent();
+            InitializeComponent();  
         }
 
         private void frmGoodList_Load(object sender, EventArgs e)
         {
             LoadDataGridView();
-
-            // Default buttons's state
-            control.disabledBtns(new[] { btnUndo, btnSave });
 
             // Default textbox's state
             setControlReadMode();
@@ -81,8 +78,7 @@ namespace inventoryManagement
                 txtId.Text =
                         cRow.Cells[0].Value.ToString();
 
-            txtName.Text = 
-                cRow.Cells[1].Value.ToString();
+            txtName.Text = cRow.Cells[1].Value.ToString();
 
             setCateCb();
 
@@ -95,10 +91,7 @@ namespace inventoryManagement
             pbImg.ImageLocation =
                 imgPath + cRow.Cells[6].Value.ToString();
 
-            // Thực tế khỏi cần kiểm tra null, vì đổ vào bảng là không còn null nữa
-            txtNote.Text = cRow.Cells[7].Value != null ?
-                           cRow.Cells[7].Value.ToString() :
-                           null;
+            txtNote.Text = cRow.Cells[7].Value.ToString() ;
         }
 
         private void setCateCb()
@@ -140,12 +133,6 @@ namespace inventoryManagement
                         .ToString();
         }
 
-        private void disabledDgv()
-        {
-            // Prevent edit row
-            /*dgvGood.EditMode = DataGridViewEditMode.EditProgrammatically;*/
-        }
-
         private bool validateTxt()
         {
             if (txtName.Text.Trim().Length == 0 ||
@@ -175,8 +162,15 @@ namespace inventoryManagement
         {
             string sql;
             sql =
-                "select d.id, d.name, c.name as category_name, " +
-                "quantity, price_in, price_out, image_url, note " +
+                "select " +
+                "d.id, " +
+                "d.name, " +
+                "c.name as category_name, " +
+                "quantity, " +
+                "price_in, " +
+                "price_out, " +
+                "image_url, " +
+                "note " +
                 "from goods d " +
                 "inner join categories c " +
                 "ON d.category_id = c.id; ";
@@ -187,11 +181,18 @@ namespace inventoryManagement
             // Load textbox
             setTxt();
 
+            control.disabledBtns(new[] { btnUndo, btnSave });
+            control.enabledBtns(new[] { btnAdd, btnSearch });
+
             // Change button state
             if (dgvGood.Rows.Count == 0)
             {
                 control.disabledBtns(new[] { btnDelete, btnEdit });
             }
+            else
+            {
+                control.enabledBtns(new[] { btnDelete, btnEdit });
+            } 
         }
 
         private void dgvGood_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
@@ -212,15 +213,16 @@ namespace inventoryManagement
 
             resetTxt();
 
+            generateId();
+
             setCateCb();
 
             setControlReadMode(false);
 
-            generateId();
-
             txtName.Focus();
 
-            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete, btnSearch });
+            control.disabledBtns(new[] { btnAdd, btnEdit, 
+                btnDelete, btnSearch });
             control.enabledBtns(new[] { btnUndo, btnSave });
         }
 
@@ -230,18 +232,19 @@ namespace inventoryManagement
 
             string ImgName = "";
 
-            // if if there are a upload picture in picturebox
+            // if there are a upload picture in picturebox
             if (File.Exists(pbImg.ImageLocation))
             {
                 DataGridViewRow cRow = dgvGood.CurrentRow;
 
-                // exist current row and current row is selected row in edit mode
-                if (cRow != null && cRow.Cells[0].Value.ToString() == txtId.Text)
-                {
-                    ImgName = Path.GetFileName(cRow.Cells[6].Value.ToString());
-                }
+                string oldImgName = "";
 
-                string oldImgName = ImgName;
+                // if in edit mode
+                if (cRow != null && 
+                    cRow.Cells[0].Value.ToString() == txtId.Text)
+                {
+                    oldImgName = Path.GetFileName(cRow.Cells[6].Value.ToString());
+                }
 
                 // Image url
                 string newImg = pbImg.ImageLocation;
@@ -250,7 +253,8 @@ namespace inventoryManagement
                 string newImgName =
                     DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") +
                     "_" +
-                    control.convertToUnSign3(Path.GetFileName(newImg)); // bỏ dấu
+                    Guid.NewGuid().ToString("n").Substring(0, 8) +
+                    Path.GetExtension(newImg);
 
                 // Create dir if it is not exists
                 if (!Directory.Exists(imgPath))
@@ -278,13 +282,15 @@ namespace inventoryManagement
                     {
                         if (!validateTxt())
                         {
+                            txtName.Focus();
                             return;
                         }
 
                         sql =
-                            "INSERT INTO goods" +
+                            "INSERT INTO " +
+                            "goods" +
                             "(id, name, category_id, quantity," +
-                            " price_in, price_out, image_url, note) " +
+                            "price_in, price_out, image_url, note) " +
                             "VALUES(N'" +
                             txtId.Text.ToString() + "',N'" +
                             txtName.Text.ToString() + "',N'" +
@@ -321,19 +327,21 @@ namespace inventoryManagement
                     break;
             }
 
-            db.Write(sql);
-
-            LoadDataGridView();
-
-            setControlReadMode();
-
-            control.disabledBtns(new[] { btnUndo, btnSave });
-            control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit, btnSearch });
-
-            if (btnSearchIsClicked)
+            if (db.Write(sql))
             {
-                btnSearchIsClicked = false;
-                btnSearch_Click(this, new EventArgs());
+                setControlReadMode();
+
+                LoadDataGridView();
+
+                if (btnSearchIsClicked)
+                {
+                    btnSearchIsClicked = false;
+                    btnSearch_Click(this, new EventArgs());
+                }
+            }  
+            else
+            {
+                txtName.Focus();
             }
         }
 
@@ -345,22 +353,29 @@ namespace inventoryManagement
 
             txtName.Focus();
 
-            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete, btnSearch });
+            control.disabledBtns(new[] { btnAdd, btnEdit, 
+                btnDelete, btnSearch });
             control.enabledBtns(new[] { btnUndo, btnSave });
         }
 
         private void btnUndo_Click(object sender, EventArgs e)
         {
-
             setTxt();
 
-            setControlReadMode(false);
+            setControlReadMode();
 
             control.disabledBtns(new[] { btnUndo, btnSave });
-            control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit, btnSearch });
+            control.enabledBtns(new[] { btnDelete, btnAdd,
+                btnEdit, btnSearch });
+
+            if (dgvGood.Rows.Count == 0)
+            {
+                control.disabledBtns(new[] { btnDelete, btnEdit });
+            }
 
             if (btnSearchIsClicked)
             {
+                txtSearch.Text = "";
                 btnSearchIsClicked = false;
                 LoadDataGridView();
             }
@@ -369,11 +384,13 @@ namespace inventoryManagement
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DialogResult rs =
-                   MessageBox.Show("Bạn có chắc muốn xoá không?", "Xác nhận",
-                   MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                   MessageBox.Show("Bạn có chắc muốn xoá không? \n" +
+                   "ĐIỀU NÀY SẼ XÓA MỌI THÔNG TIN LIÊN QUAN", "Xác nhận",
+                   MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (rs == DialogResult.Yes)
             {
-                string sql = "DELETE goods WHERE id='" + txtId.Text + "'";
+                string sql = 
+                    "DELETE goods WHERE id='" + txtId.Text + "'";
 
                 string currentImgName =
                     dgvGood.CurrentRow.Cells[6].Value.ToString();
@@ -397,9 +414,12 @@ namespace inventoryManagement
         private void btnOpenImg_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlgOpen = new OpenFileDialog();
-            dlgOpen.Filter = "Bitmap(*.bmp)|*.bmp|JPEG(*.jpg)|*.jpg|GIF(*.gif)|*.gif|All files(*.*)|*.*";
+            dlgOpen.Filter = 
+                "Bitmap(*.bmp)|*.bmp|JPEG(*.jpg)|*.jpg|GIF(*.gif)|*.gif|All files(*.*)|*.*";
             dlgOpen.FilterIndex = 2;
+
             dlgOpen.Title = "Chọn ảnh minh hoạ cho sản phẩm";
+
             if (dlgOpen.ShowDialog() == DialogResult.OK)
             {
                 pbImg.ImageLocation = dlgOpen.FileName;
@@ -438,13 +458,18 @@ namespace inventoryManagement
 
             setTxt();
 
+            control.enabledBtns(new[] { btnUndo });
+            control.disabledBtns(new[] { btnAdd });
+
             // Change button state
             if (dgvGood.Rows.Count == 0)
             {
-                control.disabledBtns(new[] { btnAdd, btnDelete, btnEdit, btnSave });
+                control.disabledBtns(new[] { btnDelete, btnEdit });
             }
-
-            control.enabledBtns(new[] { btnUndo });
+            else
+            {
+                control.enabledBtns(new[] { btnDelete, btnEdit });
+            }
         }
 
         private void txtSearch_KeyDown(object sender, KeyEventArgs e)
@@ -467,11 +492,6 @@ namespace inventoryManagement
                "- Tên ngành \n";
 
             toolTip1.SetToolTip(lblSearch, msg);
-        }
-
-        private void s(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

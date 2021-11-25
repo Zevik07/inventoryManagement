@@ -38,7 +38,6 @@ namespace inventoryManagement
             this.mnuEmployee = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuBills = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuOrderList = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuOrderDetail = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuReport = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuReportInventory = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuReportRevenue = new System.Windows.Forms.ToolStripMenuItem();
@@ -120,8 +119,7 @@ namespace inventoryManagement
             // 
             this.mnuBills.BackColor = System.Drawing.Color.White;
             this.mnuBills.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuOrderList,
-            this.mnuOrderDetail});
+            this.mnuOrderList});
             this.mnuBills.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mnuBills.Image = global::inventoryManagement.Properties.Resources.news_icon;
             this.mnuBills.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -136,13 +134,6 @@ namespace inventoryManagement
             this.mnuOrderList.Size = new System.Drawing.Size(180, 24);
             this.mnuOrderList.Text = "Danh sách";
             this.mnuOrderList.Click += new System.EventHandler(this.mnuOrderList_Click);
-            // 
-            // mnuOrderDetail
-            // 
-            this.mnuOrderDetail.Name = "mnuOrderDetail";
-            this.mnuOrderDetail.Size = new System.Drawing.Size(180, 24);
-            this.mnuOrderDetail.Text = "Chi tiết";
-            this.mnuOrderDetail.Click += new System.EventHandler(this.mnuBIll_Click);
             // 
             // mnuReport
             // 
@@ -272,7 +263,6 @@ namespace inventoryManagement
         private System.Windows.Forms.ToolStripMenuItem mnuCustomer;
         private System.Windows.Forms.ToolStripMenuItem mnuGood;
         private System.Windows.Forms.ToolStripMenuItem mnuBills;
-        private System.Windows.Forms.ToolStripMenuItem mnuOrderDetail;
         private System.Windows.Forms.ToolStripMenuItem mnuReport;
         private System.Windows.Forms.ToolStripMenuItem mnuReportInventory;
         private System.Windows.Forms.ToolStripMenuItem mnuReportRevenue;

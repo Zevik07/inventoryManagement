@@ -4,12 +4,14 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 using inventoryManagement.Core;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace inventoryManagement
 {
@@ -26,10 +28,10 @@ namespace inventoryManagement
 
         private void frmBillList_Load(object sender, EventArgs e)
         {
-            LoadDataGridView();
-
             // Default buttons's state
             control.disabledBtns(new[] { btnUndo, btnSave });
+
+            LoadDataGridView();
 
             // Default textbox's state
             setControlReadMode();
@@ -201,10 +203,19 @@ namespace inventoryManagement
             // Load textbox
             setTxt();
 
+            control.enabledBtns(new[] { btnAdd, btnSearch });
+            control.disabledBtns(new[] { btnUndo, btnSave });
+
             // Change button state
             if (dgvOrder.Rows.Count == 0)
             {
-                control.disabledBtns(new[] { btnDelete, btnEdit, btnDetail, btnPrint });
+                control.disabledBtns(new[] { btnDelete, btnEdit,
+                    btnDetail, btnPrint });
+            }
+            else
+            {
+                control.enabledBtns(new[] { btnDelete, btnEdit,
+                    btnDetail, btnPrint });
             }
         }
 
@@ -243,7 +254,7 @@ namespace inventoryManagement
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            string sql;
+            string sql = "";
 
             switch (preMethod)
             {
@@ -251,6 +262,7 @@ namespace inventoryManagement
                     {
                         if (!validateTxt())
                         {
+                            cbEmployeeId.Focus();
                             return;
                         }
 
@@ -270,7 +282,7 @@ namespace inventoryManagement
                     {
                         if (!validateTxt())
                         {
-                            dtpOrderDate.Focus();
+                            cbEmployeeId.Focus();
                             return;
                         }
 
@@ -286,22 +298,24 @@ namespace inventoryManagement
                     break;
             }
 
-            db.Write(sql);
-
-            setControlReadMode();
-
-            control.disabledBtns(new[] { btnUndo, btnSave });
-            control.enabledBtns(new[] { btnAdd, btnEdit, 
-                btnSearch, btnDetail, btnPrint });
-
-            LoadDataGridView();
-
-            // If in search mode, search again after save
-            if (btnSearchIsClicked)
+            if(db.Write(sql))
             {
-                btnSearchIsClicked = false;
-                btnSearch_Click(this, new EventArgs());
+                setControlReadMode();
+
+                LoadDataGridView();
+
+                // If in search mode, search again after save
+                if (btnSearchIsClicked)
+                {
+                    btnSearchIsClicked = false;
+                    btnSearch_Click(this, new EventArgs());
+                }
             }
+            else
+            {
+                cbCustomerId.Focus();
+            }
+            
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -314,10 +328,11 @@ namespace inventoryManagement
 
             setControlReadMode(false);
 
-            dtpOrderDate.Focus();
+            cbEmployeeId.Focus();
 
             control.disabledBtns(new[] { btnAdd, btnEdit, 
                 btnDelete, btnSearch, btnDetail, btnPrint });
+
             control.enabledBtns(new[] { btnUndo, btnSave });
         }
 
@@ -330,6 +345,12 @@ namespace inventoryManagement
             control.disabledBtns(new[] { btnUndo, btnSave });
             control.enabledBtns(new[] { btnDelete, btnAdd, 
                 btnEdit, btnSearch, btnPrint, btnDetail });
+
+            if (dgvOrder.Rows.Count == 0)
+            {
+                control.disabledBtns(new[] { btnDelete, btnEdit, 
+                    btnDetail, btnPrint });
+            }
 
             if (btnSearchIsClicked)
             {
@@ -348,14 +369,18 @@ namespace inventoryManagement
 
             if (rs == DialogResult.Yes)
             {
-                string sql = "DELETE orders WHERE id='" + txtOrderId.Text + "'";
-
-                string currentImgName =
-                    dgvOrder.CurrentRow.Cells[6].Value.ToString();
+                string sql = "DELETE orders WHERE id = '" + txtOrderId.Text + "'";
 
                 db.Write(sql);
 
                 LoadDataGridView();
+
+                // If in search mode, search again after delete
+                if (btnSearchIsClicked)
+                {
+                    btnSearchIsClicked = false;
+                    btnSearch_Click(this, new EventArgs());
+                }
             }
         }
 
@@ -405,15 +430,19 @@ namespace inventoryManagement
 
             setTxt();
 
-            control.disabledBtns(new[] { btnAdd});
+            control.disabledBtns(new[] { btnAdd });
+            control.enabledBtns(new[] { btnUndo });
 
             if (dgvOrder.Rows.Count == 0)
             {
-                control.disabledBtns(new[] {btnDelete, btnEdit, 
-                    btnSave, btnPrint, btnDetail});
+                control.disabledBtns(new[] { btnDelete, btnEdit, 
+                    btnPrint, btnDetail });
             }
-
-            control.enabledBtns(new[] { btnUndo });
+            else
+            {
+                control.enabledBtns(new[] { btnEdit, btnDelete, 
+                    btnDetail, btnPrint });
+            }
         }
 
         private void txtSearch_KeyDown(object sender, KeyEventArgs e)
@@ -433,7 +462,48 @@ namespace inventoryManagement
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
+            // Get current row
+            DataGridViewRow cRow = dgvOrder.CurrentRow;
 
+            // Create a document object
+            Document doc = new Document(PageSize.A6, 10, 10, 10, 10);
+
+            // Directory to store
+            string path = Environment.CurrentDirectory + "/Bills";
+
+            // Create dir if it is not exists
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+
+            // File name
+            string fileName =
+                    DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") +
+                    "_" +
+                    "HD" +
+                    cRow.Cells["id"].Value.ToString();
+
+            // Get a PDFWriter object 
+            PdfWriter writer = PdfWriter.GetInstance(doc, 
+                new FileStream(path + "/"+ fileName + ".pdf", FileMode.Create));
+
+            // Meta data
+            doc.AddAuthor("Nguyen Huu Thien Phu");
+            doc.AddCreator("Inventory Management");
+            doc.AddKeywords("Bill PDF");
+            doc.AddSubject("Document subject - Describing the steps creating a PDF document");
+            doc.AddTitle("The document title - PDF creation using iTextSharp");
+
+            // Open the document for writting
+            doc.Open();
+
+            // Header
+            Paragraph header = new Paragraph("Hello World!");
+            header.Alignment = Element.ALIGN_CENTER;
+            doc.Add(header);
+
+            // Close the document
+            doc.Close();
+            writer.Close();
         }
 
         private void lblSearch_MouseMove(object sender, MouseEventArgs e)
@@ -459,7 +529,7 @@ namespace inventoryManagement
                 "select " +
                 "e.name " +
                 "from employees e " +
-                "where e.id ='" +
+                "where e.id = '" +
                 cbEmployeeId.Text + "'";
 
             SqlDataReader emData = db.Read(sql);
@@ -484,26 +554,32 @@ namespace inventoryManagement
             // Load good info 
             string sql =
                 "select " +
-                "c.name " +
+                "c.name, " +
+                "c.address, " +
+                "c.phone " +
                 "from customers c " +
-                "where e.id ='" +
-                cbEmployeeId.Text + "'";
+                "where c.id = '" +
+                cbCustomerId.Text + "'";
 
-            SqlDataReader emData = db.Read(sql);
+            SqlDataReader customerData = db.Read(sql);
 
-            if (emData.HasRows)
+            if (customerData.HasRows)
             {
-                if (emData.Read())
+                if (customerData.Read())
                 {
-                    txtEmployeeName.Text = emData["name"].ToString();
+                    txtCustomerName.Text = customerData["name"].ToString();
+                    txtCustomerAddress.Text = customerData["address"].ToString();
+                    txtCustomerPhone.Text = customerData["phone"].ToString();
                 }
             }
             else
             {
-                txtEmployeeName.Text = "";
+                txtCustomerName.Text = "";
+                txtCustomerAddress.Text = "";
+                txtCustomerPhone.Text = "";
             }
 
-            emData.Close();
+            customerData.Close();
         }
     }
 }

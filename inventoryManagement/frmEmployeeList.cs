@@ -17,6 +17,7 @@ namespace inventoryManagement
     {
         private string preMethod;
         private DataTable EmployeeData;
+        private bool btnSearchIsClicked = false;
         public frmEmployeeList()
         {
             InitializeComponent();
@@ -26,9 +27,6 @@ namespace inventoryManagement
         {
             LoadDataGridView();
 
-            // Default buttons's state
-            control.disabledBtns(new[] { btnUndo, btnSave });
-
             // Default textbox's state
             setControlReadMode();
 
@@ -37,7 +35,7 @@ namespace inventoryManagement
             dgvEmployee.Columns["Column6"].DisplayIndex = 5;
         }
 
-        private void ResetTxt()
+        private void resetTxt()
         {
             txtId.Text = "";
             txtName.Text = "";
@@ -52,11 +50,9 @@ namespace inventoryManagement
             if (yes)
             {
                 txtName.ReadOnly = true;
-
                 // Checkbox
                 chkGender.ForeColor = Color.DarkSlateGray; // Read-only appearance
                 chkGender.AutoCheck = false;      // Read-only behavior 
-
                 txtAddress.ReadOnly = true;
                 txtPhone.ReadOnly = true;
                 dtpBirthday.Enabled = false;
@@ -64,11 +60,9 @@ namespace inventoryManagement
             else
             {
                 txtName.ReadOnly = false;
-
                 // Checkbox
                 chkGender.ForeColor = Color.Black; // Read-only appearance
                 chkGender.AutoCheck = true;      // Read-only behavior 
-
                 txtAddress.ReadOnly = false;
                 txtPhone.ReadOnly = false;
                 dtpBirthday.Enabled = true;
@@ -99,11 +93,6 @@ namespace inventoryManagement
                     DateTime.ParseExact(cRow.Cells[5].Value.ToString(), "dd/MM/yyyy",
                     CultureInfo.CreateSpecificCulture("en-GB"));
 
-        }
-        private void disabledDgv()
-        {
-            // Prevent edit row
-            /*dgvEmployee.EditMode = DataGridViewEditMode.EditProgrammatically;*/
         }
 
         private bool validateTxt()
@@ -151,10 +140,17 @@ namespace inventoryManagement
             // Load textbox
             setTxt();
 
+            control.disabledBtns(new[] { btnUndo, btnSave });
+            control.enabledBtns(new[] { btnAdd, btnSearch });
+
             // Change button state
             if (dgvEmployee.Rows.Count == 0)
             {
                 control.disabledBtns(new[] { btnDelete, btnEdit });
+            }
+            else
+            {
+                control.enabledBtns(new[] { btnEdit, btnDelete });
             }
         }
 
@@ -173,7 +169,7 @@ namespace inventoryManagement
         {
             preMethod = "add";
 
-            ResetTxt();
+            resetTxt();
 
             setId();
 
@@ -181,7 +177,8 @@ namespace inventoryManagement
 
             txtName.Focus();
 
-            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
+            control.disabledBtns(new[] { btnAdd, btnEdit,
+                btnDelete, btnSearch });
             control.enabledBtns(new[] { btnUndo, btnSave });
         }
 
@@ -195,6 +192,7 @@ namespace inventoryManagement
                     {
                         if (!validateTxt())
                         {
+                            txtName.Focus();
                             return;
                         }
 
@@ -232,14 +230,22 @@ namespace inventoryManagement
                     break;
             }
 
-            db.Write(sql);
+            if (db.Write(sql))
+            {
+                LoadDataGridView();
 
-            LoadDataGridView();
+                setControlReadMode();
 
-            setControlReadMode();
-
-            control.disabledBtns(new[] { btnUndo, btnSave });
-            control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit });
+                if (btnSearchIsClicked)
+                {
+                    btnSearchIsClicked = false;
+                    btnSearch_Click(this, new EventArgs());
+                }
+            }
+            else
+            {
+                txtName.Focus();
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -250,7 +256,8 @@ namespace inventoryManagement
 
             txtName.Focus();
 
-            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
+            control.disabledBtns(new[] { btnAdd, btnEdit, 
+                btnDelete, btnSearch });
             control.enabledBtns(new[] { btnUndo, btnSave });
         }
 
@@ -258,37 +265,97 @@ namespace inventoryManagement
         {
             setTxt();
 
-            setControlReadMode(false);
+            setControlReadMode();
 
             control.disabledBtns(new[] { btnUndo, btnSave });
-            control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit });
+            control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit, btnSearch });
+
+            if (dgvEmployee.Rows.Count == 0)
+            {
+                control.disabledBtns(new[] { btnDelete, btnEdit });
+            }
+
+            if (btnSearchIsClicked)
+            {
+                txtSearch.Text = "";
+                btnSearchIsClicked = false;
+                LoadDataGridView();
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DialogResult rs =
-                   MessageBox.Show("Bạn có chắc muốn xoá không?", "Xác nhận",
-                   MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                   MessageBox.Show("Bạn có chắc muốn xoá không? \n" +
+                   "ĐIỀU NÀY SẼ XÓA MỌI THÔNG TIN LIÊN QUAN", "Xác nhận",
+                   MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (rs == DialogResult.Yes)
             {
                 string sql = "DELETE employees WHERE id='" + txtId.Text + "'";
+
                 db.Write(sql);
+
                 LoadDataGridView();
             }
         }
 
-        private void lblSearch_Click(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            btnSearchIsClicked = true;
+
+            if (txtSearch.Text.ToString().Trim() == "")
+            {
+                notify.showNoti("Vui lòng nhập nội dung tìm kiếm");
+                return;
+            }
+
+            string qr =
+                "SELECT id, name, gender, address, phone, " +
+                "FORMAT(birthday, 'dd/MM/yyyy') as birthday " +
+                "FROM employees e " +
+                "where " +
+                "e.id like '%" + txtSearch.Text + "%' " +
+                "or e.name like N'%" + txtSearch.Text + "%' " +
+                "or e.address like N'%" + txtSearch.Text + "%' " +
+                "or e.phone like '%" + txtSearch.Text + "%';";
+
+            DataTable search = db.GetDataToTable(qr);
+
+            dgvEmployee.DataSource = search;
+
+            resetTxt();
+
+            setTxt();
+
+            control.disabledBtns(new[] { btnAdd });
+            control.enabledBtns(new[] { btnUndo });
+
+            if (dgvEmployee.Rows.Count == 0)
+            {
+                control.disabledBtns(new[] { btnDelete, btnEdit });
+            }
+            else
+            {
+                control.enabledBtns(new[] { btnDelete, btnEdit });
+            }
+        }
+
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch_Click(this, new EventArgs());
+            }
+        }
+
+        private void lblSearch_MouseMove(object sender, MouseEventArgs e)
         {
             string msg =
-               "Có thể tìm kiếm bằng: \n" +
-               "- Mã hóa đơn \n" +
-               "- Ngày tạo (định dạng năm-tháng-ngày) \n" +
-               "- Tổng thanh toán \n" +
-               "- Mã nhân viên \n" +
-               "- Mã khách hàng \n" +
-               "- Tên nhân viên \n" +
-               "- Tên khách \n" +
-               "- Số điện thoại khách";
+                "Có thể tìm kiếm bằng: \n" +
+                "- Mã nhân viên \n" +
+                "- Tên nhân viên \n" +
+                "- Địa chỉ nhân viên \n" +
+                "- Số điện thoại nhân viên \n";
 
             toolTip1.SetToolTip(lblSearch, msg);
         }

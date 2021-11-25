@@ -48,6 +48,12 @@ namespace inventoryManagement
             this.label4 = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.dgvEmployee = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -60,12 +66,6 @@ namespace inventoryManagement
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -316,189 +316,6 @@ namespace inventoryManagement
             this.dgvEmployee.TabStop = false;
             this.dgvEmployee.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEmployee_CellMouseUp);
             // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel2, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 362);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(598, 47);
-            this.tableLayoutPanel3.TabIndex = 18;
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.flowLayoutPanel2.AutoSize = true;
-            this.flowLayoutPanel2.Controls.Add(this.btnAdd);
-            this.flowLayoutPanel2.Controls.Add(this.btnEdit);
-            this.flowLayoutPanel2.Controls.Add(this.btnDelete);
-            this.flowLayoutPanel2.Controls.Add(this.btnUndo);
-            this.flowLayoutPanel2.Controls.Add(this.btnSave);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(48, 3);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(502, 41);
-            this.flowLayoutPanel2.TabIndex = 12;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.AutoSize = true;
-            this.btnAdd.Image = global::inventoryManagement.Properties.Resources.add_icon;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(6, 1);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(6, 1, 6, 1);
-            this.btnAdd.MinimumSize = new System.Drawing.Size(84, 28);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 1, 1, 1);
-            this.btnAdd.Size = new System.Drawing.Size(87, 34);
-            this.btnAdd.TabIndex = 7;
-            this.btnAdd.Text = "Thêm";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.AutoSize = true;
-            this.btnEdit.Image = global::inventoryManagement.Properties.Resources.edit_icon;
-            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(105, 1);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(6, 1, 6, 1);
-            this.btnEdit.MinimumSize = new System.Drawing.Size(84, 28);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Padding = new System.Windows.Forms.Padding(5, 1, 1, 1);
-            this.btnEdit.Size = new System.Drawing.Size(87, 34);
-            this.btnEdit.TabIndex = 8;
-            this.btnEdit.Text = "Sửa";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.AutoSize = true;
-            this.btnDelete.Image = global::inventoryManagement.Properties.Resources.delete_icon;
-            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(204, 1);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(6, 1, 6, 1);
-            this.btnDelete.MinimumSize = new System.Drawing.Size(84, 28);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Padding = new System.Windows.Forms.Padding(5, 1, 1, 1);
-            this.btnDelete.Size = new System.Drawing.Size(87, 34);
-            this.btnDelete.TabIndex = 9;
-            this.btnDelete.Text = "Xóa";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnUndo
-            // 
-            this.btnUndo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUndo.AutoSize = true;
-            this.btnUndo.Image = global::inventoryManagement.Properties.Resources.Undo_icon;
-            this.btnUndo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUndo.Location = new System.Drawing.Point(303, 1);
-            this.btnUndo.Margin = new System.Windows.Forms.Padding(6, 1, 6, 1);
-            this.btnUndo.MinimumSize = new System.Drawing.Size(94, 28);
-            this.btnUndo.Name = "btnUndo";
-            this.btnUndo.Padding = new System.Windows.Forms.Padding(5, 1, 1, 1);
-            this.btnUndo.Size = new System.Drawing.Size(94, 34);
-            this.btnUndo.TabIndex = 10;
-            this.btnUndo.Text = "  Quay lại";
-            this.btnUndo.UseVisualStyleBackColor = true;
-            this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.AutoSize = true;
-            this.btnSave.Image = global::inventoryManagement.Properties.Resources.Save_icon;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(409, 1);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(6, 1, 6, 1);
-            this.btnSave.MinimumSize = new System.Drawing.Size(84, 28);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Padding = new System.Windows.Forms.Padding(5, 1, 1, 1);
-            this.btnSave.Size = new System.Drawing.Size(87, 34);
-            this.btnSave.TabIndex = 11;
-            this.btnSave.Text = "Lưu";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // tableLayoutPanel6
-            // 
-            this.tableLayoutPanel6.ColumnCount = 3;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.30303F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.69697F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel6.Controls.Add(this.lblSearch, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.txtSearch, 1, 0);
-            this.tableLayoutPanel6.Controls.Add(this.btnSearch, 2, 0);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(11, 135);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 1;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(573, 30);
-            this.tableLayoutPanel6.TabIndex = 20;
-            // 
-            // lblSearch
-            // 
-            this.lblSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSearch.AutoSize = true;
-            this.lblSearch.Image = global::inventoryManagement.Properties.Resources.Button_Help_icon;
-            this.lblSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblSearch.Location = new System.Drawing.Point(217, 6);
-            this.lblSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
-            this.lblSearch.MinimumSize = new System.Drawing.Size(130, 22);
-            this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(130, 22);
-            this.lblSearch.TabIndex = 3;
-            this.lblSearch.Text = "Nội dung tìm kiếm";
-            this.lblSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblSearch.Click += new System.EventHandler(this.lblSearch_Click);
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.Location = new System.Drawing.Point(349, 6);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
-            this.txtSearch.MinimumSize = new System.Drawing.Size(4, 22);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(145, 22);
-            this.txtSearch.TabIndex = 1;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Image = global::inventoryManagement.Properties.Resources.search_icon__1_;
-            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(497, 5);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(1);
-            this.btnSearch.MinimumSize = new System.Drawing.Size(0, 22);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Padding = new System.Windows.Forms.Padding(6, 1, 1, 1);
-            this.btnSearch.Size = new System.Drawing.Size(75, 24);
-            this.btnSearch.TabIndex = 2;
-            this.btnSearch.Text = "Tìm";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            // 
             // Column1
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -552,6 +369,193 @@ namespace inventoryManagement
             this.Column6.HeaderText = "Địa chỉ";
             this.Column6.MinimumWidth = 78;
             this.Column6.Name = "Column6";
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel2, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 362);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(598, 47);
+            this.tableLayoutPanel3.TabIndex = 18;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.flowLayoutPanel2.AutoSize = true;
+            this.flowLayoutPanel2.Controls.Add(this.btnAdd);
+            this.flowLayoutPanel2.Controls.Add(this.btnEdit);
+            this.flowLayoutPanel2.Controls.Add(this.btnDelete);
+            this.flowLayoutPanel2.Controls.Add(this.btnUndo);
+            this.flowLayoutPanel2.Controls.Add(this.btnSave);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(48, 3);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(502, 41);
+            this.flowLayoutPanel2.TabIndex = 12;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.AutoSize = true;
+            this.btnAdd.Image = global::inventoryManagement.Properties.Resources.add_icon;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(6, 1);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(6, 1, 6, 1);
+            this.btnAdd.MinimumSize = new System.Drawing.Size(84, 28);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 1, 1, 1);
+            this.btnAdd.Size = new System.Drawing.Size(87, 35);
+            this.btnAdd.TabIndex = 7;
+            this.btnAdd.Text = "Thêm";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEdit.AutoSize = true;
+            this.btnEdit.Image = global::inventoryManagement.Properties.Resources.edit_icon;
+            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEdit.Location = new System.Drawing.Point(105, 1);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(6, 1, 6, 1);
+            this.btnEdit.MinimumSize = new System.Drawing.Size(84, 28);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Padding = new System.Windows.Forms.Padding(5, 1, 1, 1);
+            this.btnEdit.Size = new System.Drawing.Size(87, 35);
+            this.btnEdit.TabIndex = 8;
+            this.btnEdit.Text = "Sửa";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.AutoSize = true;
+            this.btnDelete.Image = global::inventoryManagement.Properties.Resources.delete_icon;
+            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDelete.Location = new System.Drawing.Point(204, 1);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(6, 1, 6, 1);
+            this.btnDelete.MinimumSize = new System.Drawing.Size(84, 28);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Padding = new System.Windows.Forms.Padding(5, 1, 1, 1);
+            this.btnDelete.Size = new System.Drawing.Size(87, 35);
+            this.btnDelete.TabIndex = 9;
+            this.btnDelete.Text = "Xóa";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnUndo
+            // 
+            this.btnUndo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUndo.AutoSize = true;
+            this.btnUndo.Image = global::inventoryManagement.Properties.Resources.Undo_icon;
+            this.btnUndo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUndo.Location = new System.Drawing.Point(303, 1);
+            this.btnUndo.Margin = new System.Windows.Forms.Padding(6, 1, 6, 1);
+            this.btnUndo.MinimumSize = new System.Drawing.Size(94, 28);
+            this.btnUndo.Name = "btnUndo";
+            this.btnUndo.Padding = new System.Windows.Forms.Padding(5, 1, 1, 1);
+            this.btnUndo.Size = new System.Drawing.Size(94, 35);
+            this.btnUndo.TabIndex = 10;
+            this.btnUndo.Text = "  Quay lại";
+            this.btnUndo.UseVisualStyleBackColor = true;
+            this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.AutoSize = true;
+            this.btnSave.Image = global::inventoryManagement.Properties.Resources.Save_icon;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(409, 1);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(6, 1, 6, 1);
+            this.btnSave.MinimumSize = new System.Drawing.Size(84, 28);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Padding = new System.Windows.Forms.Padding(5, 1, 1, 1);
+            this.btnSave.Size = new System.Drawing.Size(87, 35);
+            this.btnSave.TabIndex = 11;
+            this.btnSave.Text = "Lưu";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel6.ColumnCount = 3;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.30303F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.69697F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel6.Controls.Add(this.lblSearch, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.txtSearch, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.btnSearch, 2, 0);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(11, 135);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(573, 30);
+            this.tableLayoutPanel6.TabIndex = 20;
+            // 
+            // lblSearch
+            // 
+            this.lblSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Image = global::inventoryManagement.Properties.Resources.Button_Help_icon;
+            this.lblSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblSearch.Location = new System.Drawing.Point(217, 6);
+            this.lblSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
+            this.lblSearch.MinimumSize = new System.Drawing.Size(130, 22);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(130, 22);
+            this.lblSearch.TabIndex = 3;
+            this.lblSearch.Text = "Nội dung tìm kiếm";
+            this.lblSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSearch.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblSearch_MouseMove);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.Location = new System.Drawing.Point(349, 6);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
+            this.txtSearch.MinimumSize = new System.Drawing.Size(4, 22);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(145, 22);
+            this.txtSearch.TabIndex = 1;
+            this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Image = global::inventoryManagement.Properties.Resources.search_icon__1_;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(497, 5);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(1);
+            this.btnSearch.MinimumSize = new System.Drawing.Size(0, 22);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Padding = new System.Windows.Forms.Padding(6, 1, 1, 1);
+            this.btnSearch.Size = new System.Drawing.Size(75, 24);
+            this.btnSearch.TabIndex = 2;
+            this.btnSearch.Text = "Tìm";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // frmEmployeeList
             // 

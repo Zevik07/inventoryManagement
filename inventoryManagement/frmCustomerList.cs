@@ -16,6 +16,7 @@ namespace inventoryManagement
     {
         private string preMethod;
         private DataTable CustomerData;
+        private bool btnSearchIsClicked = false;
         public frmCustomerList()
         {
             InitializeComponent();
@@ -25,14 +26,11 @@ namespace inventoryManagement
         {
             LoadDataGridView();
 
-            // Default buttons's state
-            control.disabledBtns(new[] { btnUndo, btnSave });
-
             // Default textbox's state
             setControlReadMode();
         }
 
-        private void ResetTxt()
+        private void resetTxt()
         {
             txtId.Text = "";
             txtName.Text = "";
@@ -43,6 +41,7 @@ namespace inventoryManagement
         private void setTxt()
         {
             DataGridViewRow cRow = dgvCustomer.CurrentRow;
+
             if (cRow == null)
                 return;
             
@@ -53,15 +52,12 @@ namespace inventoryManagement
 
             txtName.Text = 
                 cRow.Cells[1].Value.ToString();
+
             txtAddress.Text = 
                 cRow.Cells[2].Value.ToString();
+
             txtPhone.Text = 
                 cRow.Cells[3].Value.ToString();
-        }
-        private void disabledDgv()
-        {
-            // Prevent add, edit row
-            /*dgvCustomer.EditMode = DataGridViewEditMode.EditProgrammatically;*/
         }
 
         private bool validateTxt()
@@ -95,19 +91,27 @@ namespace inventoryManagement
 
         private void LoadDataGridView()
         {
-            string sql;
-            sql = "SELECT id, name, address, phone FROM customers";
+            string sql =
+                "SELECT id, name, address, phone FROM customers";
 
             CustomerData = db.GetDataToTable(sql);
+
             dgvCustomer.DataSource = CustomerData;
 
             // Load textbox
             setTxt();
 
+            control.disabledBtns(new[] { btnUndo, btnSave });
+            control.enabledBtns(new[] { btnAdd, btnSearch });
+
             // Change button state
             if (dgvCustomer.Rows.Count == 0)
             {
                 control.disabledBtns(new[] { btnDelete, btnEdit });
+            }
+            else
+            {
+                control.enabledBtns(new[] { btnDelete, btnEdit });
             }
         }
 
@@ -126,7 +130,7 @@ namespace inventoryManagement
         {
             preMethod = "add";
 
-            ResetTxt();
+            resetTxt();
 
             setControlReadMode(false);
 
@@ -138,7 +142,8 @@ namespace inventoryManagement
             // Focus
             txtName.Focus();
 
-            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
+            control.disabledBtns(new[] { btnAdd, btnEdit, 
+                btnDelete, btnSearch });
             control.enabledBtns(new[] { btnUndo, btnSave });
         }
 
@@ -185,12 +190,23 @@ namespace inventoryManagement
                     break;
             }
 
-            db.Write(sql);
-            LoadDataGridView();
-            setControlReadMode();
+            if (db.Write(sql))
+            {
+                LoadDataGridView();
 
-            control.disabledBtns(new[] { btnUndo, btnSave });
-            control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit });
+                setControlReadMode();
+
+                if (btnSearchIsClicked)
+                {
+                    btnSearchIsClicked = false;
+                    btnSearch_Click(this, new EventArgs());
+                }
+            }
+            else
+            {
+                txtName.Focus();
+            }
+            
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -201,7 +217,8 @@ namespace inventoryManagement
 
             txtName.Focus();
 
-            control.disabledBtns(new[] { btnAdd, btnEdit, btnDelete });
+            control.disabledBtns(new[] { btnAdd, btnEdit, 
+                btnDelete, btnSearch });
             control.enabledBtns(new[] { btnUndo, btnSave });
         }
 
@@ -209,39 +226,99 @@ namespace inventoryManagement
         {
             setTxt();
 
-            setControlReadMode(false);
+            setControlReadMode();
 
             control.disabledBtns(new[] { btnUndo, btnSave });
-            control.enabledBtns(new[] { btnDelete, btnAdd, btnEdit });
+            control.enabledBtns(new[] { btnDelete, btnAdd, 
+                btnEdit, btnSearch });
+
+            if (dgvCustomer.Rows.Count == 0)
+            {
+                control.disabledBtns(new[] { btnDelete, btnEdit });
+            }
+
+            if (btnSearchIsClicked)
+            {
+                txtSearch.Text = "";
+                btnSearchIsClicked = false;
+                LoadDataGridView();
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DialogResult rs =
-                   MessageBox.Show("Bạn có muốn xoá không?", "Xác nhận",
-                   MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                   MessageBox.Show("Bạn có chắc muốn xoá không? \n" +
+                   "ĐIỀU NÀY SẼ XÓA MỌI THÔNG TIN LIÊN QUAN", "Xác nhận",
+                   MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (rs == DialogResult.Yes)
             {
                 string sql = "DELETE customers WHERE id='" + txtId.Text + "'";
+
                 db.Write(sql);
+
                 LoadDataGridView();
             }
         }
 
-        private void lblSearch_Click(object sender, EventArgs e)
+        private void lblSearch_MouseMove(object sender, MouseEventArgs e)
         {
             string msg =
-               "Có thể tìm kiếm bằng: \n" +
-               "- Mã hóa đơn \n" +
-               "- Ngày tạo (định dạng năm-tháng-ngày) \n" +
-               "- Tổng thanh toán \n" +
-               "- Mã nhân viên \n" +
-               "- Mã khách hàng \n" +
-               "- Tên nhân viên \n" +
-               "- Tên khách \n" +
-               "- Số điện thoại khách";
+                "Có thể tìm kiếm bằng: \n" +
+                "- Mã khách \n" +
+                "- Tên khách \n" +
+                "- Địa chỉ khách \n" +
+                "- Số điện thoại khách \n";
 
             toolTip1.SetToolTip(lblSearch, msg);
+        }
+
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSearch_Click(this, new EventArgs());
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            btnSearchIsClicked = true;
+
+            if (txtSearch.Text.ToString().Trim() == "")
+            {
+                notify.showNoti("Vui lòng nhập nội dung tìm kiếm");
+                return;
+            }
+
+            string qr =
+                "SELECT id, name, address, phone " +
+                "FROM customers c " +
+                "where " +
+                "c.id like '%" + txtSearch.Text + "%' " +
+                "or c.name like N'%" + txtSearch.Text + "%' " +
+                "or c.address like N'%" + txtSearch.Text + "%' " +
+                "or c.phone like '%" + txtSearch.Text + "%';";
+
+            DataTable search = db.GetDataToTable(qr);
+
+            dgvCustomer.DataSource = search;
+
+            resetTxt();
+
+            setTxt();
+
+            control.disabledBtns(new[] { btnAdd });
+            control.enabledBtns(new[] { btnUndo });
+
+            if (dgvCustomer.Rows.Count == 0)
+            {
+                control.disabledBtns(new[] { btnDelete, btnEdit });
+            }
+            else
+            {
+                control.enabledBtns(new[] { btnDelete, btnEdit });
+            }
         }
     }
 }

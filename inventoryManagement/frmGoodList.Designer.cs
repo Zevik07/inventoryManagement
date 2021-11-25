@@ -113,7 +113,6 @@ namespace inventoryManagement
             this.dgvGood.Size = new System.Drawing.Size(760, 180);
             this.dgvGood.TabIndex = 19;
             this.dgvGood.TabStop = false;
-            this.dgvGood.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.s);
             this.dgvGood.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvGood_CellMouseUp);
             // 
             // Column1
@@ -455,6 +454,7 @@ namespace inventoryManagement
             this.btnUndo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUndo.AutoSize = true;
+            this.btnUndo.Enabled = false;
             this.btnUndo.Image = global::inventoryManagement.Properties.Resources.Undo_icon;
             this.btnUndo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUndo.Location = new System.Drawing.Point(336, 1);
@@ -473,6 +473,7 @@ namespace inventoryManagement
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.AutoSize = true;
+            this.btnSave.Enabled = false;
             this.btnSave.Image = global::inventoryManagement.Properties.Resources.Save_icon;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSave.Location = new System.Drawing.Point(446, 1);
