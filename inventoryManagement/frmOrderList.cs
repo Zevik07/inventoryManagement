@@ -504,18 +504,20 @@ namespace inventoryManagement
                     DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") +
                     "_" +
                     "HD" +
-                    cRow.Cells["id"].Value.ToString() +
+                    getCell("id") +
                     ".pdf";
 
             // Get a PDFWriter object 
-            PdfWriter writer = PdfWriter.GetInstance(doc, 
-                new FileStream(path + "/"+ fileName, FileMode.Create, FileAccess.Write, FileShare.Read));
+            PdfWriter writer = 
+                PdfWriter.GetInstance(doc, 
+                new FileStream(path + "/"+ fileName, FileMode.Create, 
+                                FileAccess.Write, FileShare.Read));
 
             // Meta data
             doc.AddAuthor("Nguyen Huu Thien Phu");
             doc.AddCreator("Inventory Management");
             doc.AddKeywords("Bill PDF");
-            doc.AddSubject("Document subject - Describing the steps creating a PDF document");
+            doc.AddSubject("Document subject");
             doc.AddTitle("The document title - PDF creation using iTextSharp");
 
             // Open the document for writting
@@ -533,6 +535,8 @@ namespace inventoryManagement
                 new Font(bf, 11, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
             Font textFont =
                 new Font(bf, 9, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+            Font smTextFont = 
+                new Font(bf, 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             Font noteFont =
                 new Font(bf, 8, iTextSharp.text.Font.ITALIC, BaseColor.BLACK);
 
@@ -549,7 +553,7 @@ namespace inventoryManagement
             Chunk glue = new Chunk(new VerticalPositionMark());
             Paragraph phoneRow = new Paragraph("Điện thoại: ", noteFont);
             phoneRow.Add((new Chunk(glue)));
-            phoneRow.Add("Ngày xuất: " + dateEx);
+            phoneRow.Add("Ngày xuất HĐ: " + dateEx);
             doc.Add(phoneRow);
 
             Paragraph addressRow = new Paragraph("Địa chỉ: ", noteFont);
@@ -562,12 +566,14 @@ namespace inventoryManagement
             doc.Add(title);
 
             // Info
-            Paragraph emRow = new Paragraph("Nhân viên bán: ", textFont);
+            Paragraph emRow = 
+                new Paragraph("Nhân viên bán: " + getCell("employee_name"), textFont);
             emRow.Add((new Chunk(glue)));
             emRow.Add("Mã nhân viên: " + cRow.Cells["employee_id"].Value.ToString());
             doc.Add(emRow);
 
-            Paragraph cusRow = new Paragraph("Khách hàng: ", textFont);
+            Paragraph cusRow = 
+                new Paragraph("Khách hàng: " + getCell("customer_name"), textFont);
             cusRow.Add((new Chunk(glue)));
             cusRow.Add("Điện thoại: " + cRow.Cells["customer_phone"].Value.ToString());
             doc.Add(cusRow);
@@ -579,37 +585,55 @@ namespace inventoryManagement
             doc.Add(customerAddrRow);
 
             // Details
-            string sql;
-
-            sql =
+            string sql =
                 "select " +
-                "od.id, " +
+                "od.good_id, " +
+                "g.name as good_name, " +
+                "od.quantity, " +
+                "od.price_unit, " +
+                "od.discount, " +
+                "sum(od.quantity*od.price_unit*(1-od.discount/100)) as price_total " +
+                "from order_details od " +
+                "left join goods g " +
+                "on g.id = od.good_id " +
+                "where order_id = '" + getCell("id") + "' " +
+                "group by " +
                 "od.good_id, " +
                 "od.quantity, " +
                 "od.price_unit, " +
                 "od.discount, " +
-                "g.name as good_name, " +
-                "sum(quantity*price_unit*(1-discount/100)) as price_total " +
-                "from order_details od " +
-                "left join goods g " +
-                "on g.id = od.good_id " +
-                "where order_id = '" + getCell("order_id") + "'";
+                "g.name";
 
             DataTable odData = db.GetDataToTable(sql);
-            odData.Columns.Add("STT");
-            odData.Columns.Add("Mã hàng");
-            odData.Columns.Add("Tên hàng");
-            odData.Columns.Add("Số lượng");
-            odData.Columns.Add("Đơn giá");
-            odData.Columns.Add("Giảm (%)");
-            odData.Columns.Add("Thành tiền");
 
-            /*dt.Rows.Add(new object[] { "James Bond, LLC", 120, "Garrison Neely", "123 3428749020", 35, "6.000", "$24,590", "$13,432",
-            "$12,659", "12/13/21", "1/30/27", 55, "ILS", "R"});
+            PdfPTable odDataPdf = new PdfPTable(6);
+            float flowContent = doc.PageSize.Width - doc.LeftMargin - doc.RightMargin;
+            odDataPdf.TotalWidth = flowContent;
+            odDataPdf.LockedWidth = true;
 
-            ds.Tables.Add(dt);*/
-            // Created at
-            Paragraph time = new Paragraph();
+            float[] widthsTAS = 
+                { flowContent*0.1f, flowContent*0.3f, 
+                flowContent*0.15f, flowContent*0.15f,
+                flowContent*0.15f, flowContent*0.15f };
+
+            odDataPdf.SetWidthPercentage(widthsTAS, doc.PageSize);
+            odDataPdf.AddCell(new Paragraph("Mã hàng", smTextFont));
+            odDataPdf.AddCell(new Paragraph("Tên hàng", smTextFont));
+            odDataPdf.AddCell(new Paragraph("Số lượng", smTextFont));
+            odDataPdf.AddCell(new Paragraph("Đơn giá", smTextFont));
+            odDataPdf.AddCell(new Paragraph("Giảm (%)", smTextFont));
+            odDataPdf.AddCell(new Paragraph("Thành tiền", smTextFont));
+
+            for (int i = 0; i < odData.Rows.Count; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    odDataPdf.AddCell(new Paragraph(odData.Rows[i][j].ToString(), smTextFont));
+                }    
+            }
+
+            doc.Add(odDataPdf);
+
 
 
 
