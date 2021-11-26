@@ -102,7 +102,7 @@ namespace inventoryManagement
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(722, 35);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Quản lý hóa đơn";
+            this.label1.Text = "Quản lý đơn hàng";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // tableLayoutPanel1
@@ -247,9 +247,9 @@ namespace inventoryManagement
             this.lblBillId.Margin = new System.Windows.Forms.Padding(1);
             this.lblBillId.MinimumSize = new System.Drawing.Size(0, 22);
             this.lblBillId.Name = "lblBillId";
-            this.lblBillId.Size = new System.Drawing.Size(79, 22);
+            this.lblBillId.Size = new System.Drawing.Size(53, 22);
             this.lblBillId.TabIndex = 12;
-            this.lblBillId.Text = "Mã hóa đơn";
+            this.lblBillId.Text = "Mã đơn";
             this.lblBillId.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtOrderId
@@ -473,7 +473,7 @@ namespace inventoryManagement
             this.lblSearch.AutoSize = true;
             this.lblSearch.Image = global::inventoryManagement.Properties.Resources.Button_Help_icon;
             this.lblSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblSearch.Location = new System.Drawing.Point(272, 10);
+            this.lblSearch.Location = new System.Drawing.Point(271, 10);
             this.lblSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
             this.lblSearch.MinimumSize = new System.Drawing.Size(130, 22);
             this.lblSearch.Name = "lblSearch";
@@ -487,11 +487,11 @@ namespace inventoryManagement
             // 
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.Location = new System.Drawing.Point(404, 12);
+            this.txtSearch.Location = new System.Drawing.Point(403, 12);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
             this.txtSearch.MinimumSize = new System.Drawing.Size(4, 22);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(188, 22);
+            this.txtSearch.Size = new System.Drawing.Size(187, 22);
             this.txtSearch.TabIndex = 1;
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
@@ -501,12 +501,12 @@ namespace inventoryManagement
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearch.Image = global::inventoryManagement.Properties.Resources.search_icon__1_;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(594, 9);
+            this.btnSearch.Location = new System.Drawing.Point(592, 9);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(1);
             this.btnSearch.MinimumSize = new System.Drawing.Size(0, 22);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.btnSearch.Size = new System.Drawing.Size(88, 24);
+            this.btnSearch.Size = new System.Drawing.Size(90, 24);
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Tìm";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -767,7 +767,7 @@ namespace inventoryManagement
             this.MinimumSize = new System.Drawing.Size(746, 557);
             this.Name = "frmOrderList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Quản lý hóa đơn";
+            this.Text = "Quản lý đơn hàng";
             this.Load += new System.EventHandler(this.frmBillList_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

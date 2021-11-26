@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +11,7 @@ using System.Windows.Forms;
 using inventoryManagement.Core;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using iTextSharp.text.pdf.draw;
 
 namespace inventoryManagement
 {
@@ -184,18 +184,29 @@ namespace inventoryManagement
                 "o.employee_id, " +
                 "o.customer_id, " +
                 "FORMAT(o.created_at, 'hh:mm tt - dd/MM/yyyy') as created_at, " +
-                "price, " +
                 "e.name as employee_name, " +
                 "c.name as customer_name, " +
                 "c.address as customer_address, " +
-                "c.phone as customer_phone " +
+                "c.phone as customer_phone, " +
+                "SUM(od.quantity*od.price_unit*(1-od.discount/100)) as price " +
                 "from orders o " +
-                "inner " +
-                "join employees e " +
-                "on e.id = o.employee_id " +
-                "inner " +
-                "join customers c " +
-                "on c.id = o.customer_id ";
+                "inner join " +
+                "order_details od " +
+                "on o.id = od.order_id " +
+                "inner join " +
+                "employees e on " +
+                "e.id = o.employee_id " +
+                "inner join customers c " +
+                "on c.id = o.customer_id " +
+                "group by " +
+                "o.id, " +
+                "o.employee_id, " +
+                "o.customer_id, " +
+                "created_at, " +
+                "e.name, " +
+                "c.name, " +
+                "c.address, " +
+                "c.phone";
 
             OrderData = db.GetDataToTable(sql);
             dgvOrder.DataSource = OrderData;
@@ -268,13 +279,12 @@ namespace inventoryManagement
 
                         sql =
                             "insert into orders " +
-                            "(id, created_at, employee_id, customer_id, price) " +
+                            "(id, created_at, employee_id, customer_id) " +
                             "values('" +
                             txtOrderId.Text + "', '" +
                             dtpOrderDate.Value + "', '" +
                             cbEmployeeId.Text + "', '" +
-                            cbCustomerId.Text + "', '" +
-                            0 +
+                            cbCustomerId.Text + 
                             "')";
                     }
                     break;
@@ -369,7 +379,8 @@ namespace inventoryManagement
 
             if (rs == DialogResult.Yes)
             {
-                string sql = "DELETE orders WHERE id = '" + txtOrderId.Text + "'";
+                string sql = 
+                    "DELETE orders WHERE id = '" + txtOrderId.Text + "'";
 
                 db.Write(sql);
 
@@ -395,22 +406,24 @@ namespace inventoryManagement
             }
 
             string qr =
-                 "select " +
+                "select " +
                 "o.id, " +
                 "o.employee_id, " +
                 "o.customer_id, " +
                 "FORMAT(o.created_at, 'hh:mm tt - dd/MM/yyyy') as created_at, " +
-                "price, " +
                 "e.name as employee_name, " +
                 "c.name as customer_name, " +
                 "c.address as customer_address, " +
-                "c.phone as customer_phone " +
+                "c.phone as customer_phone, " +
+                "SUM(od.quantity*od.price_unit*(1-od.discount/100)) as price " +
                 "from orders o " +
-                "inner " +
-                "join employees e " +
-                "on e.id = o.employee_id " +
-                "inner " +
-                "join customers c " +
+                "inner join " +
+                "order_details od " +
+                "on o.id = od.order_id " +
+                "inner join " +
+                "employees e on " +
+                "e.id = o.employee_id " +
+                "inner join customers c " +
                 "on c.id = o.customer_id " +
                 "where " +
                 "o.id like '%" + txtSearch.Text + "%'" +
@@ -420,7 +433,9 @@ namespace inventoryManagement
                 "or o.customer_id like '%" + txtSearch.Text + "%'" +
                 "or e.name like N'%" + txtSearch.Text + "%'" +
                 "or c.name like N'%" + txtSearch.Text + "%'" +
-                "or c.phone like '%" + txtSearch.Text + "%'";
+                "or c.phone like '%" + txtSearch.Text + "%'" +
+                "group by o.id, o.employee_id, o.customer_id, " +
+                "created_at, e.name, c.name, c.address, c.phone";
 
             DataTable search = db.GetDataToTable(qr);
 
@@ -480,11 +495,12 @@ namespace inventoryManagement
                     DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss") +
                     "_" +
                     "HD" +
-                    cRow.Cells["id"].Value.ToString();
+                    cRow.Cells["id"].Value.ToString() +
+                    ".pdf";
 
             // Get a PDFWriter object 
             PdfWriter writer = PdfWriter.GetInstance(doc, 
-                new FileStream(path + "/"+ fileName + ".pdf", FileMode.Create));
+                new FileStream(path + "/"+ fileName, FileMode.Create, FileAccess.Write, FileShare.Read));
 
             // Meta data
             doc.AddAuthor("Nguyen Huu Thien Phu");
@@ -496,14 +512,112 @@ namespace inventoryManagement
             // Open the document for writting
             doc.Open();
 
+            // Default font format
+            string fontFile = 
+                Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.Fonts),
+                    "arial.TTF");
+            BaseFont bf = 
+                BaseFont.CreateFont(fontFile, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+
+            Font titleFont = 
+                new Font(bf, 11, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
+            Font textFont =
+                new Font(bf, 9, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+            Font noteFont =
+                new Font(bf, 8, iTextSharp.text.Font.ITALIC, BaseColor.BLACK);
+
             // Header
-            Paragraph header = new Paragraph("Hello World!");
-            header.Alignment = Element.ALIGN_CENTER;
-            doc.Add(header);
+            string dateEx =
+               DateTime.Now.ToString("hh:mm tt - dd/MM/yyyy").ToString();
+            string dateOrder = 
+               cRow.Cells["created_at"].Value.ToString();
+
+            Paragraph shopName = 
+                new Paragraph("Quản lý bán hàng", textFont);
+            doc.Add(shopName);
+
+            Chunk glue = new Chunk(new VerticalPositionMark());
+            Paragraph phoneRow = new Paragraph("Điện thoại: ", noteFont);
+            phoneRow.Add((new Chunk(glue)));
+            phoneRow.Add("Ngày xuất: " + dateEx);
+            doc.Add(phoneRow);
+
+            Paragraph addressRow = new Paragraph("Địa chỉ: ", noteFont);
+            addressRow.Add((new Chunk(glue)));
+            addressRow.Add("Ngày đặt: " + dateOrder);
+            doc.Add(addressRow);
+
+            var title = new Paragraph("HÓA ĐƠN", titleFont);
+            title.Alignment = Element.ALIGN_CENTER;
+            doc.Add(title);
+
+            // Info
+            Paragraph emRow = new Paragraph("Nhân viên bán: ", textFont);
+            emRow.Add((new Chunk(glue)));
+            emRow.Add("Mã nhân viên: " + cRow.Cells["employee_id"].Value.ToString());
+            doc.Add(emRow);
+
+            Paragraph cusRow = new Paragraph("Khách hàng: ", textFont);
+            cusRow.Add((new Chunk(glue)));
+            cusRow.Add("Điện thoại: " + cRow.Cells["customer_phone"].Value.ToString());
+            doc.Add(cusRow);
+
+            Paragraph customerAddrRow = 
+                new Paragraph(
+                    "Địa chỉ: " + cRow.Cells["customer_address"].Value.ToString(), 
+                    textFont);
+            doc.Add(customerAddrRow);
+
+            // Details
+            string sql;
+
+            sql =
+                "select " +
+                "od.id, " +
+                "od.good_id, " +
+                "od.quantity, " +
+                "od.price_unit, " +
+                "od.discount, " +
+                "g.name as good_name, " +
+                "sum(quantity*price_unit*(1-discount/100)) as price_total " +
+                "from order_details od " +
+                "left join goods g " +
+                "on g.id = od.good_id " +
+                "where order_id = '" + getCell("order_id") + "'";
+
+            DataTable odData = db.GetDataToTable(sql);
+            odData.Columns.Add("STT");
+            odData.Columns.Add("Mã hàng");
+            odData.Columns.Add("Tên hàng");
+            odData.Columns.Add("Số lượng");
+            odData.Columns.Add("Đơn giá");
+            odData.Columns.Add("Giảm (%)");
+            odData.Columns.Add("Thành tiền");
+
+            /*dt.Rows.Add(new object[] { "James Bond, LLC", 120, "Garrison Neely", "123 3428749020", 35, "6.000", "$24,590", "$13,432",
+            "$12,659", "12/13/21", "1/30/27", 55, "ILS", "R"});
+
+            ds.Tables.Add(dt);*/
+            // Created at
+            Paragraph time = new Paragraph();
+
+
+
+
+
+
+
 
             // Close the document
             doc.Close();
             writer.Close();
+        }
+
+        private string getCell(string name)
+        {
+            DataGridViewRow cRow = dgvOrder.CurrentRow;
+            return cRow != null ? cRow.Cells[name].Value.ToString() : null;
         }
 
         private void lblSearch_MouseMove(object sender, MouseEventArgs e)

@@ -16,8 +16,7 @@ namespace inventoryManagement
     {
         // Data attribute
         private int orderId;
-        private int orderDetailId = 0;
-        private decimal totalOrderPrice;
+        private int currentOrderDetailId = 0;
         private DataTable oderDetailData;
         // For controls
         private string preMethod;
@@ -30,7 +29,7 @@ namespace inventoryManagement
             orderId = orderIdParam;
 
             // Set title id
-            lblTitle.Text = "Chi tiết hóa đơn mã: " + orderId;
+            lblTitle.Text = "Chi tiết đơn hàng mã: " + orderId;
         }
 
         private void frmOrderDetail_Load(object sender, EventArgs e)
@@ -97,7 +96,7 @@ namespace inventoryManagement
             txtPriceTotal.Text =
                  cRow.Cells["price_total"].Value.ToString();
 
-            orderDetailId = 
+            currentOrderDetailId = 
                 Int32.Parse(cRow.Cells["id"].Value.ToString());
         }
 
@@ -143,7 +142,7 @@ namespace inventoryManagement
         {
             // Get in db
             string sql =
-                "select sum(price_total) " +
+                "select sum(quantity*price_unit*(1-discount/100)) " +
                 "from order_details od " +
                 "where order_id = '"+ orderId +"'";
 
@@ -151,10 +150,10 @@ namespace inventoryManagement
 
             if (rs != DBNull.Value)
             {
-                totalOrderPrice = Convert.ToDecimal(rs);
-                txtOrderPrice.Text = totalOrderPrice.ToString();
+                Decimal price = Convert.ToDecimal(rs);
+                txtOrderPrice.Text = price.ToString();
                 lblOrderPrice.Text = 
-                    control.NumberToText(Double.Parse(totalOrderPrice.ToString()));
+                    control.NumberToText(Double.Parse(txtOrderPrice.Text));
             }
         }
 
@@ -194,8 +193,8 @@ namespace inventoryManagement
                 "od.quantity, " +
                 "od.price_unit, " +
                 "od.discount, " +
-                "od.price_total, " +
-                "g.name as good_name " +
+                "g.name as good_name, " +
+                "od.quantity*od.price_unit*(1-od.discount/100) as price_total " +
                 "from order_details od " +
                 "left join goods g " +
                 "on g.id = od.good_id " +
@@ -273,11 +272,6 @@ namespace inventoryManagement
         {
             string sql = "";
 
-            decimal priceTotalItem =
-                            numQty.Value *
-                            Decimal.Parse(txtPriceUnit.Text.ToString()) *
-                            (1 - numDiscount.Value / 100);
-
             switch (preMethod)
             {
                 case "add":
@@ -296,8 +290,7 @@ namespace inventoryManagement
                             cbGoodId.Text + "', '" +
                             numQty.Value + "', '" +
                             txtPriceUnit.Text + "', '" +
-                            numDiscount.Value + "', '" +
-                            priceTotalItem + "'" +
+                            numDiscount.Value + "'" +
                             ")";
                     }
                     break;
@@ -316,10 +309,8 @@ namespace inventoryManagement
                             + numQty.Value
                             + "', discount = '" 
                             + numDiscount.Value
-                            + "', price_total = '" 
-                            + priceTotalItem
                             + "' WHERE id = '" 
-                            + orderDetailId  + "'";
+                            + currentOrderDetailId  + "'";
                     }
                     break;
                 default:
@@ -328,19 +319,11 @@ namespace inventoryManagement
 
             if (db.Write(sql))
             {
-                setPriceTotalOrder();
-
-                // Update order price in db
-                string orderSql =
-                    "update orders " +
-                    "set price = '" + totalOrderPrice + "' " +
-                    "where id = " + orderId;
-
-                db.Write(orderSql);
-
                 setControlReadMode();
 
                 LoadDataGridView();
+
+                setPriceTotalOrder();
 
                 // If in search mode, search again after save
                 if (btnSearchIsClicked)
@@ -383,7 +366,8 @@ namespace inventoryManagement
             string currentId =
                 dgvOrderDetail.CurrentRow.Cells["id"].Value.ToString();
 
-            string sql = "DELETE order_details WHERE id='" + currentId + "'";
+            string sql = 
+                "DELETE order_details WHERE id='" + currentId + "'";
 
             db.Write(sql);
 
@@ -419,6 +403,7 @@ namespace inventoryManagement
                 "od.discount, " +
                 "od.price_total, " +
                 "g.name as good_name " +
+                "quantity*price_unit*(1-discount/100) as price_total " +
                 "from order_details od " +
                 "inner join goods g " +
                 "on g.id = od.good_id " +

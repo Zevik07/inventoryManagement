@@ -136,7 +136,7 @@ namespace inventoryManagement
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(676, 35);
             this.lblTitle.TabIndex = 1;
-            this.lblTitle.Text = "Chi tiết hóa đơn";
+            this.lblTitle.Text = "Chi tiết đơn hàng";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
             // 
@@ -653,7 +653,7 @@ namespace inventoryManagement
             this.lblSearch.AutoSize = true;
             this.lblSearch.Image = global::inventoryManagement.Properties.Resources.Button_Help_icon;
             this.lblSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblSearch.Location = new System.Drawing.Point(230, 6);
+            this.lblSearch.Location = new System.Drawing.Point(228, 6);
             this.lblSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
             this.lblSearch.MinimumSize = new System.Drawing.Size(130, 22);
             this.lblSearch.Name = "lblSearch";
@@ -667,11 +667,11 @@ namespace inventoryManagement
             // 
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.Location = new System.Drawing.Point(362, 8);
+            this.txtSearch.Location = new System.Drawing.Point(360, 8);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
             this.txtSearch.MinimumSize = new System.Drawing.Size(4, 22);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(168, 22);
+            this.txtSearch.Size = new System.Drawing.Size(167, 22);
             this.txtSearch.TabIndex = 1;
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
@@ -681,12 +681,12 @@ namespace inventoryManagement
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearch.Image = global::inventoryManagement.Properties.Resources.search_icon__1_;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(532, 5);
+            this.btnSearch.Location = new System.Drawing.Point(529, 5);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(1);
             this.btnSearch.MinimumSize = new System.Drawing.Size(0, 22);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.btnSearch.Size = new System.Drawing.Size(107, 24);
+            this.btnSearch.Size = new System.Drawing.Size(110, 24);
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Tìm";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -709,7 +709,7 @@ namespace inventoryManagement
             this.Name = "frmOrderDetail";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Chi tiết hóa đơn";
+            this.Text = "Chi tiết đơn hàng";
             this.Load += new System.EventHandler(this.frmOrderDetail_Load);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
