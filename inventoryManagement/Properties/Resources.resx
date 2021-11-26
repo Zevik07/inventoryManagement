@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Button-Help-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Icons\Button-Help-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="news-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Icons\news-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -163,7 +166,7 @@
   <data name="Folders-OS-Documents-Metro-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Icons\Folders-OS-Documents-Metro-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Button-Help-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Icons\Button-Help-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="arrow-refresh-3-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Icons\arrow-refresh-3-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

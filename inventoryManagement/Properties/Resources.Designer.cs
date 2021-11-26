@@ -83,6 +83,16 @@ namespace inventoryManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap arrow_refresh_3_icon {
+            get {
+                object obj = ResourceManager.GetObject("arrow-refresh-3-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Button_Help_icon {
             get {
                 object obj = ResourceManager.GetObject("Button-Help-icon", resourceCulture);

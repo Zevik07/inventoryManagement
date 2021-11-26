@@ -96,10 +96,19 @@ namespace inventoryManagement
             dtpOrderDate.Value = 
                 control.getVnDateTime(cRow.Cells["created_at"].Value.ToString());
 
-            txtOrderPrice.Text = cRow.Cells["price"].Value.ToString();
+            string price = cRow.Cells["price"].Value.ToString();
 
-            lblOrderPrice.Text = 
-                control.NumberToText(Double.Parse(txtOrderPrice.Text));
+            txtOrderPrice.Text = price;
+
+            if (price.Length != 0)
+            {
+                lblOrderPrice.Text =
+                     control.NumberToText(Double.Parse(price));
+            }
+            else
+            {
+                lblOrderPrice.Text = "";
+            }
         }
 
         private void setCbCustomerId()
@@ -190,7 +199,7 @@ namespace inventoryManagement
                 "c.phone as customer_phone, " +
                 "SUM(od.quantity*od.price_unit*(1-od.discount/100)) as price " +
                 "from orders o " +
-                "inner join " +
+                "left join " +
                 "order_details od " +
                 "on o.id = od.order_id " +
                 "inner join " +
@@ -417,7 +426,7 @@ namespace inventoryManagement
                 "c.phone as customer_phone, " +
                 "SUM(od.quantity*od.price_unit*(1-od.discount/100)) as price " +
                 "from orders o " +
-                "inner join " +
+                "left join " +
                 "order_details od " +
                 "on o.id = od.order_id " +
                 "inner join " +
@@ -427,8 +436,8 @@ namespace inventoryManagement
                 "on c.id = o.customer_id " +
                 "where " +
                 "o.id like '%" + txtSearch.Text + "%'" +
-                "or o.price like '%" + txtSearch.Text + "%'" +
-                "or FORMAT(o.created_at, 'hh:mm tt - dd/MM/yyyy') like '%" + txtSearch.Text + "%'" +
+                "or FORMAT(o.created_at, 'hh:mm tt - dd/MM/yyyy') like '%" 
+                    + txtSearch.Text + "%'" +
                 "or o.employee_id like '%" + txtSearch.Text + "%'" +
                 "or o.customer_id like '%" + txtSearch.Text + "%'" +
                 "or e.name like N'%" + txtSearch.Text + "%'" +
@@ -626,7 +635,6 @@ namespace inventoryManagement
                 "Có thể tìm kiếm bằng: \n" +
                 "- Mã hóa đơn \n" +
                 "- Ngày tạo (định dạng năm-tháng-ngày) \n" +
-                "- Tổng thanh toán \n" +
                 "- Mã nhân viên \n" +
                 "- Mã khách hàng \n" +
                 "- Tên nhân viên \n" +
@@ -694,6 +702,11 @@ namespace inventoryManagement
             }
 
             customerData.Close();
+        }
+
+        private void refreshBtn_Click(object sender, EventArgs e)
+        {
+            LoadDataGridView();
         }
     }
 }

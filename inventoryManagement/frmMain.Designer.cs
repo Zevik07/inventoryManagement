@@ -65,10 +65,10 @@ namespace inventoryManagement
             this.mnuReport,
             this.toolStripMenuItem10});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(88, 66);
+            this.menuStrip1.Location = new System.Drawing.Point(81, 66);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(447, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(460, 48);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -76,8 +76,8 @@ namespace inventoryManagement
             // 
             this.mnuCate.BackColor = System.Drawing.Color.White;
             this.mnuCate.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuGood,
             this.mnuCategory,
+            this.mnuGood,
             this.mnuCustomer,
             this.mnuEmployee});
             this.mnuCate.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -90,28 +90,28 @@ namespace inventoryManagement
             // mnuGood
             // 
             this.mnuGood.Name = "mnuGood";
-            this.mnuGood.Size = new System.Drawing.Size(159, 24);
+            this.mnuGood.Size = new System.Drawing.Size(180, 24);
             this.mnuGood.Text = "Hàng hóa";
             this.mnuGood.Click += new System.EventHandler(this.mnuGood_Click);
             // 
             // mnuCategory
             // 
             this.mnuCategory.Name = "mnuCategory";
-            this.mnuCategory.Size = new System.Drawing.Size(159, 24);
+            this.mnuCategory.Size = new System.Drawing.Size(180, 24);
             this.mnuCategory.Text = "Ngành hàng";
             this.mnuCategory.Click += new System.EventHandler(this.mnuCategory_Click);
             // 
             // mnuCustomer
             // 
             this.mnuCustomer.Name = "mnuCustomer";
-            this.mnuCustomer.Size = new System.Drawing.Size(159, 24);
+            this.mnuCustomer.Size = new System.Drawing.Size(180, 24);
             this.mnuCustomer.Text = "Khách hàng";
             this.mnuCustomer.Click += new System.EventHandler(this.mnuCustomer_Click);
             // 
             // mnuEmployee
             // 
             this.mnuEmployee.Name = "mnuEmployee";
-            this.mnuEmployee.Size = new System.Drawing.Size(159, 24);
+            this.mnuEmployee.Size = new System.Drawing.Size(180, 24);
             this.mnuEmployee.Text = "Nhân viên";
             this.mnuEmployee.Click += new System.EventHandler(this.mnuEmployee_Click);
             // 
@@ -125,14 +125,14 @@ namespace inventoryManagement
             this.mnuBills.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.mnuBills.Name = "mnuBills";
             this.mnuBills.Padding = new System.Windows.Forms.Padding(10, 0, 5, 0);
-            this.mnuBills.Size = new System.Drawing.Size(106, 42);
-            this.mnuBills.Text = "Hóa đơn";
+            this.mnuBills.Size = new System.Drawing.Size(113, 42);
+            this.mnuBills.Text = "Đơn hàng";
             // 
             // mnuOrderList
             // 
             this.mnuOrderList.Name = "mnuOrderList";
             this.mnuOrderList.Size = new System.Drawing.Size(180, 24);
-            this.mnuOrderList.Text = "Danh sách";
+            this.mnuOrderList.Text = "Quản lý";
             this.mnuOrderList.Click += new System.EventHandler(this.mnuOrderList_Click);
             // 
             // mnuReport
@@ -152,13 +152,13 @@ namespace inventoryManagement
             // mnuReportInventory
             // 
             this.mnuReportInventory.Name = "mnuReportInventory";
-            this.mnuReportInventory.Size = new System.Drawing.Size(147, 24);
+            this.mnuReportInventory.Size = new System.Drawing.Size(180, 24);
             this.mnuReportInventory.Text = "Hàng tồn";
             // 
             // mnuReportRevenue
             // 
             this.mnuReportRevenue.Name = "mnuReportRevenue";
-            this.mnuReportRevenue.Size = new System.Drawing.Size(147, 24);
+            this.mnuReportRevenue.Size = new System.Drawing.Size(180, 24);
             this.mnuReportRevenue.Text = "Doanh thu";
             // 
             // toolStripMenuItem10

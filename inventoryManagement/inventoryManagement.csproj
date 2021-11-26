@@ -188,5 +188,8 @@
   <ItemGroup>
     <None Include="Assets\Icons\Button-Help-icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Icons\arrow-refresh-3-icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

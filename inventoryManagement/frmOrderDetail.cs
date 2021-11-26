@@ -124,17 +124,20 @@ namespace inventoryManagement
         private string generateId()
         {
             // Increase Id
-            string cellId = "0";
+            string id = "0";
 
             // If dgv is not empty
-            if (dgvOrderDetail.CurrentRow != null)
+            string sql =
+                "SELECT TOP 1 id FROM order_details ORDER BY id DESC";
+
+            var rs = db.ReadScalar(sql);
+
+            if (rs != DBNull.Value)
             {
-                cellId =
-                    dgvOrderDetail.Rows[dgvOrderDetail.RowCount - 1]
-                    .Cells["id"].Value.ToString();
+                id = rs.ToString();
             }
 
-            return (Int16.Parse(cellId) + 1)
+            return (Int16.Parse(id) + 1)
                         .ToString();
         }
 
