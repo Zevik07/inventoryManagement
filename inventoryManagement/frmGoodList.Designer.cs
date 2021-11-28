@@ -625,17 +625,17 @@ namespace inventoryManagement
             // 
             this.txtNote.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtNote.Location = new System.Drawing.Point(17, 32);
-            this.txtNote.Margin = new System.Windows.Forms.Padding(1);
+            this.txtNote.Margin = new System.Windows.Forms.Padding(1, 1, 10, 1);
             this.txtNote.Multiline = true;
             this.txtNote.Name = "txtNote";
-            this.txtNote.Size = new System.Drawing.Size(154, 122);
+            this.txtNote.Size = new System.Drawing.Size(145, 122);
             this.txtNote.TabIndex = 7;
             // 
             // btnOpenImg
             // 
             this.btnOpenImg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOpenImg.Location = new System.Drawing.Point(83, 156);
-            this.btnOpenImg.Margin = new System.Windows.Forms.Padding(1);
+            this.btnOpenImg.Location = new System.Drawing.Point(74, 156);
+            this.btnOpenImg.Margin = new System.Windows.Forms.Padding(1, 1, 10, 1);
             this.btnOpenImg.MinimumSize = new System.Drawing.Size(0, 22);
             this.btnOpenImg.Name = "btnOpenImg";
             this.btnOpenImg.Size = new System.Drawing.Size(88, 24);
@@ -675,6 +675,7 @@ namespace inventoryManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(784, 502);
             this.Controls.Add(this.dgvGood);
             this.Controls.Add(this.panel1);

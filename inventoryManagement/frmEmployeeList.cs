@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using inventoryManagement.Core;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace inventoryManagement
 {
@@ -102,6 +103,14 @@ namespace inventoryManagement
                 txtPhone.Text.Trim().Length == 0)
             {
                 noti.info("Vui lòng nhập tất cả các trường");
+                return false;
+            }
+            string phonePattern =
+                @"^((09(\d){8})|(086(\d){7})|(088(\d){7})|(089(\d){7})|(01(\d){9}))$";
+
+            if (!Regex.IsMatch(txtPhone.Text.Trim(), phonePattern))
+            {
+                noti.warn("Số điện thoại không đúng định dạng");
                 return false;
             }
             return true;
@@ -197,7 +206,8 @@ namespace inventoryManagement
                         }
 
                         sql =
-                            "INSERT INTO employees(id, name, gender, address, phone, birthday) " +
+                            "INSERT INTO " +
+                            "employees(id, name, gender, address, phone, birthday) " +
                             "VALUES(N'" +
                             txtId.Text.ToString() + "',N'" +
                             txtName.Text.ToString() + "',N'" +

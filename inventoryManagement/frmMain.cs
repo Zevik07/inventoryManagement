@@ -69,7 +69,8 @@ namespace inventoryManagement
 
         private void mnuReportRevenue_Click(object sender, EventArgs e)
         {
-
+            frmReportSale frmReport = new frmReportSale();
+            frmReport.ShowDialog();
         }
     }
 }

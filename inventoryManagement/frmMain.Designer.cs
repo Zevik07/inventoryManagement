@@ -39,8 +39,7 @@ namespace inventoryManagement
             this.mnuBills = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuOrderList = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuReport = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuReportRevenue = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuReportInventory = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuReportSale = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.lblMainTitle = new System.Windows.Forms.Label();
@@ -139,8 +138,7 @@ namespace inventoryManagement
             // 
             this.mnuReport.BackColor = System.Drawing.Color.White;
             this.mnuReport.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuReportRevenue,
-            this.mnuReportInventory});
+            this.mnuReportSale});
             this.mnuReport.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mnuReport.Image = global::inventoryManagement.Properties.Resources.statistics_icon;
             this.mnuReport.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
@@ -149,18 +147,12 @@ namespace inventoryManagement
             this.mnuReport.Size = new System.Drawing.Size(102, 42);
             this.mnuReport.Text = "Báo cáo";
             // 
-            // mnuReportRevenue
+            // mnuReportSale
             // 
-            this.mnuReportRevenue.Name = "mnuReportRevenue";
-            this.mnuReportRevenue.Size = new System.Drawing.Size(180, 24);
-            this.mnuReportRevenue.Text = "Doanh thu";
-            this.mnuReportRevenue.Click += new System.EventHandler(this.mnuReportRevenue_Click);
-            // 
-            // mnuReportInventory
-            // 
-            this.mnuReportInventory.Name = "mnuReportInventory";
-            this.mnuReportInventory.Size = new System.Drawing.Size(180, 24);
-            this.mnuReportInventory.Text = "Hàng tồn";
+            this.mnuReportSale.Name = "mnuReportSale";
+            this.mnuReportSale.Size = new System.Drawing.Size(180, 24);
+            this.mnuReportSale.Text = "Doanh thu";
+            this.mnuReportSale.Click += new System.EventHandler(this.mnuReportRevenue_Click);
             // 
             // toolStripMenuItem10
             // 
@@ -265,8 +257,7 @@ namespace inventoryManagement
         private System.Windows.Forms.ToolStripMenuItem mnuGood;
         private System.Windows.Forms.ToolStripMenuItem mnuBills;
         private System.Windows.Forms.ToolStripMenuItem mnuReport;
-        private System.Windows.Forms.ToolStripMenuItem mnuReportInventory;
-        private System.Windows.Forms.ToolStripMenuItem mnuReportRevenue;
+        private System.Windows.Forms.ToolStripMenuItem mnuReportSale;
         private System.Windows.Forms.Label lblMainTitle;
         private System.Windows.Forms.Label lblSubTitle;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;

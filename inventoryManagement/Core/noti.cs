@@ -15,5 +15,12 @@ namespace inventoryManagement.Core
             MessageBox.Show(msg, title,
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        public static void warn(string msg = "Đây là cảnh báo",
+            string title = "Cảnh báo")
+        {
+            MessageBox.Show(msg, title,
+                   MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
     }
 }
