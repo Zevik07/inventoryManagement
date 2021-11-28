@@ -139,19 +139,19 @@ namespace inventoryManagement
                 txtPriceIn.Text.Trim().Length == 0 ||
                 txtPriceOut.Text.Trim().Length == 0)
             {
-                notify.showNoti("Vui lòng nhập đầy đủ tên, giá nhập và giá bán");
+                noti.info("Vui lòng nhập đầy đủ tên, giá nhập và giá bán");
                 return false;
             }
 
             if (cbCategory.SelectedItem == null)
             {
-                notify.showNoti("Vui lòng chọn ngành hàng");
+                noti.info("Vui lòng chọn ngành hàng");
                 return false;
             }
             
             if (numQty.Value < 1)
             {
-                notify.showNoti("Số lượng phải lớn hơn 1");
+                noti.info("Số lượng phải lớn hơn 1");
                 return false;
             }    
 
@@ -200,7 +200,7 @@ namespace inventoryManagement
             
             if (dgvGood.Rows.Count == 0)
             {
-                notify.showNoti("Không có dữ liệu");
+                noti.info("Không có dữ liệu");
                 return;
             }
 
@@ -432,7 +432,7 @@ namespace inventoryManagement
 
             if (txtSearch.Text.ToString().Trim() == "")
             {
-                notify.showNoti("Vui lòng nhập nội dung tìm kiếm");
+                noti.info("Vui lòng nhập nội dung tìm kiếm");
                 return;
             }
 

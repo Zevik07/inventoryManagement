@@ -164,20 +164,20 @@ namespace inventoryManagement
         {
             if (cbGoodId.Text.Trim().Length == 0)
             {
-                notify.showNoti("Không được để trống mã nhân viên và mã khách");
+                noti.info("Không được để trống mã nhân viên và mã khách");
                 return false;
             }
 
             if (numQty.Value == 0)
             {
-                notify.showNoti("Số lượng phải lớn hơn 0");
+                noti.info("Số lượng phải lớn hơn 0");
                 return false;
             }
 
             if (txtGoodName.Text.Trim().Length == 0 ||
                 txtPriceUnit.Text.Trim().Length == 0)
             {
-                notify.showNoti("Hàng hóa không tồn tại");
+                noti.info("Hàng hóa không tồn tại");
                 return false;
             }
 
@@ -230,7 +230,7 @@ namespace inventoryManagement
         {
             if (dgvOrderDetail.Rows.Count == 0)
             {
-                notify.showNoti("Không có dữ liệu");
+                noti.info("Không có dữ liệu");
                 return;
             }
 
@@ -390,7 +390,7 @@ namespace inventoryManagement
 
             if (txtSearch.Text.ToString().Trim() == "")
             {
-                notify.showNoti("Vui lòng nhập nội dung tìm kiếm"); 
+                noti.info("Vui lòng nhập nội dung tìm kiếm"); 
                 return;
             }
 

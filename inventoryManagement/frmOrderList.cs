@@ -177,7 +177,7 @@ namespace inventoryManagement
                 txtEmployeeName.Text.Trim().Length == 0 ||
                 txtCustomerName.Text.Trim().Length == 0)
             {
-                notify.showNoti("Thông tin khách hoặc nhân viên không hợp lệ");
+                noti.info("Thông tin khách hoặc nhân viên không hợp lệ");
                 return false;
             }
 
@@ -186,8 +186,7 @@ namespace inventoryManagement
 
         private void LoadDataGridView()
         {
-            string sql;
-            sql =
+            string sql =
                 "select " +
                 "o.id, " +
                 "o.employee_id, " +
@@ -243,7 +242,7 @@ namespace inventoryManagement
         {
             if (dgvOrder.Rows.Count == 0)
             {
-                notify.showNoti("Không có dữ liệu");
+                noti.info("Không có dữ liệu");
                 return;
             }
 
@@ -410,7 +409,7 @@ namespace inventoryManagement
 
             if (txtSearch.Text.ToString().Trim() == "")
             {
-                notify.showNoti("Vui lòng nhập nội dung tìm kiếm");
+                noti.info("Vui lòng nhập nội dung tìm kiếm");
                 return;
             }
 
@@ -486,6 +485,25 @@ namespace inventoryManagement
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
+            string sqlGetPrice =
+                "select " +
+                "SUM(od.quantity*od.price_unit*(1-od.discount/100)) as price " +
+                "from orders o " +
+                "left join " +
+                "order_details od " +
+                "on o.id = od.order_id " +
+                "where o.id = '" + getCell("id") + "'";
+
+            var rs = db.ReadScalar(sqlGetPrice);
+
+            if (rs == DBNull.Value)
+            {
+                noti.info("Chưa có mặt hàng nào ở đơn này !");
+                return;
+            }
+
+            decimal price = Convert.ToDecimal(rs);
+
             // Get current row
             DataGridViewRow cRow = dgvOrder.CurrentRow;
 
@@ -560,10 +578,12 @@ namespace inventoryManagement
             addressRow.Add((new Chunk(glue)));
             addressRow.Add("Ngày đặt: " + dateOrder);
             doc.Add(addressRow);
+            doc.Add(new Paragraph(" ")); // space
 
             var title = new Paragraph("HÓA ĐƠN", titleFont);
             title.Alignment = Element.ALIGN_CENTER;
             doc.Add(title);
+            doc.Add(new Paragraph(" ")); // space
 
             // Info
             Paragraph emRow = 
@@ -583,6 +603,7 @@ namespace inventoryManagement
                     "Địa chỉ: " + cRow.Cells["customer_address"].Value.ToString(), 
                     textFont);
             doc.Add(customerAddrRow);
+            doc.Add(new Paragraph(" ")); // space
 
             // Details
             string sql =
@@ -615,8 +636,9 @@ namespace inventoryManagement
                 { flowContent*0.1f, flowContent*0.3f, 
                 flowContent*0.15f, flowContent*0.15f,
                 flowContent*0.15f, flowContent*0.15f };
-
             odDataPdf.SetWidthPercentage(widthsTAS, doc.PageSize);
+            
+
             odDataPdf.AddCell(new Paragraph("Mã hàng", smTextFont));
             odDataPdf.AddCell(new Paragraph("Tên hàng", smTextFont));
             odDataPdf.AddCell(new Paragraph("Số lượng", smTextFont));
@@ -632,15 +654,30 @@ namespace inventoryManagement
                 }    
             }
 
+            var cell = new PdfPCell(new Phrase("Tổng thanh toán",textFont));
+            cell.Colspan = 5;
+            cell.HorizontalAlignment = Element.ALIGN_RIGHT;
+            odDataPdf.AddCell(cell);
+
+            odDataPdf.AddCell(new Phrase(price.ToString(), textFont));
+
             doc.Add(odDataPdf);
 
+            var priceText = 
+                new Paragraph("Bằng chữ: " + control.NumberToText((double )price), textFont);
+            priceText.Alignment = Element.ALIGN_RIGHT;
+            doc.Add(priceText);
+            doc.Add(new Paragraph(" ")); // space
 
+            // Signs 
+            Paragraph signRow = new Paragraph("         Khách hàng", textFont);
+            signRow.Add((new Chunk(glue)));
+            signRow.Add("Người lập hóa đơn   " );
+            doc.Add(signRow);
 
-
-
-
-
-
+            // Sign notes
+            Paragraph noteRow = new Paragraph("     (Ký và ghi rõ họ tên)", noteFont);
+            doc.Add(noteRow);
 
             // Close the document
             doc.Close();

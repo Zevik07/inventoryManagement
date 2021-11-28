@@ -101,7 +101,7 @@ namespace inventoryManagement
                 txtAddress.Text.Trim().Length == 0 ||
                 txtPhone.Text.Trim().Length == 0)
             {
-                notify.showNoti("Vui lòng nhập tất cả các trường");
+                noti.info("Vui lòng nhập tất cả các trường");
                 return false;
             }
             return true;
@@ -158,7 +158,7 @@ namespace inventoryManagement
         {
             if (dgvEmployee.Rows.Count == 0)
             {
-                notify.showNoti("Không có dữ liệu");
+                noti.info("Không có dữ liệu");
                 return;
             }
 
@@ -305,7 +305,7 @@ namespace inventoryManagement
 
             if (txtSearch.Text.ToString().Trim() == "")
             {
-                notify.showNoti("Vui lòng nhập nội dung tìm kiếm");
+                noti.info("Vui lòng nhập nội dung tìm kiếm");
                 return;
             }
 

@@ -56,7 +56,7 @@ namespace inventoryManagement
 
         private void toolStripMenuItem11_Click(object sender, EventArgs e)
         {
-            notify.showNoti("Phần mềm được viết bởi Nguyền Hữu Thiên Phú \n" +
+            noti.info("Phần mềm được viết bởi Nguyền Hữu Thiên Phú \n" +
                 "Đại học cần thơ" +
                 "github.com/zevik07");
         }
@@ -65,6 +65,11 @@ namespace inventoryManagement
         {
             frmOrderList frmOrderList = new frmOrderList();
             frmOrderList.ShowDialog();
+        }
+
+        private void mnuReportRevenue_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -105,7 +105,7 @@ namespace inventoryManagement
         {
             if (dgvCategory.Rows.Count == 0)
             {
-                notify.showNoti("Không có dữ liệu");
+                noti.info("Không có dữ liệu");
                 return;
             }
 
@@ -138,7 +138,7 @@ namespace inventoryManagement
                     {
                         if (txtName.Text.Trim().Length == 0)
                         {
-                            notify.showNoti("Vui lòng nhập tên ngành hàng");
+                            noti.info("Vui lòng nhập tên ngành hàng");
                             txtName.Focus();
                             return;
                         }
@@ -154,7 +154,7 @@ namespace inventoryManagement
                     {
                         if (txtName.Text.Trim().Length == 0)
                         {
-                            notify.showNoti("Tên ngành hàng không hợp lệ");
+                            noti.info("Tên ngành hàng không hợp lệ");
                             txtName.Focus();
                             return;
                         }
