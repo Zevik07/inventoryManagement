@@ -20,8 +20,7 @@ namespace inventoryManagement
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            // Connect to db
-            Core.db.Connect();
+            
         }
 
         private void mnuGood_Click(object sender, EventArgs e)

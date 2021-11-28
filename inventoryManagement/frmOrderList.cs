@@ -526,10 +526,11 @@ namespace inventoryManagement
                     ".pdf";
 
             // Get a PDFWriter object 
-            PdfWriter writer = 
+            FileStream pdfFile = new FileStream(path + "/" + fileName, FileMode.Create,
+                                FileAccess.Write, FileShare.Read); 
+             PdfWriter writer = 
                 PdfWriter.GetInstance(doc, 
-                new FileStream(path + "/"+ fileName, FileMode.Create, 
-                                FileAccess.Write, FileShare.Read));
+                pdfFile);
 
             // Meta data
             doc.AddAuthor("Nguyen Huu Thien Phu");
@@ -682,6 +683,9 @@ namespace inventoryManagement
             // Close the document
             doc.Close();
             writer.Close();
+
+            // Open 
+            System.Diagnostics.Process.Start(pdfFile.Name);
         }
 
         private string getCell(string name)
@@ -768,6 +772,11 @@ namespace inventoryManagement
         private void refreshBtn_Click(object sender, EventArgs e)
         {
             LoadDataGridView();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
