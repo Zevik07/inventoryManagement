@@ -37,15 +37,15 @@ namespace inventoryManagement
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.chkGender = new System.Windows.Forms.CheckBox();
-            this.txtPass = new System.Windows.Forms.TextBox();
             this.dtpBirthday = new System.Windows.Forms.DateTimePicker();
             this.txtId = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.dgvEmployee = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -63,9 +63,9 @@ namespace inventoryManagement
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.password = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.birthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -134,7 +134,7 @@ namespace inventoryManagement
             this.tableLayoutPanel1.Controls.Add(this.txtId, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label4, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.label5, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtPass, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txtAddress, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtPhone, 4, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(11, 40);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
@@ -169,18 +169,6 @@ namespace inventoryManagement
             this.label3.TabIndex = 1;
             this.label3.Text = "Tên nhân viên";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(321, 1);
-            this.label5.Margin = new System.Windows.Forms.Padding(1);
-            this.label5.MinimumSize = new System.Drawing.Size(0, 22);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(86, 22);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Số điện thoại";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label6
             // 
@@ -231,17 +219,6 @@ namespace inventoryManagement
             this.chkGender.Text = "Nữ";
             this.chkGender.UseVisualStyleBackColor = true;
             // 
-            // txtPass
-            // 
-            this.txtPass.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPass.Location = new System.Drawing.Point(432, 30);
-            this.txtPass.Margin = new System.Windows.Forms.Padding(1);
-            this.txtPass.MinimumSize = new System.Drawing.Size(4, 22);
-            this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(196, 22);
-            this.txtPass.TabIndex = 6;
-            // 
             // dtpBirthday
             // 
             this.dtpBirthday.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -274,10 +251,33 @@ namespace inventoryManagement
             this.label4.Margin = new System.Windows.Forms.Padding(1);
             this.label4.MinimumSize = new System.Drawing.Size(0, 22);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 22);
+            this.label4.Size = new System.Drawing.Size(48, 22);
             this.label4.TabIndex = 2;
-            this.label4.Text = "Mật khẩu";
+            this.label4.Text = "Địa chỉ";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(321, 1);
+            this.label5.Margin = new System.Windows.Forms.Padding(1);
+            this.label5.MinimumSize = new System.Drawing.Size(0, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(86, 22);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Số điện thoại";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAddress.Location = new System.Drawing.Point(432, 30);
+            this.txtAddress.Margin = new System.Windows.Forms.Padding(1);
+            this.txtAddress.MinimumSize = new System.Drawing.Size(4, 22);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(196, 22);
+            this.txtAddress.TabIndex = 6;
             // 
             // txtPhone
             // 
@@ -306,9 +306,9 @@ namespace inventoryManagement
             this.id,
             this.name,
             this.gender,
+            this.birthday,
             this.phone,
-            this.password,
-            this.birthday});
+            this.address});
             this.dgvEmployee.Location = new System.Drawing.Point(11, 169);
             this.dgvEmployee.Name = "dgvEmployee";
             this.dgvEmployee.Size = new System.Drawing.Size(628, 204);
@@ -380,7 +380,6 @@ namespace inventoryManagement
             this.btnEdit.TabIndex = 9;
             this.btnEdit.Text = "Sửa";
             this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Visible = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
@@ -400,7 +399,6 @@ namespace inventoryManagement
             this.btnDelete.TabIndex = 10;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Visible = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUndo
@@ -517,10 +515,10 @@ namespace inventoryManagement
             // 
             // name
             // 
-            this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.name.DataPropertyName = "name";
             this.name.HeaderText = "Họ tên";
-            this.name.MinimumWidth = 200;
+            this.name.MinimumWidth = 100;
             this.name.Name = "name";
             // 
             // gender
@@ -532,6 +530,14 @@ namespace inventoryManagement
             this.gender.MinimumWidth = 87;
             this.gender.Name = "gender";
             // 
+            // birthday
+            // 
+            this.birthday.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.birthday.DataPropertyName = "birthday";
+            this.birthday.HeaderText = "Ngày sinh";
+            this.birthday.MinimumWidth = 99;
+            this.birthday.Name = "birthday";
+            // 
             // phone
             // 
             this.phone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -541,23 +547,14 @@ namespace inventoryManagement
             this.phone.MinimumWidth = 119;
             this.phone.Name = "phone";
             // 
-            // password
+            // address
             // 
-            this.password.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.password.DataPropertyName = "password";
-            this.password.FillWeight = 10F;
-            this.password.HeaderText = "Mật khẩu";
-            this.password.MinimumWidth = 98;
-            this.password.Name = "password";
-            this.password.Visible = false;
-            // 
-            // birthday
-            // 
-            this.birthday.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.birthday.DataPropertyName = "birthday";
-            this.birthday.HeaderText = "Ngày sinh";
-            this.birthday.MinimumWidth = 78;
-            this.birthday.Name = "birthday";
+            this.address.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.address.DataPropertyName = "address";
+            this.address.FillWeight = 10F;
+            this.address.HeaderText = "Địa chỉ";
+            this.address.MinimumWidth = 100;
+            this.address.Name = "address";
             // 
             // frmEmployeeList
             // 
@@ -608,7 +605,7 @@ namespace inventoryManagement
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.CheckBox chkGender;
-        private System.Windows.Forms.TextBox txtPass;
+        private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.DateTimePicker dtpBirthday;
         private System.Windows.Forms.DataGridView dgvEmployee;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
@@ -628,8 +625,8 @@ namespace inventoryManagement
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn gender;
-        private System.Windows.Forms.DataGridViewTextBoxColumn phone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn password;
         private System.Windows.Forms.DataGridViewTextBoxColumn birthday;
+        private System.Windows.Forms.DataGridViewTextBoxColumn phone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn address;
     }
 }

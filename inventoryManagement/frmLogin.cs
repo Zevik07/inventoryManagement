@@ -34,7 +34,7 @@ namespace inventoryManagement
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (txtPhone.Text.Trim().Length == 0 ||
+            if (txtUser.Text.Trim().Length == 0 ||
                 txtPass.Text.Trim().Length == 0)
             {
                 noti.info("Bạn chưa nhập đầy đủ thông tin");
@@ -42,26 +42,23 @@ namespace inventoryManagement
             }
 
             string sql =
-                "select id " +
-                "from employees " +
-                "where phone = '" + 
-                txtPhone.Text + 
-                "' and password = '"+ 
-                txtPass.Text +"'";
+                "select * " +
+                "from admins a " +
+                "where a.username = '"+ txtUser.Text +"'" +
+                "and a.password = '" + txtPass.Text + "'";
 
-            var rs = db.ReadScalar(sql);
-
-            if (rs != DBNull.Value)
+            var rs = db.Read(sql);
+            bool hasR = rs.HasRows;
+            rs.Close();
+            if (hasR)
             {
-                userId = rs.ToString();
                 frmMain main = new frmMain();
                 main.ShowDialog();
-                this.Close();
+                this.Hide();
             }
             else
             {
                 noti.info("Tài khoản hoặc mật khẩu không chính xác");
-                return;
             }
         }
 

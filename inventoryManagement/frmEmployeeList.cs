@@ -22,7 +22,6 @@ namespace inventoryManagement
         public frmEmployeeList()
         {
             InitializeComponent();
-            txtPass.PasswordChar = '*';
         }
 
         private void frmEmployeeList_Load(object sender, EventArgs e)
@@ -40,7 +39,7 @@ namespace inventoryManagement
             txtId.Text = "";
             txtName.Text = "";
             chkGender.Checked = false;
-            txtPass.Text = "";
+            txtAddress.Text = "";
             txtPhone.Text = "";
             dtpBirthday.Value = new DateTime(1995, 6, 20);
         }
@@ -53,7 +52,7 @@ namespace inventoryManagement
                 // Checkbox
                 chkGender.ForeColor = Color.DarkSlateGray; // Read-only appearance
                 chkGender.AutoCheck = false;      // Read-only behavior 
-                txtPass.ReadOnly = true;
+                txtAddress.ReadOnly = true;
                 txtPhone.ReadOnly = true;
                 dtpBirthday.Enabled = false;
             }
@@ -63,7 +62,7 @@ namespace inventoryManagement
                 // Checkbox
                 chkGender.ForeColor = Color.Black; // Read-only appearance
                 chkGender.AutoCheck = true;      // Read-only behavior 
-                txtPass.ReadOnly = false;
+                txtAddress.ReadOnly = false;
                 txtPhone.ReadOnly = false;
                 dtpBirthday.Enabled = true;
             }
@@ -87,28 +86,18 @@ namespace inventoryManagement
                     false : true;
             txtPhone.Text =
                     cRow.Cells["phone"].Value.ToString();
-            txtPass.Text =
-                   cRow.Cells["password"].Value.ToString();
+            txtAddress.Text =
+                   cRow.Cells["address"].Value.ToString();
             dtpBirthday.Value =
                     DateTime.ParseExact(cRow.Cells["birthday"].Value.ToString(),
                     "dd/MM/yyyy",
                     CultureInfo.CreateSpecificCulture("en-GB"));
-
-            // Only change your info
-            if ("1" == getCell("id"))
-            {
-                btnEdit.Visible = true;
-            }
-            else
-            {
-                btnEdit.Visible = false;
-            }
         }
 
         private bool validateTxt()
         {
             if (txtName.Text.Trim().Length == 0 ||
-                txtPass.Text.Trim().Length == 0 ||
+                txtAddress.Text.Trim().Length == 0 ||
                 txtPhone.Text.Trim().Length == 0)
             {
                 noti.info("Vui lòng nhập tất cả các trường");
@@ -154,7 +143,7 @@ namespace inventoryManagement
         {
             string sql;
             sql =
-                "SELECT id, name, gender, password, phone, " +
+                "SELECT id, name, gender, address, phone, " +
                 "FORMAT(birthday, 'dd/MM/yyyy') as birthday " +
                 " FROM employees";
 
@@ -223,12 +212,12 @@ namespace inventoryManagement
                         sql =
                             "INSERT INTO " +
                             "employees" +
-                            "(id, name, gender, password, phone, birthday) " +
+                            "(id, name, gender, address, phone, birthday) " +
                             "VALUES(N'" +
                             txtId.Text.ToString() + "',N'" +
                             txtName.Text.ToString() + "',N'" +
                             getGender() + "',N'" +
-                            txtPass.Text.ToString() + "','" +
+                            txtAddress.Text.ToString() + "','" +
                             txtPhone.Text.ToString() + "','" +
                             dtpBirthday.Value +
                             "')";
@@ -245,7 +234,7 @@ namespace inventoryManagement
                         sql = "UPDATE employees SET name = N'" +
                             txtName.Text.ToString()
                             + "', gender = N'" + getGender()
-                            + "', password = '" + txtPass.Text.ToString()
+                            + "', address = '" + txtAddress.Text.ToString()
                             + "', phone = '" + txtPhone.Text.ToString()
                             + "', birthday = '" + dtpBirthday.Value
                             + "' WHERE id = '" + txtId.Text + "'";
@@ -336,7 +325,7 @@ namespace inventoryManagement
             }
 
             string qr =
-                "SELECT id, name, gender, password, phone, " +
+                "SELECT id, name, gender, address, phone, " +
                 "FORMAT(birthday, 'dd/MM/yyyy') as birthday " +
                 "FROM employees e " +
                 "where " +

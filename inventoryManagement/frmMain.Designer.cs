@@ -150,7 +150,7 @@ namespace inventoryManagement
             // mnuReportSale
             // 
             this.mnuReportSale.Name = "mnuReportSale";
-            this.mnuReportSale.Size = new System.Drawing.Size(180, 24);
+            this.mnuReportSale.Size = new System.Drawing.Size(147, 24);
             this.mnuReportSale.Text = "Doanh thu";
             this.mnuReportSale.Click += new System.EventHandler(this.mnuReportRevenue_Click);
             // 
@@ -232,6 +232,7 @@ namespace inventoryManagement
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
