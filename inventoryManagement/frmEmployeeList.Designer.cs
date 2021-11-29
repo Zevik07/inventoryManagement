@@ -48,6 +48,12 @@ namespace inventoryManagement
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.dgvEmployee = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.birthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -60,12 +66,6 @@ namespace inventoryManagement
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.birthday = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -316,6 +316,59 @@ namespace inventoryManagement
             this.dgvEmployee.TabStop = false;
             this.dgvEmployee.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEmployee_CellMouseUp);
             // 
+            // id
+            // 
+            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.id.DataPropertyName = "id";
+            this.id.FillWeight = 10F;
+            this.id.HeaderText = "Mã NV";
+            this.id.MinimumWidth = 80;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            // 
+            // name
+            // 
+            this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.name.DataPropertyName = "name";
+            this.name.HeaderText = "Họ tên";
+            this.name.MinimumWidth = 100;
+            this.name.Name = "name";
+            // 
+            // gender
+            // 
+            this.gender.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.gender.DataPropertyName = "gender";
+            this.gender.FillWeight = 10F;
+            this.gender.HeaderText = "Giới tính";
+            this.gender.MinimumWidth = 87;
+            this.gender.Name = "gender";
+            // 
+            // birthday
+            // 
+            this.birthday.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.birthday.DataPropertyName = "birthday";
+            this.birthday.HeaderText = "Ngày sinh";
+            this.birthday.MinimumWidth = 99;
+            this.birthday.Name = "birthday";
+            // 
+            // phone
+            // 
+            this.phone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.phone.DataPropertyName = "phone";
+            this.phone.FillWeight = 10F;
+            this.phone.HeaderText = "Số điện thoại";
+            this.phone.MinimumWidth = 119;
+            this.phone.Name = "phone";
+            // 
+            // address
+            // 
+            this.address.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.address.DataPropertyName = "address";
+            this.address.FillWeight = 10F;
+            this.address.HeaderText = "Địa chỉ";
+            this.address.MinimumWidth = 100;
+            this.address.Name = "address";
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
@@ -503,59 +556,6 @@ namespace inventoryManagement
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // id
-            // 
-            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.id.DataPropertyName = "id";
-            this.id.FillWeight = 10F;
-            this.id.HeaderText = "Mã NV";
-            this.id.MinimumWidth = 80;
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            // 
-            // name
-            // 
-            this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.name.DataPropertyName = "name";
-            this.name.HeaderText = "Họ tên";
-            this.name.MinimumWidth = 100;
-            this.name.Name = "name";
-            // 
-            // gender
-            // 
-            this.gender.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.gender.DataPropertyName = "gender";
-            this.gender.FillWeight = 10F;
-            this.gender.HeaderText = "Giới tính";
-            this.gender.MinimumWidth = 87;
-            this.gender.Name = "gender";
-            // 
-            // birthday
-            // 
-            this.birthday.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.birthday.DataPropertyName = "birthday";
-            this.birthday.HeaderText = "Ngày sinh";
-            this.birthday.MinimumWidth = 99;
-            this.birthday.Name = "birthday";
-            // 
-            // phone
-            // 
-            this.phone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.phone.DataPropertyName = "phone";
-            this.phone.FillWeight = 10F;
-            this.phone.HeaderText = "Số điện thoại";
-            this.phone.MinimumWidth = 119;
-            this.phone.Name = "phone";
-            // 
-            // address
-            // 
-            this.address.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.address.DataPropertyName = "address";
-            this.address.FillWeight = 10F;
-            this.address.HeaderText = "Địa chỉ";
-            this.address.MinimumWidth = 100;
-            this.address.Name = "address";
-            // 
             // frmEmployeeList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -574,7 +574,6 @@ namespace inventoryManagement
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Danh sách nhân viên";
             this.Load += new System.EventHandler(this.frmEmployeeList_Load);
-            this.Click += new System.EventHandler(this.frmEmployeeList_Load);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();

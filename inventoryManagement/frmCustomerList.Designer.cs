@@ -36,18 +36,18 @@ namespace inventoryManagement
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.dgvCustomer = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -119,13 +119,13 @@ namespace inventoryManagement
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.50327F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.49673F));
             this.tableLayoutPanel2.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label3, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.label5, 3, 1);
-            this.tableLayoutPanel2.Controls.Add(this.txtName, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.txtAddress, 4, 0);
             this.tableLayoutPanel2.Controls.Add(this.label4, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.txtId, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.txtPhone, 4, 1);
+            this.tableLayoutPanel2.Controls.Add(this.txtName, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.label3, 0, 1);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(11, 43);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -147,18 +147,6 @@ namespace inventoryManagement
             this.label2.Text = "Mã khách hàng";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1, 30);
-            this.label3.Margin = new System.Windows.Forms.Padding(1);
-            this.label3.MinimumSize = new System.Drawing.Size(0, 22);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(104, 22);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Tên khách hàng";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -170,17 +158,6 @@ namespace inventoryManagement
             this.label5.TabIndex = 3;
             this.label5.Text = "Số điện thoại";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtName
-            // 
-            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtName.Location = new System.Drawing.Point(119, 30);
-            this.txtName.Margin = new System.Windows.Forms.Padding(1);
-            this.txtName.MinimumSize = new System.Drawing.Size(4, 22);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(148, 22);
-            this.txtName.TabIndex = 2;
             // 
             // txtAddress
             // 
@@ -228,6 +205,29 @@ namespace inventoryManagement
             this.txtPhone.Size = new System.Drawing.Size(201, 22);
             this.txtPhone.TabIndex = 4;
             // 
+            // txtName
+            // 
+            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtName.Location = new System.Drawing.Point(119, 30);
+            this.txtName.Margin = new System.Windows.Forms.Padding(1);
+            this.txtName.MinimumSize = new System.Drawing.Size(4, 22);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(148, 22);
+            this.txtName.TabIndex = 2;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(1, 30);
+            this.label3.Margin = new System.Windows.Forms.Padding(1);
+            this.label3.MinimumSize = new System.Drawing.Size(0, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(104, 22);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Tên khách hàng";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // dgvCustomer
             // 
             this.dgvCustomer.AllowUserToAddRows = false;
@@ -239,10 +239,10 @@ namespace inventoryManagement
             this.dgvCustomer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCustomer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column5,
-            this.Column4});
+            this.id,
+            this.name,
+            this.phone,
+            this.address});
             this.dgvCustomer.Location = new System.Drawing.Point(9, 148);
             this.dgvCustomer.Name = "dgvCustomer";
             this.dgvCustomer.Size = new System.Drawing.Size(602, 203);
@@ -250,41 +250,41 @@ namespace inventoryManagement
             this.dgvCustomer.TabStop = false;
             this.dgvCustomer.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvCustomer_CellMouseUp);
             // 
-            // Column1
+            // id
             // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.DataPropertyName = "id";
-            this.Column1.FillWeight = 10F;
-            this.Column1.HeaderText = "Mã KH";
-            this.Column1.MinimumWidth = 80;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
+            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.id.DataPropertyName = "id";
+            this.id.FillWeight = 10F;
+            this.id.HeaderText = "Mã KH";
+            this.id.MinimumWidth = 80;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
             // 
-            // Column2
+            // name
             // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column2.DataPropertyName = "name";
-            this.Column2.HeaderText = "Họ tên";
-            this.Column2.MinimumWidth = 130;
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 130;
+            this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.name.DataPropertyName = "name";
+            this.name.HeaderText = "Họ tên";
+            this.name.MinimumWidth = 130;
+            this.name.Name = "name";
+            this.name.Width = 130;
             // 
-            // Column5
+            // phone
             // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column5.DataPropertyName = "phone";
-            this.Column5.FillWeight = 10F;
-            this.Column5.HeaderText = "Số điện thoại";
-            this.Column5.MinimumWidth = 124;
-            this.Column5.Name = "Column5";
+            this.phone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.phone.DataPropertyName = "phone";
+            this.phone.FillWeight = 10F;
+            this.phone.HeaderText = "Số điện thoại";
+            this.phone.MinimumWidth = 124;
+            this.phone.Name = "phone";
             // 
-            // Column4
+            // address
             // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column4.DataPropertyName = "address";
-            this.Column4.HeaderText = "Địa chỉ";
-            this.Column4.MinimumWidth = 150;
-            this.Column4.Name = "Column4";
+            this.address.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.address.DataPropertyName = "address";
+            this.address.HeaderText = "Địa chỉ";
+            this.address.MinimumWidth = 150;
+            this.address.Name = "address";
             // 
             // tableLayoutPanel1
             // 
@@ -492,7 +492,6 @@ namespace inventoryManagement
             this.Name = "frmCustomerList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Danh sách khách hàng";
-            this.Activated += new System.EventHandler(this.frmCustomerList_Load);
             this.Load += new System.EventHandler(this.frmCustomerList_Load);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
@@ -517,7 +516,6 @@ namespace inventoryManagement
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtId;
@@ -536,9 +534,10 @@ namespace inventoryManagement
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn phone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn address;
+        private System.Windows.Forms.TextBox txtName;
     }
 }

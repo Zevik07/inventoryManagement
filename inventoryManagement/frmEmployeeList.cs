@@ -234,7 +234,7 @@ namespace inventoryManagement
                         sql = "UPDATE employees SET name = N'" +
                             txtName.Text.ToString()
                             + "', gender = N'" + getGender()
-                            + "', address = '" + txtAddress.Text.ToString()
+                            + "', address = N'" + txtAddress.Text.ToString()
                             + "', phone = '" + txtPhone.Text.ToString()
                             + "', birthday = '" + dtpBirthday.Value
                             + "' WHERE id = '" + txtId.Text + "'";

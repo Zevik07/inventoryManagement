@@ -495,7 +495,7 @@ namespace inventoryManagement
             this.txtSearch.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
             this.txtSearch.MinimumSize = new System.Drawing.Size(4, 22);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(153, 22);
+            this.txtSearch.Size = new System.Drawing.Size(152, 22);
             this.txtSearch.TabIndex = 1;
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
@@ -505,12 +505,12 @@ namespace inventoryManagement
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearch.Image = global::inventoryManagement.Properties.Resources.search_icon__1_;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(584, 9);
+            this.btnSearch.Location = new System.Drawing.Point(583, 9);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(1);
             this.btnSearch.MinimumSize = new System.Drawing.Size(0, 22);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.btnSearch.Size = new System.Drawing.Size(98, 24);
+            this.btnSearch.Size = new System.Drawing.Size(99, 24);
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Tìm";
             this.btnSearch.UseVisualStyleBackColor = true;

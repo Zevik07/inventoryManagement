@@ -29,6 +29,8 @@ namespace inventoryManagement
 
             // Default textbox's state
             setControlReadMode();
+
+            txtSearch.Select();
         }
 
         private void resetTxt()
@@ -49,16 +51,16 @@ namespace inventoryManagement
             // In view mode
             if (btnAdd.Enabled && btnEdit.Enabled)
                 txtId.Text = 
-                    cRow.Cells[0].Value.ToString();
+                    cRow.Cells["id"].Value.ToString();
 
             txtName.Text = 
-                cRow.Cells[1].Value.ToString();
+                cRow.Cells["name"].Value.ToString();
 
             txtAddress.Text = 
-                cRow.Cells[2].Value.ToString();
+                cRow.Cells["address"].Value.ToString();
 
             txtPhone.Text = 
-                cRow.Cells[3].Value.ToString();
+                cRow.Cells["phone"].Value.ToString();
         }
 
         private bool validateTxt()
@@ -80,7 +82,21 @@ namespace inventoryManagement
             }    
             return true;
         }
+        private void generateId()
+        {
+            // Increase Id
+            string cellId = "0";
 
+            if (dgvCustomer.CurrentRow != null)
+            {
+                cellId =
+                    dgvCustomer.Rows[dgvCustomer.RowCount - 1]
+                    .Cells[0].Value.ToString();
+            }
+
+            txtId.Text = (Int16.Parse(cellId) + 1)
+                        .ToString();
+        }
         private void setControlReadMode(bool yes = true)
         {
             if (yes)
@@ -91,7 +107,6 @@ namespace inventoryManagement
             }
             else
             {
-               
                 txtName.ReadOnly = false;
                 txtAddress.ReadOnly = false;
                 txtPhone.ReadOnly = false;
@@ -120,7 +135,7 @@ namespace inventoryManagement
             }
             else
             {
-                control.enabledBtns(new[] { btnDelete, btnEdit });
+                control.enabledBtns(new[] { btnEdit, btnDelete });
             }
         }
 
@@ -141,13 +156,10 @@ namespace inventoryManagement
 
             resetTxt();
 
+            generateId();
+
             setControlReadMode(false);
 
-            // Increase id
-            string cellId = 
-                dgvCustomer.Rows[dgvCustomer.RowCount - 1].Cells[0].Value.ToString();
-            txtId.Text = (Int16.Parse(cellId) + 1)
-                        .ToString();
             // Focus
             txtName.Focus();
 
@@ -215,7 +227,7 @@ namespace inventoryManagement
             {
                 txtName.Focus();
             }
-            
+
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
