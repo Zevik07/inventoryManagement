@@ -130,9 +130,9 @@ namespace inventoryManagement
             string sql =
                 "SELECT TOP 1 id FROM order_details ORDER BY id DESC";
 
-            var rs = db.ReadScalar(sql);
+            object rs = db.ReadScalar(sql);
 
-            if (rs != DBNull.Value)
+            if (rs != null)
             {
                 id = rs.ToString();
             }
