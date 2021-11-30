@@ -196,7 +196,7 @@ namespace inventoryManagement
                 "c.name as customer_name, " +
                 "c.address as customer_address, " +
                 "c.phone as customer_phone, " +
-                "SUM(od.quantity*od.price_unit*(1-od.discount/100)) as price " +
+                "SUM(FLOOR(od.quantity*od.price_unit*(1-(od.discount/100.0)))) as price " +
                 "from orders o " +
                 "left join " +
                 "order_details od " +
@@ -487,7 +487,7 @@ namespace inventoryManagement
         {
             string sqlGetPrice =
                 "select " +
-                "SUM(od.quantity*od.price_unit*(1-od.discount/100)) as price " +
+                "SUM(FLOOR(od.quantity*od.price_unit*(1-(od.discount/100.0)))) as price " +
                 "from orders o " +
                 "left join " +
                 "order_details od " +

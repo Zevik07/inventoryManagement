@@ -197,7 +197,7 @@ namespace inventoryManagement
                 "od.price_unit, " +
                 "od.discount, " +
                 "g.name as good_name, " +
-                "od.quantity*od.price_unit*(1-od.discount/100) as price_total " +
+                "FLOOR(od.quantity*od.price_unit*(1-(od.discount/100.0))) as price_total " +
                 "from order_details od " +
                 "left join goods g " +
                 "on g.id = od.good_id " +
@@ -406,7 +406,7 @@ namespace inventoryManagement
                 "od.discount, " +
                 "od.price_total, " +
                 "g.name as good_name " +
-                "quantity*price_unit*(1-discount/100) as price_total " +
+                "FLOOR(od.quantity*od.price_unit*(1-(od.discount/100.0))) as price_total " +
                 "from order_details od " +
                 "inner join goods g " +
                 "on g.id = od.good_id " +
